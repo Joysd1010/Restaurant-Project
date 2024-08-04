@@ -3,7 +3,7 @@ import React from "react";
 const Subscription = () => {
   return (
     <div className="relative bg-[url('https://cafeu-react.netlify.app/img/image/ad-ban-bg.png')] bg-cover my-1 py-16">
-      <div className="absolute inset-0 flex">
+      <div className="absolute inset-0 flex ">
         <div
           className="w-1/2 bg-yellow-500 opacity-90"
           style={{
@@ -17,10 +17,10 @@ const Subscription = () => {
           }}
         ></div>
       </div>
-      <div className="relative z-10 px-5 flex items-center justify-between">
+      <div className="relative z-10 px-5 flex flex-col md:flex-row items-center justify-between">
         <div>
-          <p className="text-warm text-[30px] font-bold font-merriweather">
-            Stay Informed with our new delicacies
+          <p className="text-warm  text-[30px] font-bold font-merriweather">
+            Stay <span className="md:text-warm text-olive">Informed with</span> our new delicacies
           </p>
           <p className="text-Charcoal text-[16px]">For exciting offers, Coupons and deals</p>
         </div>
@@ -30,7 +30,7 @@ const Subscription = () => {
             placeholder="Enter Your Mail"
             className="m-2 p-2 bg-white rounded w-96 "
           />
-          <input type="submit" className=" bg-limeGreen p-2 text-warm rounded-md" />
+          <input type="submit" className=" bg-limeGreen m-2 p-2 text-warm rounded-md" />
         </form>
       </div>
     </div>

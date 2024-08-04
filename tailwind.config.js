@@ -17,6 +17,17 @@ export default {
       fontFamily: {
         'merriweather': ['Merriweather', 'serif'],
       },
+      fontSize: {18:'18px',
+        20:'20px',
+        22:'22px',
+        24:'24px',
+        26:'26px',
+        28:'28px',
+        30:'30px',
+        32:'32px',
+        34:'34px',
+        36:'36px',
+      }
     },
   },
   plugins: [require('daisyui'),],

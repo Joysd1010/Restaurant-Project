@@ -22,11 +22,11 @@ const Header = () => {
         />
       </div>
       {/* -----------------------NavLink Section------------------------------------ */}
-      <div
+      <div onClick={handleMenuClose}
         className={`flex md:static md:shadow-none  shadow-lg shadow-yellow-200 bg-[#FFF8E1] absolute  text-[#333333] top-28 text-[18px] md:flex-row sm:flex-col flex-col justify-between items-start md:items-center gap-2 md:gap-4 ${
           menu
             ? " right-[450px] duration-700 "
-            : " right-0 md:px-0 px-10  py-2 duration-700"
+            : " right-0 top-20 md:px-0 px-10  py-2 duration-700"
         }`}
       >
         <NavLink
