@@ -8,8 +8,11 @@ export default {
     extend: {
       colors: {
         olive: '#556B2F',
-        Charcoal : '#333333',lime:'#32CD32',
-        warm:'#FFF8E1'
+        limeGreen: '#32CD32',
+        Charcoal: '#333333', 
+        lime: '#32CD32', 
+        oliveGreen: '#6B8E23',
+        warm: '#FFF8E1'
       },
       fontFamily: {
         'merriweather': ['Merriweather', 'serif'],

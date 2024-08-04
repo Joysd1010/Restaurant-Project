@@ -12,7 +12,7 @@ const Header = () => {
     setMenu(true);
   };
   return (
-    <div className=" sticky top-0 flex items-center justify-between md:mx-28 px-5 shadow-lg shadow-yellow-200 bg-[#FFF8E1]">
+    <div className="z-30 h-20 sticky top-0 flex items-center justify-between md:mx-28 px-5 shadow-lg shadow-yellow-200 bg-[#FFF8E1]">
       {/* ------------------Logo section------------------------------- */}
       <div>
         <img
@@ -65,7 +65,7 @@ const Header = () => {
         </NavLink>
 
         <NavLink
-          to={"/offer"}
+          to={"/about"}
           className={({ isActive }) =>
             isActive
               ? "group p-4 font-bold  md:text-xl text-[#556B2F] duration-300"
@@ -76,7 +76,7 @@ const Header = () => {
           <hr className="w-1 border-2 hidden  sm:block border-gray-300 group-hover:w-full group-hover:border-gray-500 transition-all duration-300" />
         </NavLink>
         <NavLink
-          to={"/offer"}
+          to={"/contact"}
           className={({ isActive }) =>
             isActive
               ? "group p-4 font-bold  md:text-xl text-[#556B2F] duration-300"
