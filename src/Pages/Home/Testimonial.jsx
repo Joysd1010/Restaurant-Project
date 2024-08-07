@@ -3,7 +3,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import ReactStars from "react-rating-stars-component";
-import React from "react";
 import "./SliderStyle/style.css";
 import { Autoplay, Navigation } from "swiper/modules";
 const Testimonial = () => {
@@ -37,7 +36,7 @@ const Testimonial = () => {
           <SwiperSlide className=" py-5 text-center flex flex-col px-3 md:px-20">
             <div className="w-[150px] rounded-full p-2 border-2 border-limeGreen">
               <img
-                src="https://cafeu-react.netlify.app/img/customer/4.jpg"
+                src="https://cafeu-react.netlify.app/img/customer/3.jpg"
                 alt="Customer"
                 className="rounded-full"
               />
@@ -47,9 +46,9 @@ const Testimonial = () => {
               <p>Customer</p>
               <div className="mx-auto">
                 <ReactStars
-                  count={4.5}
+                  count={5}
                   edit={false}
-                  value={5}
+                  value={4.5}
                   size={24}
                   isHalf={true}
                   emptyIcon={<i className="far fa-star"></i>}
