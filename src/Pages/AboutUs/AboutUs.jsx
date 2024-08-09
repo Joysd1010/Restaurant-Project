@@ -134,7 +134,7 @@ const AboutUs = () => {
               </div>
           </div>
 
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d615.1204024009776!2d-0.05227432339664364!3d51.55155813652425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761cfc1e5744ad%3A0x8a92ef921a957052!2s50%20Lower%20Clapton%20Rd%2C%20Lower%20Clapton%2C%20London%20E5%200RN%2C%20UK!5e1!3m2!1sen!2sbd!4v1723168779094!5m2!1sen!2sbd" style={{border:'0'}} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" className=" mx-auto py-5 md:w-[1100px] md:h-[450px] w-96"></iframe>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d615.1204024009776!2d-0.05227432339664364!3d51.55155813652425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761cfc1e5744ad%3A0x8a92ef921a957052!2s50%20Lower%20Clapton%20Rd%2C%20Lower%20Clapton%2C%20London%20E5%200RN%2C%20UK!5e1!3m2!1sen!2sbd!4v1723168779094!5m2!1sen!2sbd" style={{border:'0'}} allowfullscreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade" className=" mx-auto py-5 md:w-[1100px] md:h-[450px] w-96"></iframe>
     </div>
   );
 };
