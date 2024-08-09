@@ -67,7 +67,8 @@ const Cusine = () => {
       ],
       img: "https://static.wixstatic.com/media/5c2e5c_2c73e90eaec94217a56955eed21bdf71~mv2.jpg/v1/fill/w_720,h_720,al_c,lg_1,q_85/5c2e5c_2c73e90eaec94217a56955eed21bdf71~mv2.jpg",
       category: "Desserts",
-    }, {
+    },
+    {
       id: 3,
       name: "Dessert Delight",
       promoLine: "Indulge in our sweet treats",
@@ -110,7 +111,8 @@ const Cusine = () => {
       ],
       img: "https://image.made-in-china.com/2f0j00YGeqsjKEfLbJ/New-Arrival-5-off-Brand-Restaurant-Platos-Black-Matte-Dinner-Plates-Catering-Black-Plate-Event-Buffet-Dishes.jpg",
       category: "Food",
-    }, {
+    },
+    {
       id: 1,
       name: "Summer Special",
       promoLine: "Cool down with our refreshing drinks",
@@ -133,7 +135,7 @@ const Cusine = () => {
       category: "Drinks",
     },
   ];
-  
+
   return (
     <div className="text-center pt-7 pb-5">
       <div className="group">

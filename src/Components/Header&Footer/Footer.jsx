@@ -1,5 +1,6 @@
 import { BiLogoGmail, BiSolidPhone } from "react-icons/bi";
 import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import { ImLocation2 } from "react-icons/im";
 import { Link } from "react-router-dom";
 
@@ -7,7 +8,7 @@ const Footer = () => {
   return (
     <div className="bg-[url('https://cafeu-react.netlify.app/img/footer-bg.png')]">
       <div className=" grid gap-4 grid-cols-1 md:grid-cols-4 px-5 md:px-28 items-start">
-        <div className=" flex flex-col gap-3 py-2">
+        <div className=" flex flex-col gap-2 py-2">
           <img
             src="https://i.postimg.cc/5Nx5y7HG/Beige-green-modern-lime-fruit-logo-2.png"
             className="w-28"
@@ -18,17 +19,17 @@ const Footer = () => {
           </p>
           <div className=" flex items-center gap-2">
             <ImLocation2 color="#32CD32" size={30} />
-            <p className=" text-[#FFF8E1]">
-              ABCD Roads, United states, FL 33311
-            </p>
+            <Link to={'about'} className="cursor-pointer hover:scale-105 duration-300 text-[#FFF8E1]">
+            50 Lower Clapton Road, London, England, E5 0RN
+            </Link>
           </div>
           <div className=" flex items-center gap-2">
             <BiLogoGmail color="#32CD32" size={25} />
-            <p className=" text-[#FFF8E1]">example@gmail.com</p>
+            <a href="mailto:md-alauddin@outlook.com" className="cursor-pointer hover:scale-105 duration-300  text-[#FFF8E1]">md-alauddin@outlook.com</a>
           </div>
           <div className=" flex items-center gap-2">
             <BiSolidPhone color="#32CD32" size={27} />
-            <p className=" text-[#FFF8E1]">+881523522-52563</p>
+            <a href="tel:+447473198598" className=" cursor-pointer hover:scale-105 duration-300 text-[#FFF8E1]">+447473198598</a>
           </div>
         </div>
         <div>
@@ -114,7 +115,7 @@ const Footer = () => {
           </p>
           <div className=" grid grid-cols-3 gap-5 py-5">
             <FaFacebook size={40} />
-            <FaTwitter size={40} />
+            <FaXTwitter size={40} />
             <FaInstagram size={40} />
           </div>
         </div>

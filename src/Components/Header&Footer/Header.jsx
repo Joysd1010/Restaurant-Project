@@ -79,7 +79,7 @@ const Header = () => {
             <p>About Us</p>
             <hr className="w-1 border-2 hidden sm:block border-gray-300 group-hover:w-full group-hover:border-gray-500 transition-all duration-300" />
           </NavLink>
-          <NavLink
+          {/* <NavLink
             to={"/contact"}
             className={({ isActive }) =>
               isActive
@@ -89,7 +89,7 @@ const Header = () => {
           >
             <p>Contact Us</p>
             <hr className="w-1 border-2 hidden sm:block border-gray-300 group-hover:w-full group-hover:border-gray-500 transition-all duration-300" />
-          </NavLink>
+          </NavLink> */}
         </div>
 
         {/* --------------------------------Toggle Switch======================== */}
