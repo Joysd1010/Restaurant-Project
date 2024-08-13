@@ -2,12 +2,10 @@ import { createBrowserRouter } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import Homepage from "../../Pages/Home/Homepage";
 import Offer from "../../Pages/OfferPage/Offer";
-
-import Menu from "../../Pages/MenuPage/Menu";
 import AboutUs from "../../Pages/AboutUs/AboutUs";
 import Contact from "../../Pages/ContactUs/Contact";
-
-import MenuByCategory from "../../Pages/Home/MenuByCategory";
+import MenuByCategory from "../../Pages/MenuPage/MenuByCategory";
+// import MenuByCategory from "../../Pages/MenuPage/MenuByCategory";
 
 const Router = createBrowserRouter([
   {
@@ -24,7 +22,7 @@ const Router = createBrowserRouter([
       },
       {
         path: "/menu",
-        element: <Menu />,
+        element: <MenuByCategory />,
       },
       {
         path: "/about",
