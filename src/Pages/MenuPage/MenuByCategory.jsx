@@ -3,7 +3,7 @@ import axiosInstance from "../../api/axiosInstance";
 import CusineCard from "./CuisineCard";
 import { useParams } from "react-router-dom";
 import { MdOutlineOutdoorGrill } from "react-icons/md";
-import SetMenu from "./SetMenu";
+
 import { TfiGift } from "react-icons/tfi";
 
 const MenuByCategory = () => {
