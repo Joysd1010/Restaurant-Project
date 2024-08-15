@@ -1,5 +1,5 @@
 import { BiLogoGmail, BiSolidPhone } from "react-icons/bi";
-import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
+import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { ImLocation2 } from "react-icons/im";
 import { Link } from "react-router-dom";
@@ -110,7 +110,7 @@ const Footer = () => {
             </p>
             <hr className=" border-2" />
           </div>
-          <p className=" text-warm text-center ">
+          <p className=" text-warm text-center py-5 ">
             Let Olive & Lime whisk you away to the Mediterranean.
           </p>
           <div className=" grid grid-cols-3 gap-5 py-5">
