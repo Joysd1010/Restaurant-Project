@@ -266,7 +266,7 @@ const MenuByCategory = () => {
         </div>
       )}
 
-      {selectedMenuItem && (
+{selectedMenuItem && (
         <dialog id="my_modal_3" className="modal">
           <div className="modal-box bg-warm">
             <form method="dialog">

@@ -3,9 +3,8 @@ import Layout from "../Layout/Layout";
 import Homepage from "../../Pages/Home/Homepage";
 import Offer from "../../Pages/OfferPage/Offer";
 import AboutUs from "../../Pages/AboutUs/AboutUs";
-import Contact from "../../Pages/ContactUs/Contact";
 import MenuByCategory from "../../Pages/MenuPage/MenuByCategory";
-// import MenuByCategory from "../../Pages/MenuPage/MenuByCategory";
+import Error from "../../Pages/ErrorPage/Error";
 
 const Router = createBrowserRouter([
   {
@@ -28,10 +27,7 @@ const Router = createBrowserRouter([
         path: "/about",
         element: <AboutUs />,
       },
-      {
-        path: "/contact",
-        element: <Contact />,
-      },
+     
       {
         path: "/offer",
         element: <Offer />,
@@ -40,6 +36,10 @@ const Router = createBrowserRouter([
         path: "/menu/:category",
         element: <MenuByCategory />,
       },
+      {
+        path:'*',
+        element:<Error/>
+      }
     ],
   },
 ]);

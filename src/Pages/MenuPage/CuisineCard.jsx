@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 const CusineCard = ({ menu, onWarningClick }) => {
-  const { image, name, promotionalLine, offer, price, offerPrice,available } = menu;
+  const { image, name, promotionalLine, offer, price, offerPrice } = menu;
  
   return (
     <div className="bg-white shadow-lg w-72 mx-auto rounded-lg overflow-hidden hover:shadow-limeGreen duration-300">
@@ -39,6 +39,7 @@ CusineCard.propTypes = {
     offer: PropTypes.bool,
     price: PropTypes.number.isRequired,
     offerPrice: PropTypes.number,
+    promotionalLine:PropTypes.string
   }).isRequired,
   onWarningClick: PropTypes.func.isRequired,
 };
