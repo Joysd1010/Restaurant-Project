@@ -111,10 +111,10 @@ const AboutUs = () => {
               <h1 className=" text-olive font-bold text-24">Mail Us</h1>{" "}
               <hr className="border-2 mx-10 border-limeGreen" />
               <a
-                href="mailto:md-alauddin@outlook.com"
+                href="mailto:info@oliveandlime.co.uk"
                 className="cursor-pointer hover:scale-105 duration-300 font-merriweather px-3"
               >
-                md-alauddin@outlook.com
+               info@oliveandlime.co.uk
               </a>
             </div>
      </div>

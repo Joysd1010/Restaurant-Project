@@ -21,11 +21,13 @@ const Header = () => {
 
         {/* ------------------Logo section------------------------------- */}
         <div className="z-20">
+          <NavLink to={'/'}>
           <img
             src="https://i.postimg.cc/5Nx5y7HG/Beige-green-modern-lime-fruit-logo-2.png"
             className="w-28 relative"
             alt="Logo"
           />
+          </NavLink>
         </div>
 
         {/* -----------------------NavLink Section------------------------------------ */}
