@@ -88,97 +88,100 @@ const Offer = () => {
           </h2>
         </div>
       ) : (
-        <>
-          {RunningOfferData.map((item) => {
-            const paginatedMenuItems = paginate(item.menuItems);
-            const totalPages = Math.ceil(item.menuItems.length / itemsPerPage);
-
-            return (
-              <div className="mx-10" key={item._id}>
-                <h1 className="rounded py-2 text-center hover border-2 hover:text-lime hover:bg-warm border-lime duration-300 my-2 text-warm font-bold font-merriweather text-28 bg-lime">
-                  {item.name}
-                </h1>
-                <div className="mx-auto my-5 w-2/3">
-                  <CountdownTimer
-                    startTime={item.startTime}
-                    endTime={item.endTime}
-                  />
-                </div>
-                <img src={item.image} className="py-5" alt={item.name} />
-                <div className="grid md:grid-cols-3 py-5 gap-3">
-                  {paginatedMenuItems.map((menuItem) => (
-                    <CusineCard
-                      key={menuItem._id}
-                      menu={menuItem}
-                      onWarningClick={() => handleWarningClick(menuItem)}
-                    />
-                  ))}
-                </div>
-                {/* Pagination */}
-                {totalPages > 1 && (
-                  <div className="flex justify-center my-5">
-                    <button
-                      onClick={handlePrevPage}
-                      className={`px-4 py-2 mx-1 border rounded ${
-                        currentPage === 1
-                          ? "bg-gray-300 cursor-not-allowed"
-                          : "bg-warm text-lime"
-                      }`}
-                      disabled={currentPage === 1}
-                    >
-                      Previous
-                    </button>
-
-                    {Array.from({ length: totalPages }, (_, index) => (
-                      <button
-                        key={index + 1}
-                        onClick={() => setCurrentPage(index + 1)}
-                        className={`px-4 py-2 mx-1 border rounded ${
-                          currentPage === index + 1
-                            ? "bg-lime text-warm"
-                            : "bg-warm text-lime"
-                        }`}
-                      >
-                        {index + 1}
-                      </button>
-                    ))}
-
-                    <button
-                      onClick={() => handleNextPage(totalPages)}
-                      className={`px-4 py-2 mx-1 border rounded ${
-                        currentPage === totalPages
-                          ? "bg-gray-300 cursor-not-allowed"
-                          : "bg-warm text-lime"
-                      }`}
-                      disabled={currentPage === totalPages}
-                    >
-                      Next
-                    </button>
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </>
-      )}
-
-      {UpComingOfferData && (
-        <div className=" py-5 mx-10">
-          <h1 className=" py-2 text-center font-bold font-merriweather text-28 ">Upcoming offers for you</h1>
-          <hr className="border-2 mx-32 border-lime "/>
-          {UpComingOfferData.map((item) => (
-            <div key={item._id} className=" py-5">
-              <div className="py-5 md:mx-32 mx-10">
-                 <CountdownTimer
+       <div>
+          <>
+            {RunningOfferData.map((item) => {
+              const paginatedMenuItems = paginate(item.menuItems);
+              const totalPages = Math.ceil(item.menuItems.length / itemsPerPage);
+  
+              return (
+                <div className="mx-10" key={item._id}>
+                  <h1 className="rounded py-2 text-center hover border-2 hover:text-lime hover:bg-warm border-lime duration-300 my-2 text-warm font-bold font-merriweather text-28 bg-lime">
+                    {item.name}
+                  </h1>
+                  <div className="mx-auto my-5 w-2/3">
+                    <CountdownTimer
                       startTime={item.startTime}
                       endTime={item.endTime}
                     />
-              </div>
-              <img src={item.image} alt={item.name} />
+                  </div>
+                  <img src={item.image} className="py-5" alt={item.name} />
+                  <div className="grid md:grid-cols-3 py-5 gap-3">
+                    {paginatedMenuItems.map((menuItem) => (
+                      <CusineCard
+                        key={menuItem._id}
+                        menu={menuItem}
+                        onWarningClick={() => handleWarningClick(menuItem)}
+                      />
+                    ))}
+                  </div>
+                  {/* Pagination */}
+                  {totalPages > 1 && (
+                    <div className="flex justify-center my-5">
+                      <button
+                        onClick={handlePrevPage}
+                        className={`px-4 py-2 mx-1 border rounded ${
+                          currentPage === 1
+                            ? "bg-gray-300 cursor-not-allowed"
+                            : "bg-warm text-lime"
+                        }`}
+                        disabled={currentPage === 1}
+                      >
+                        Previous
+                      </button>
+  
+                      {Array.from({ length: totalPages }, (_, index) => (
+                        <button
+                          key={index + 1}
+                          onClick={() => setCurrentPage(index + 1)}
+                          className={`px-4 py-2 mx-1 border rounded ${
+                            currentPage === index + 1
+                              ? "bg-lime text-warm"
+                              : "bg-warm text-lime"
+                          }`}
+                        >
+                          {index + 1}
+                        </button>
+                      ))}
+  
+                      <button
+                        onClick={() => handleNextPage(totalPages)}
+                        className={`px-4 py-2 mx-1 border rounded ${
+                          currentPage === totalPages
+                            ? "bg-gray-300 cursor-not-allowed"
+                            : "bg-warm text-lime"
+                        }`}
+                        disabled={currentPage === totalPages}
+                      >
+                        Next
+                      </button>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </>
+           {UpComingOfferData && (
+            <div className=" py-5 mx-10">
+              <h1 className=" py-2 text-center font-bold font-merriweather text-28 ">Upcoming offers for you</h1>
+              <hr className="border-2 mx-32 border-lime "/>
+              {UpComingOfferData.map((item) => (
+                <div key={item._id} className=" py-5">
+                  <div className="py-5 md:mx-32 mx-10">
+                     <CountdownTimer
+                          startTime={item.startTime}
+                          endTime={item.endTime}
+                        />
+                  </div>
+                  <img src={item.image} alt={item.name} />
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          )}
+       </div>
       )}
+
+     
 
       {selectedMenuItem && (
         <dialog id="my_modal_3" className="modal">

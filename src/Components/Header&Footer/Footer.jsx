@@ -25,7 +25,7 @@ const Footer = () => {
           </div>
           <div className=" flex items-center gap-2">
             <BiLogoGmail color="#32CD32" size={25} />
-            <a href="mailto:md-alauddin@outlook.com" className="cursor-pointer hover:scale-105 duration-300  text-[#FFF8E1]">md-alauddin@outlook.com</a>
+            <a href="mailto:info@oliveandlime.co.uk" className="cursor-pointer hover:scale-105 duration-300  text-[#FFF8E1]">info@oliveandlime.co.uk</a>
           </div>
           <div className=" flex items-center gap-2">
             <BiSolidPhone color="#32CD32" size={27} />
