@@ -10,7 +10,7 @@ const CusineCard = () => {
     axiosInstance
       .get("/menu/category")
       .then((response) => {
-        console.log(response.data);
+        
         setCategory(response.data);
       })
       .catch((error) => {

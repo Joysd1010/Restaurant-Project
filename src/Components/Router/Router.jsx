@@ -5,6 +5,7 @@ import Offer from "../../Pages/OfferPage/Offer";
 import AboutUs from "../../Pages/AboutUs/AboutUs";
 import MenuByCategory from "../../Pages/MenuPage/MenuByCategory";
 import Error from "../../Pages/ErrorPage/Error";
+import Reservation from "../../Pages/Reservation/Reservation";
 
 const Router = createBrowserRouter([
   {
@@ -27,7 +28,7 @@ const Router = createBrowserRouter([
         path: "/about",
         element: <AboutUs />,
       },
-     
+
       {
         path: "/offer",
         element: <Offer />,
@@ -37,9 +38,13 @@ const Router = createBrowserRouter([
         element: <MenuByCategory />,
       },
       {
-        path:'*',
-        element:<Error/>
-      }
+        path: "reserve",
+        element: <Reservation />,
+      },
+      {
+        path: "*",
+        element: <Error />,
+      },
     ],
   },
 ]);
