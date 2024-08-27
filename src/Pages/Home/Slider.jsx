@@ -1,3 +1,5 @@
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -7,35 +9,25 @@ import "./SliderStyle/style.css";
 
 import { Autoplay, Navigation } from "swiper/modules";
 import { Link } from "react-router-dom";
-
-const slides = [
-  {
-    id: 1,
-    title: "Exclusive items",
-    headline: "Mediterranean Salad and Summer Delight",
-    description: "Experience the essence of the Mediterranean with our light and refreshing salads.",
-    buttonText: "View More",
-    image: "https://cafeu-react.netlify.app/img/slider/banner-7.png",
-  },
-  {
-    id: 2,
-    title: "Exclusive items",
-    headline: "Cuisine and Cocktails, Perfectly Paired",
-    description: "From classic elegance to bold experimentation, our cocktail menu has something for everyone.",
-    buttonText: "View More",
-    image: "https://cafeu-react.netlify.app/img/slider/banner-9.png",
-  },
-  {
-    id: 3,
-    title: "Exclusive items",
-    headline: "Discover the world, one plate at a time.",
-    description: "From spicy curries to delicate sushi, your taste buds will thank you.",
-    buttonText: "View More",
-    image: "https://cafeu-react.netlify.app/img/slider/banner-8.png",
-  },
-];
+import axiosInstance from "../../api/axiosInstance";
 
 export default function Slider() {
+  const [slides, setSlides] = useState([]);
+
+  useEffect(() => {
+    const fetchSlides = async () => {
+      try {
+        const response = await axiosInstance.get("/home-slider-upload");
+        console.log(response.data)
+        setSlides(response.data);
+      } catch (error) {
+        console.error("Error fetching sliders:", error);
+      }
+    };
+
+    fetchSlides();
+  }, []);
+
   return (
     <Swiper
       spaceBetween={30}
@@ -48,26 +40,25 @@ export default function Slider() {
       pagination={{
         clickable: true,
       }}
-      // navigation={true}
       modules={[Autoplay, Navigation]}
       className="mySwiper"
     >
       {slides.map(slide => (
-        <SwiperSlide key={slide.id}>
+        <SwiperSlide key={slide._id}>
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 items-center">
             <div className="text-start px-10 flex flex-col gap-7">
               <p className="text-oliveGreen text-[24px] font-merriweather font-bold">
                 {slide.title}
               </p>
               <h1 className="text-[30px] font-bold text-black">
-                {slide.headline}
+                {slide.heading}
               </h1>
               <p>{slide.description}</p>
-              <Link className="rounded-md text-warm bg-limeGreen p-3 w-52 text-center">
-                {slide.buttonText}
+              <Link to="/" className="rounded-md text-warm bg-limeGreen p-3 w-52 text-center">
+                View More
               </Link>
             </div>
-            <img src={slide.image} alt={slide.headline} />
+            <img src="https://drive.google.com/uc?export=view&id=17EqBYdKTEXp43I4ITzRcWHPwr560a0Sn" alt={slide.heading} />
           </div>
         </SwiperSlide>
       ))}
