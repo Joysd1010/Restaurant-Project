@@ -81,17 +81,17 @@ const Header = () => {
             <p>About Us</p>
             <hr className="w-1 border-2 hidden sm:block border-gray-300 group-hover:w-full group-hover:border-gray-500 transition-all duration-300" />
           </NavLink>
-          {/* <NavLink
-            to={"/contact"}
+          <NavLink
+            to={"/reserve"}
             className={({ isActive }) =>
               isActive
                 ? "group p-4 font-bold md:text-xl text-[#556B2F] duration-300"
                 : "group p-4 md:text-xl duration-300"
             }
           >
-            <p>Contact Us</p>
+            <p>Reservation</p>
             <hr className="w-1 border-2 hidden sm:block border-gray-300 group-hover:w-full group-hover:border-gray-500 transition-all duration-300" />
-          </NavLink> */}
+          </NavLink>
         </div>
 
         {/* --------------------------------Toggle Switch======================== */}

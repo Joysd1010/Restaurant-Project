@@ -6,6 +6,7 @@ import AboutUs from "../../Pages/AboutUs/AboutUs";
 import MenuByCategory from "../../Pages/MenuPage/MenuByCategory";
 import DashBoard from "../../Pages/adminDashBoard/DashBoard";
 import Error from "../../Pages/ErrorPage/Error";
+import Reservation from "../../Pages/Reservation/Reservation";
 
 const Router = createBrowserRouter([
   {
@@ -28,11 +29,7 @@ const Router = createBrowserRouter([
         path: "/about",
         element: <AboutUs />,
       },
-     
-      {
-        path: "/offer",
-        element: <Offer />,
-      },
+
       {
         path: "/menu/:category",
         element: <MenuByCategory />,
@@ -42,9 +39,13 @@ const Router = createBrowserRouter([
         element: <DashBoard />,
       },
       {
-        path:'*',
-        element:<Error/>
-      }
+        path: "reserve",
+        element: <Reservation />,
+      },
+      {
+        path: "*",
+        element: <Error />,
+      },
     ],
   },
 ]);
