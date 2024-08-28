@@ -11,6 +11,7 @@ import {
 } from "@mui/icons-material";
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
 import CelebrationTwoToneIcon from '@mui/icons-material/CelebrationTwoTone';
+import DateRangeIcon from '@mui/icons-material/DateRange';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import { SiFormspree } from "react-icons/si";
 import {
@@ -64,6 +65,16 @@ const menuItems = [
     subMenu: [
       { name: "Add Offer", path: "/admin-dashboard?type=add-offer" },
       { name: "Delete Offer", path: "/admin-dashboard?type=delete-offer" },
+    ],
+    id: "apps",
+  }
+  ,
+  {
+    name: "Reservation",
+    icon: <DateRangeIcon className="text-teal-200" />,
+    subMenu: [
+      { name: "View ", path: "/admin-dashboard?type=viewReservation" },
+      { name: "Control", path: "/admin-dashboard?type=controlReservation" },
     ],
     id: "apps",
   }

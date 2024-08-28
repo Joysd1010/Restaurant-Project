@@ -171,9 +171,9 @@ console.log(ingredients)
             <button
               type="button"
               onClick={handleAddIngredient}
-              className="text-green-500 hover:text-green-700 mt-2"
+              className="text-green-500 hover:text-green-700 mt-2 font-bold"
             >
-              Add Ingredient
+              Add Ingredient 
             </button>
           </div>
           <div>
