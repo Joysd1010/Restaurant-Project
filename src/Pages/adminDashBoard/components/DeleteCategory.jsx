@@ -29,7 +29,7 @@ const DeleteCategory = () => {
         .delete(`/menu/category`, {
           params: { id },
         })
-        .then((response) => {
+        .then(() => {
           toast.success("Category deleted successfully!");
           setCategories((prevCategories) =>
             prevCategories.filter((category) => category._id !== id)
