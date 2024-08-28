@@ -4,12 +4,16 @@ import axiosInstance from "../../../api/axiosInstance";
 const ViewReservation = () => {
   const [selected, setSelected] = useState(new Date().toISOString());
   const [timeSlot, setSlot] = useState([]);
-  const [Reservation, setReservation] = useState([]);
+  const [reservation, setReservation] = useState([]);
   const [time, setTime] = useState(null);
+
+  // Modal state
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
-  const [reservationsPerPage] = useState(10); 
+  const [reservationsPerPage] = useState(10);
 
   useEffect(() => {
     const fetchTimeSlots = async () => {
@@ -27,7 +31,6 @@ const ViewReservation = () => {
   useEffect(() => {
     const fetchReservation = async () => {
       try {
-        
         const params = new URLSearchParams();
         if (selected) params.append('date', selected);
         if (time) params.append('time', time);
@@ -41,21 +44,18 @@ const ViewReservation = () => {
 
     fetchReservation();
   }, [selected, time]);
+
   const handleDateChange = (event) => {
     const selectedDate = new Date(event.target.value);
     setSelected(selectedDate.toISOString());
   };
 
-  
-  const totalPages = Math.ceil(Reservation.length / reservationsPerPage);
-
-  
-  const currentReservations = Reservation.slice(
+  const totalPages = Math.ceil(reservation.length / reservationsPerPage);
+  const currentReservations = reservation.slice(
     (currentPage - 1) * reservationsPerPage,
     currentPage * reservationsPerPage
   );
 
-  
   const handlePrevPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
@@ -66,6 +66,16 @@ const ViewReservation = () => {
     if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1);
     }
+  };
+
+  const handleNoteView = (item) => {
+    setSelectedItem(item);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedItem(null);
   };
 
   return (
@@ -83,45 +93,54 @@ const ViewReservation = () => {
             <div>Note</div>
           </div>
           <div>
-            {Reservation.length>0?currentReservations.map((item) => (
-              <div
-                key={item._id}
-                className="grid grid-cols-8 bg-white border-2 border-olive text-start text-Charcoal hover:scale-105 duration-300 px-4 my-2 py-1 rounded-r-full rounded-l-full"
-              >
-                <div className="px-1 col-span-2">{item.fullName}</div>
-                <div className="px-1 col-span-2">{item.email}</div>
-                <div className="px-1 col-span-2 text-center">{item.phoneNumber}</div>
-                <div className="px-1 text-center">{item.numberOfPeople}</div>
-                <div className="text-center cursor-pointer bg-olive rounded-full text-white">
-                  view
+            {reservation.length > 0 ? (
+              currentReservations.map((item) => (
+                <div
+                  key={item._id}
+                  className="grid grid-cols-8 bg-white border-2 border-olive text-start text-Charcoal hover:scale-105 duration-300 px-4 my-2 py-1 rounded-r-full rounded-l-full"
+                >
+                  <div className="px-1 col-span-2">{item.fullName}</div>
+                  <div className="px-1 col-span-2">{item.email}</div>
+                  <div className="px-1 col-span-2 text-center">{item.phoneNumber}</div>
+                  <div className="px-1 text-center">{item.numberOfPeople}</div>
+                  <div
+                    className="text-center cursor-pointer bg-olive rounded-full text-white"
+                    onClick={() => handleNoteView(item)}
+                  >
+                    View
+                  </div>
                 </div>
+              ))
+            ) : (
+              <div className="text-22 font-bold font-merriweather text-center py-6">
+                Sorry No Reservation Found
               </div>
-            )):<div className=" text-22 font-bold font-merriweather text-center py-6">Sorry No Reservation Found</div>}
+            )}
           </div>
           {/* Pagination Controls */}
-          {Reservation.length > reservationsPerPage && (
+          {reservation.length > reservationsPerPage && (
             <div className="flex justify-center mt-4">
-              {
-                currentPage!==1&&<button
-                onClick={handlePrevPage}
-                disabled={currentPage === 1}
-                className="px-4 py-2 bg-olive text-white rounded-l-md"
-              >
-                Prev
-              </button>
-              }
+              {currentPage !== 1 && (
+                <button
+                  onClick={handlePrevPage}
+                  disabled={currentPage === 1}
+                  className="px-4 py-2 bg-olive text-white rounded-l-md"
+                >
+                  Prev
+                </button>
+              )}
               <span className="px-4 py-2 text-olive">
                 Page {currentPage} of {totalPages}
               </span>
-              {
-                currentPage!==totalPages&&<button
-                onClick={handleNextPage}
-                disabled={currentPage === totalPages}
-                className="px-4 py-2 bg-olive text-white rounded-r-md"
-              >
-                Next
-              </button>
-              }
+              {currentPage !== totalPages && (
+                <button
+                  onClick={handleNextPage}
+                  disabled={currentPage === totalPages}
+                  className="px-4 py-2 bg-olive text-white rounded-r-md"
+                >
+                  Next
+                </button>
+              )}
             </div>
           )}
         </div>
@@ -132,7 +151,7 @@ const ViewReservation = () => {
             </div>
             <div>
               <select
-                value={time?.time}
+                value={time}
                 onChange={(e) => setTime(e.target.value)}
                 className="mt-5 block w-full px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 required
@@ -189,7 +208,44 @@ const ViewReservation = () => {
         </div>
       </div>
 
-      
+      {/* Modal */}
+      {isModalOpen && (
+        <dialog open className="modal">
+          <div className="modal-box bg-white">
+            <form method="dialog">
+              <button
+                type="button"
+                className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+                onClick={closeModal}
+              >
+                ✕
+              </button>
+            </form>
+            {selectedItem && (
+              <>
+               <div className=" bg-white">
+                    <h3 className="font-bold text-lg">Reservation Details</h3>
+                    <p className="py-4">
+                      <strong>Name:</strong> {selectedItem.fullName}
+                    </p>
+                    <p className="py-4">
+                      <strong>Email:</strong> {selectedItem.email}
+                    </p>
+                    <p className="py-4">
+                      <strong>Phone:</strong> {selectedItem.phoneNumber}
+                    </p>
+                    <p className="py-4">
+                      <strong>Number of People:</strong> {selectedItem.numberOfPeople}
+                    </p>
+                    <p className="py-4">
+                      <strong>Note:</strong> {selectedItem.note}
+                    </p>
+               </div>
+              </>
+            )}
+          </div>
+        </dialog>
+      )}
     </div>
   );
 };
