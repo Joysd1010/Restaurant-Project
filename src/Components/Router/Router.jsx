@@ -35,10 +35,6 @@ const Router = createBrowserRouter([
         element: <MenuByCategory />,
       },
       {
-        path: "/admin-dashboard",
-        element: <DashBoard />,
-      },
-      {
         path: "reserve",
         element: <Reservation />,
       },
@@ -48,6 +44,11 @@ const Router = createBrowserRouter([
       },
     ],
   },
+  
+      {
+        path: "/admin-dashboard",
+        element: <DashBoard />,
+      }
 ]);
 
 export default Router;

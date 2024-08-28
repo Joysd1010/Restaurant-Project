@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import CountdownTimer from '../../OfferPage/CountdownTime'; // Ensure this is correctly exported and imported
-import CusineCard from '../../MenuPage/CuisineCard'; // Ensure this is correctly exported and imported
-import { TfiGift } from 'react-icons/tfi';
-import { ToastContainer, toast } from 'react-toastify'; // Import ToastContainer correctly
-import axiosInstance from '../../../api/axiosInstance';
+import { useState, useEffect } from "react";
+import CountdownTimer from "../../OfferPage/CountdownTime"; // Ensure this is correctly exported and imported
+import CusineCard from "../../MenuPage/CuisineCard"; // Ensure this is correctly exported and imported
+import { TfiGift } from "react-icons/tfi";
+import { ToastContainer, toast } from "react-toastify"; // Import ToastContainer correctly
+import axiosInstance from "../../../api/axiosInstance";
 
 const DeleteOffer = () => {
   const [offerData, setOfferData] = useState([]);
@@ -15,7 +15,7 @@ const DeleteOffer = () => {
 
   useEffect(() => {
     axiosInstance
-      .get('/offer')
+      .get("/offer")
       .then((response) => {
         const now = new Date();
         const filteredOffers = response.data.filter((offer) => {
@@ -38,28 +38,32 @@ const DeleteOffer = () => {
         setUpcoming(upcomingOffers);
       })
       .catch((error) => {
-        console.error('Error fetching offer data:', error);
+        console.error("Error fetching offer data:", error);
       });
   }, []);
 
   const handleDelete = async () => {
     try {
       if (selectedOfferId) {
-        await axiosInstance.delete(`/offer`, { params: { id: selectedOfferId } });
-        toast.success('Offer deleted successfully!');
-        setOfferData((prevOffers) => prevOffers.filter((offer) => offer._id !== selectedOfferId));
+        await axiosInstance.delete(`/offer`, {
+          params: { id: selectedOfferId },
+        });
+        toast.success("Offer deleted successfully!");
+        setOfferData((prevOffers) =>
+          prevOffers.filter((offer) => offer._id !== selectedOfferId)
+        );
         // Close the modal after deletion
-        document.getElementById('delete_modal').close();
+        document.getElementById("delete_modal").close();
       }
     } catch (error) {
-      toast.error('Failed to delete offer');
-      console.error('Error deleting offer:', error);
+      toast.error("Failed to delete offer");
+      console.error("Error deleting offer:", error);
     }
   };
 
   const handleDeleteClick = (offerId) => {
     setSelectedOfferId(offerId);
-    document.getElementById('delete_modal').showModal();
+    document.getElementById("delete_modal").showModal();
   };
 
   const paginate = (items) => {
@@ -104,8 +108,8 @@ const DeleteOffer = () => {
 
             return (
               <div className="mx-10" key={item._id}>
-                <div className="flex justify-between items-center">
-                  <h1 className="rounded py-2 text-center hover border-2 hover:text-lime hover:bg-warm border-lime duration-300 my-2 text-warm font-bold font-merriweather text-28 bg-lime">
+                <div className="grid grid-cols-4 gap-6 items-center">
+                  <h1 className="rounded col-span-3 py-2 text-center hover border-2 hover:text-lime hover:bg-warm border-lime duration-300 my-2 text-warm font-bold font-merriweather text-28 bg-lime">
                     {item.name}
                   </h1>
                   <button
@@ -124,11 +128,12 @@ const DeleteOffer = () => {
                 <img src={item.image} className="py-5" alt={item.name} />
                 <div className="grid md:grid-cols-3 py-5 gap-3">
                   {paginatedMenuItems.map((menuItem) => (
-                    <CusineCard
-                      key={menuItem._id}
-                      menu={menuItem}
-                      onWarningClick={() => handleWarningClick(menuItem)}
-                    />
+                    <div key={menuItem._id} className=" ">
+                      <CusineCard
+                        menu={menuItem}
+                        onWarningClick={() => handleWarningClick(menuItem)}
+                      />
+                    </div>
                   ))}
                 </div>
                 {totalPages > 1 && (
@@ -137,8 +142,8 @@ const DeleteOffer = () => {
                       onClick={handlePrevPage}
                       className={`px-4 py-2 mx-1 border rounded ${
                         currentPage === 1
-                          ? 'bg-gray-300 cursor-not-allowed'
-                          : 'bg-warm text-lime'
+                          ? "bg-gray-300 cursor-not-allowed"
+                          : "bg-warm text-lime"
                       }`}
                       disabled={currentPage === 1}
                     >
@@ -151,8 +156,8 @@ const DeleteOffer = () => {
                         onClick={() => setCurrentPage(index + 1)}
                         className={`px-4 py-2 mx-1 border rounded ${
                           currentPage === index + 1
-                            ? 'bg-lime text-warm'
-                            : 'bg-warm text-lime'
+                            ? "bg-lime text-warm"
+                            : "bg-warm text-lime"
                         }`}
                       >
                         {index + 1}
@@ -163,8 +168,8 @@ const DeleteOffer = () => {
                       onClick={() => handleNextPage(totalPages)}
                       className={`px-4 py-2 mx-1 border rounded ${
                         currentPage === totalPages
-                          ? 'bg-gray-300 cursor-not-allowed'
-                          : 'bg-warm text-lime'
+                          ? "bg-gray-300 cursor-not-allowed"
+                          : "bg-warm text-lime"
                       }`}
                       disabled={currentPage === totalPages}
                     >
@@ -179,16 +184,24 @@ const DeleteOffer = () => {
           {upcomingOfferData.length > 0 && (
             <div className="py-5 mx-10">
               <h1 className="py-2 text-center font-bold font-merriweather text-28">
-                Upcoming offers for you
+                Upcoming offers
               </h1>
               <hr className="border-2 mx-32 border-lime" />
               {upcomingOfferData.map((item) => (
                 <div key={item._id} className="py-5">
-                  <div className="py-5 md:mx-32 mx-10">
-                    <CountdownTimer
-                      startTime={item.startTime}
-                      endTime={item.endTime}
-                    />
+                  <div className="py-5 grid grid-cols-4 gap-6 md:mx-32 mx-10">
+                   <div className=" col-span-3">
+                      <CountdownTimer
+                        startTime={item.startTime}
+                        endTime={item.endTime}
+                      />
+                   </div>
+                     <button
+                    className="btn btn-error"
+                    onClick={() => handleDeleteClick(item._id)}
+                  >
+                    Delete
+                  </button>
                   </div>
                   <img src={item.image} alt={item.name} />
                 </div>
@@ -214,7 +227,7 @@ const DeleteOffer = () => {
             <button
               type="button"
               className="btn"
-              onClick={() => document.getElementById('delete_modal').close()}
+              onClick={() => document.getElementById("delete_modal").close()}
             >
               Cancel
             </button>

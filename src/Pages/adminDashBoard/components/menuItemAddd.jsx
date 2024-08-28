@@ -171,7 +171,7 @@ console.log(ingredients)
             <button
               type="button"
               onClick={handleAddIngredient}
-              className="text-blue-500 hover:text-blue-700 mt-2"
+              className="text-green-500 hover:text-green-700 mt-2"
             >
               Add Ingredient
             </button>
@@ -280,7 +280,7 @@ console.log(ingredients)
             <button
               type="submit"
               disabled={uploading}
-              className={`w-full px-4 py-2 text-white bg-indigo-600 hover:bg-indigo-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${
+              className={`w-full px-4 py-2 text-white bg-green-600 hover:bg-darkOlive rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${
                 uploading ? 'opacity-50 cursor-not-allowed' : ''
               }`}
             >

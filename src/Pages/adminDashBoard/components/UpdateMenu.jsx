@@ -135,14 +135,14 @@ export default function UpdateMenu() {
     <div className="p-4">
       <ToastContainer position="bottom-right" autoClose={3000} />
 
-      <div className="mb-4">
+      <div className="mb-4 flex gap-10 mx-3">
         <input
           type="text"
           name="name"
           value={nameFilter}
           onChange={handleFilterChange}
           placeholder="Filter by name"
-          className="p-2 border border-gray-300 rounded w-full mb-2"
+          className="p-2 border border-gray-300 rounded w-full mb-2 bg-white"
         />
         {suggestions.name.length > 0 && (
           <ul className="bg-white border border-gray-300 rounded shadow-md">
@@ -163,7 +163,7 @@ export default function UpdateMenu() {
           value={categoryFilter}
           onChange={handleFilterChange}
           placeholder="Filter by category"
-          className="p-2 border border-gray-300 rounded w-full mb-2"
+          className="p-2 border border-gray-300 rounded w-full mb-2 bg-white"
         />
         {suggestions.category.length > 0 && (
           <ul className="bg-white border border-gray-300 rounded shadow-md">
@@ -184,7 +184,7 @@ export default function UpdateMenu() {
           value={typeFilter}
           onChange={handleFilterChange}
           placeholder="Filter by type"
-          className="p-2 border border-gray-300 rounded w-full mb-2"
+          className="p-2 border border-gray-300 rounded w-full mb-2 bg-white"
         />
         {suggestions.type.length > 0 && (
           <ul className="bg-white border border-gray-300 rounded shadow-md">
@@ -218,7 +218,7 @@ export default function UpdateMenu() {
                     name="name"
                     value={editableMenu.name}
                     onChange={handleInputChange}
-                    className="p-2 border border-gray-300 rounded w-full mb-2"
+                    className="p-2 border border-gray-300 rounded w-full mb-2 bg-white"
                   />
                   <label className="block mb-1">Category</label>
                   <input
@@ -226,7 +226,7 @@ export default function UpdateMenu() {
                     name="category"
                     value={editableMenu.category}
                     onChange={handleInputChange}
-                    className="p-2 border border-gray-300 rounded w-full mb-2"
+                    className="p-2 border border-gray-300 rounded w-full mb-2 bg-white"
                   />
                   <label className="block mb-1">Type</label>
                   <input
@@ -234,7 +234,7 @@ export default function UpdateMenu() {
                     name="type"
                     value={editableMenu.type}
                     onChange={handleInputChange}
-                    className="p-2 border border-gray-300 rounded w-full mb-2"
+                    className="p-2 border border-gray-300 rounded w-full mb-2 bg-white"
                   />
                   <label className="block mb-1">Promotional Line</label>
                   <input
@@ -242,7 +242,7 @@ export default function UpdateMenu() {
                     name="promotionalLine"
                     value={editableMenu.promotionalLine}
                     onChange={handleInputChange}
-                    className="p-2 border border-gray-300 rounded w-full mb-2"
+                    className="p-2 border border-gray-300 rounded w-full mb-2 bg-white"
                   />
                   <label className="block mb-1">Price</label>
                   <input
@@ -250,7 +250,7 @@ export default function UpdateMenu() {
                     name="price"
                     value={editableMenu.price}
                     onChange={handleInputChange}
-                    className="p-2 border border-gray-300 rounded w-full mb-2"
+                    className="p-2 border border-gray-300 rounded w-full mb-2 bg-white"
                   />
                   <label className="block mb-1">Offer</label>
                   <input
@@ -258,7 +258,7 @@ export default function UpdateMenu() {
                     name="offer"
                     value={editableMenu.offer}
                     onChange={handleInputChange}
-                    className="p-2 border border-gray-300 rounded w-full mb-2"
+                    className="p-2 border border-gray-300 rounded w-full mb-2 bg-white"
                   />
                   <label className="block mb-1">Offer Price</label>
                   <input
@@ -266,7 +266,7 @@ export default function UpdateMenu() {
                     name="offerPrice"
                     value={editableMenu.offerPrice}
                     onChange={handleInputChange}
-                    className="p-2 border border-gray-300 rounded w-full mb-2"
+                    className="p-2 border border-gray-300 rounded w-full mb-2 bg-white"
                   />
                   <div className="mt-4">
                     <button
@@ -296,7 +296,7 @@ export default function UpdateMenu() {
                   )}
                   <button
                     onClick={() => handleEditClick(menu)}
-                    className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+                    className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
                   >
                     update
                   </button>
