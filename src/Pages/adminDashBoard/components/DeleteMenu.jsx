@@ -72,7 +72,7 @@ export default function DeleteMenu() {
           placeholder="Filter by name"
           value={filter.name}
           onChange={handleFilterChange}
-          className="p-2 border border-gray-300 rounded mb-2 mr-2"
+          className="p-2 border border-gray-500 bg-white rounded mb-2 mr-2"
         />
         <input
           type="text"
@@ -80,7 +80,7 @@ export default function DeleteMenu() {
           placeholder="Filter by category"
           value={filter.category}
           onChange={handleFilterChange}
-          className="p-2 border border-gray-300 rounded mb-2 mr-2"
+          className="p-2 border border-gray-500 bg-white rounded mb-2 mr-2"
         />
         <input
           type="text"
@@ -88,7 +88,7 @@ export default function DeleteMenu() {
           placeholder="Filter by type"
           value={filter.type}
           onChange={handleFilterChange}
-          className="p-2 border border-gray-300 rounded mb-2"
+          className="p-2 border border-gray-500 bg-white rounded mb-2"
         />
       </div>
 

@@ -90,7 +90,7 @@ export default function UpdateSlider() {
               />
               <button
                 onClick={() => handleUpdate(slide._id)}
-                className="rounded-md text-warm bg-blue-600 p-3 w-32 text-center text-white"
+                className="rounded-md text-warm bg-green-600 p-3 w-32 text-center "
               >
                 Save
               </button>
@@ -117,7 +117,7 @@ export default function UpdateSlider() {
           {!editableSlide || editableSlide._id !== slide._id ? (
             <button
               onClick={() => handleEditClick(slide)}
-              className="absolute bottom-4 right-4 w-32 h-16 bg-blue-600 text-white p-2 rounded"
+              className="absolute bottom-4 right-4 w-32 h-16 bg-green-600 text-white p-2 rounded"
             >
               Update
             </button>

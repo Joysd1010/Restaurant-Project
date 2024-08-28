@@ -79,7 +79,7 @@ const UpdateCategory = () => {
   }
 
   return (
-    <div>
+    <div className="">
       <ToastContainer />
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -133,7 +133,7 @@ const UpdateCategory = () => {
                   See Menu
                 </div>
                 <button
-                  className="absolute z-10 top-4 right-4 bg-blue-600 text-white p-2 rounded-md font-bold shadow-md hover:bg-blue-700"
+                  className="absolute z-10 top-4 right-4 bg-green-600 text-white p-2 rounded-md font-bold shadow-md hover:bg-blue-700"
                   onClick={() => handleUpdateClick(curElem)}
                 >
                   Update

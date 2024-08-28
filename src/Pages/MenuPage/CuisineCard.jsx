@@ -4,7 +4,7 @@ const CusineCard = ({ menu, onWarningClick }) => {
   const { image, name, promotionalLine, offer, price, offerPrice } = menu;
  
   return (
-    <div className="bg-white shadow-lg w-72 mx-auto rounded-lg overflow-hidden hover:shadow-limeGreen duration-300">
+    <div className="bg-white shadow-lg max-w-72 mx-auto rounded-lg overflow-hidden hover:shadow-limeGreen duration-300">
       <img src={image} alt={name} className="w-full  object-cover p-2" />
      {offer&& <div className="bg-red-700 border2 rotate-45 bottom-52 left-20 relative text-center text-white  font-merriweather text-18">
         offer
@@ -20,7 +20,7 @@ const CusineCard = ({ menu, onWarningClick }) => {
             {offer && <p className="text-red-500 line-through">${price}</p>}
           </div>
           <button
-            className="btn btn-outline btn-warning "
+            className="btn btn-outline hover:bg-olive hover:text-white  "
             onClick={onWarningClick}
           >
             See Details
