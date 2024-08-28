@@ -6,40 +6,43 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axiosInstance from "../../api/axiosInstance";
 
-// Make sure to set the app element for accessibility
-
+// CusineCard Component
 const CusineCard = ({ menu, onWarningClick }) => {
   const { _id, image, name, promotionalLine, offer, price, offerPrice, reviews } = menu;
 
-  // State for modal visibility and review data
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [reviewText, setReviewText] = useState("");
   const [rating, setRating] = useState(0);
   const [reviewerName, setReviewerName] = useState("");
+  const [reviewImage, setReviewImage] = useState(null); // State for review image
 
-  // Calculate average rating
-  const totalReviews = reviews.length;
+  const totalReviews = reviews ? reviews.length : 0;
   const averageRating = totalReviews > 0
     ? reviews.reduce((sum, review) => sum + review.rating, 0) / totalReviews
     : 0;
 
-  // Function to open and close modal
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
 
-  // Function to handle review submission
+  // Handle form submission
   const handleReviewSubmit = async () => {
     try {
-      const reviewData = {
-        name: reviewerName,
-        rating,
-        comment: reviewText,
-      };
-      // Hitting the endpoint with the menu's _id
-      await axiosInstance.post(`/reviews/${_id}`, reviewData);
+      const formData = new FormData();
+      formData.append("name", reviewerName);
+      formData.append("rating", rating);
+      formData.append("comment", reviewText);
+      if (reviewImage) formData.append("file", reviewImage); // Append image if exists
+      console.log(formData,"form")
+
+      await axiosInstance.post(`/reviews/${_id}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
       toast.success("Review submitted successfully!");
-      toggleModal(); // Close the modal after submission
+      toggleModal(); // Close modal after submission
     } catch (error) {
       console.error("Error submitting review:", error);
       toast.error("Failed to submit review.");
@@ -47,12 +50,13 @@ const CusineCard = ({ menu, onWarningClick }) => {
   };
 
   return (
-
     <div className="bg-white shadow-lg max-w-72 mx-auto rounded-lg overflow-hidden hover:shadow-limeGreen duration-300">
-      <img src={image} alt={name} className="w-full  object-cover p-2" />
-     {offer&& <div className="bg-red-700 border2 rotate-45 bottom-52 left-20 relative text-center text-white  font-merriweather text-18">
-        offer
-      </div>}
+      <img src={image} alt={name} className="w-full object-cover p-2" />
+      {offer && (
+        <div className="bg-red-700 border2 rotate-45 bottom-52 left-20 relative text-center text-white font-merriweather text-18">
+          Offer
+        </div>
+      )}
       <div className="p-4">
         <h3 className="text-xl font-bold mb-2">{name}</h3>
         <p className="text-gray-700">{promotionalLine}</p>
@@ -62,35 +66,25 @@ const CusineCard = ({ menu, onWarningClick }) => {
               ${offer ? offerPrice : price}
             </p>
             {offer && <p className="text-red-500 line-through">${price}</p>}
-            {/* Display the average rating */}
             <div className="flex flex-col gap-y-4 items-center">
               <div className="flex">
-              {Array.from({ length: 5 }, (_, index) => (
-                <span key={index}>
-                  {index < averageRating ? (
-                    <FaStar className="text-yellow-500" />
-                  ) : (
-                    <FaRegStar className="text-yellow-500" />
-                  )}
-                </span>
-              ))}
+                {Array.from({ length: 5 }, (_, index) => (
+                  <span key={index}>
+                    {index < averageRating ? (
+                      <FaStar className="text-yellow-500" />
+                    ) : (
+                      <FaRegStar className="text-yellow-500" />
+                    )}
+                  </span>
+                ))}
               </div>
-              <span className="ml-2 text-gray-600">
-                ({totalReviews} reviews)
-              </span>
+              <span className="ml-2 text-gray-600">({totalReviews} reviews)</span>
             </div>
           </div>
-          <button
-
-      
-            className="btn btn-outline hover:bg-olive hover:text-white  "
-
-            onClick={onWarningClick}
-          >
+          <button className="btn btn-outline hover:bg-olive hover:text-white" onClick={onWarningClick}>
             See Details
           </button>
         </div>
-        {/* Review icon */}
         <div className="flex justify-end">
           <button onClick={toggleModal}>
             <MdReviews className="text-blue-500" size={24} />
@@ -98,7 +92,6 @@ const CusineCard = ({ menu, onWarningClick }) => {
         </div>
       </div>
 
-      {/* Review Modal */}
       {isModalOpen && (
         <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center">
           <div className="w-96 h-auto bg-white rounded-md shadow-md p-4">
@@ -128,17 +121,17 @@ const CusineCard = ({ menu, onWarningClick }) => {
                 </span>
               ))}
             </div>
+            <input
+              type="file"
+              className="w-full p-2 border rounded mb-4"
+              onChange={(e) => setReviewImage(e.target.files[0])}
+              accept="image/*"
+            />
             <div className="flex justify-end">
-              <button
-                className="btn btn-primary"
-                onClick={handleReviewSubmit}
-              >
+              <button className="btn btn-primary" onClick={handleReviewSubmit}>
                 Submit Review
               </button>
-              <button
-                className="btn btn-secondary ml-2"
-                onClick={toggleModal}
-              >
+              <button className="btn btn-secondary ml-2" onClick={toggleModal}>
                 Cancel
               </button>
             </div>
@@ -163,6 +156,8 @@ CusineCard.propTypes = {
         rating: PropTypes.number.isRequired,
         comment: PropTypes.string,
         name: PropTypes.string,
+        image: PropTypes.string,
+
       })
     ).isRequired,
   }).isRequired,
