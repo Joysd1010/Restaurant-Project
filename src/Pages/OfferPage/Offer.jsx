@@ -14,9 +14,10 @@ const Offer = () => {
 
   useEffect(() => {
     axiosInstance
-      .get("/contact")
+      .get("/offer")
       .then((response) => {
         const now = new Date();
+        console.log(response.data,"off")
 
         const filteredOffers = response.data.filter((offer) => {
           const endTime = new Date(offer.endTime);

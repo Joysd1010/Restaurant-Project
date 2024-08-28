@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -9,16 +7,16 @@ import "./SliderStyle/style.css";
 
 import { Autoplay, Navigation } from "swiper/modules";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import axiosInstance from "../../api/axiosInstance";
 
 export default function Slider() {
-  const [slides, setSlides] = useState([]);
-
+  const [slides, setSlides] = useState();
   useEffect(() => {
     const fetchSlides = async () => {
       try {
         const response = await axiosInstance.get("/home-slider-upload");
-        console.log(response.data)
+        console.log(response.data);
         setSlides(response.data);
       } catch (error) {
         console.error("Error fetching sliders:", error);
@@ -27,7 +25,6 @@ export default function Slider() {
 
     fetchSlides();
   }, []);
-
   return (
     <Swiper
       spaceBetween={30}
@@ -40,11 +37,12 @@ export default function Slider() {
       pagination={{
         clickable: true,
       }}
+      // navigation={true}
       modules={[Autoplay, Navigation]}
       className="mySwiper"
     >
-      {slides.map(slide => (
-        <SwiperSlide key={slide._id}>
+      {slides?.map((slide) => (
+        <SwiperSlide key={slide.id}>
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 items-center">
             <div className="text-start px-10 flex flex-col gap-7">
               <p className="text-oliveGreen text-[24px] font-merriweather font-bold">
@@ -54,11 +52,11 @@ export default function Slider() {
                 {slide.heading}
               </h1>
               <p>{slide.description}</p>
-              <Link to="/" className="rounded-md text-warm bg-limeGreen p-3 w-52 text-center">
-                View More
+              <Link className="rounded-md text-warm bg-limeGreen p-3 w-52 text-center">
+                view more
               </Link>
             </div>
-            <img src="https://drive.google.com/uc?export=view&id=17EqBYdKTEXp43I4ITzRcWHPwr560a0Sn" alt={slide.heading} />
+            <img src={slide.imageUrl} alt={slide.headline} />
           </div>
         </SwiperSlide>
       ))}

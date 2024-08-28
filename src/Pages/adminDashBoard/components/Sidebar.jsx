@@ -24,122 +24,48 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Link } from "react-router-dom";
 
 const menuItems = [
+ 
   {
     name: "Home",
-    icon: <HomeIcon className="text-pink-600" />,
-    id: "home",
-    path: "/",
-  },
-  {
-    name: "Apps",
-    icon: <AppsIcon className="text-teal-800" />,
+    icon: <HomeIcon className="text-teal-800" />,
     subMenu: [
-      { name: "Contacts", path: "/" },
-      { name: "Ecommerce", path: "/" },
-      { name: "Chats", path: "/" },
-      { name: "Users", path: "/" },
+      { name: "Add slider", path: "/admin-dashboard?type=add-slider" },
+      { name: "Delete slider", path: "/admin-dashboard?type=delete-slider" },
+      { name: "Update slider", path: "/admin-dashboard?type=update-slider" },
     ],
     id: "apps",
   },
   {
-    name: "Pages",
-    icon: <PagesIcon className="text-indigo-600" />,
-    id: "pages",
+    name: "Menu",
+    icon: <AppsIcon className="text-teal-800" />,
     subMenu: [
-      { name: "Not Found", path: "/not-found" },
-      { name: "Server Error", path: "/server-error" },
+      { name: "Add Menu", path: "/admin-dashboard?type=add-menu" },
+      { name: "Delete Menu", path: "/admin-dashboard?type=delete-menu" },
+      { name: "Update Menu", path: "/admin-dashboard?type=update-menu" },
     ],
+    id: "apps",
+  },
+ 
+  {
+    name: "Category",
+    icon: <AppsIcon className="text-teal-800" />,
+    subMenu: [
+      { name: "Add Category", path: "/admin-dashboard?type=add-category" },
+      { name: "Delete Category", path: "/admin-dashboard?type=delete-category" },
+      { name: "Update Category", path: "/admin-dashboard?type=update-category" },
+    ],
+    id: "apps",
   },
   {
-    name: "Forms",
-    icon: <SiFormspree className="text-yellow-600" />,
-    id: "forms",
-    path: "/forms",
-  },
-  {
-    name: "Tables",
-    icon: <TableChartIcon className="text-purple-600" />,
-    id: "tables",
-    path: "/tables",
-  },
-  {
-    name: "UI",
-    icon: <BarChartIcon className="text-blue-600" />,
-    id: "ui",
-    path: "/ui",
-  },
-  {
-    name: "Charts",
-    icon: <LockIcon className="text-red-600" />,
-    id: "charts",
-    path: "/charts",
-  },
-  {
-    name: "Auth",
-    icon: <MoreVertIcon className="text-green-600" />,
-    id: "auth",
-    path: "/auth",
-  },
-  {
-    name: "Settings",
-    icon: <SettingsApplicationsIcon className="text-indigo-600" />,
-    id: "settings",
-    path: "/settings",
-  },
-  {
-    name: "Profile",
-    icon: <AccountCircleIcon className="text-teal-600" />,
-    id: "profile",
-    path: "/profile",
-  },
-  {
-    name: "Messages",
-    icon: <AppsIcon className="text-pink-600" />,
-    id: "messages",
-    path: "/messages",
-  },
-  {
-    name: "Notifications",
-    icon: <NotificationsIcon className="text-yellow-600" />,
-    id: "notifications",
-    path: "/notifications",
-  },
-  {
-    name: "Calendar",
-    icon: <CalendarIcon className="text-purple-600" />,
-    id: "calendar",
-    path: "/calendar",
-  },
-  {
-    name: "Tasks",
-    icon: <TasksIcon className="text-blue-600" />,
-    id: "tasks",
-    path: "/tasks",
-  },
-  {
-    name: "Documents",
-    icon: <DocumentsIcon className="text-red-600" />,
-    id: "documents",
-    path: "/documents",
-  },
-  {
-    name: "Photos",
-    icon: <PhotosIcon className="text-green-600" />,
-    id: "photos",
-    path: "/photos",
-  },
-  {
-    name: "Videos",
-    icon: <AppsIcon className="text-teal-600" />,
-    id: "videos",
-    path: "/videos",
-  },
-  {
-    name: "Music",
-    icon: <MusicIcon className="text-indigo-600" />,
-    id: "music",
-    path: "/music",
-  },
+    name: "Offers",
+    icon: <AppsIcon className="text-teal-800" />,
+    subMenu: [
+      { name: "Add Offer", path: "/admin-dashboard?type=add-offer" },
+      { name: "Delete Offer", path: "/admin-dashboard?type=delete-offer" },
+    ],
+    id: "apps",
+  }
+ 
 ];
 
 const Sidebar = ({ isExpanded, setIsExpanded }) => {
