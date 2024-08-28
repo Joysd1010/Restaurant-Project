@@ -1,15 +1,17 @@
 import  { useState } from "react";
-import Logo from "../../../assets/react.svg";
+
 import {
   Home as HomeIcon,
   Apps as AppsIcon,
-  Pages as PagesIcon,
   TableChart as TableChartIcon,
   BarChart as BarChartIcon,
   Lock as LockIcon,
   MoreVert as MoreVertIcon,
   ExpandMore as ExpandMoreIcon,
 } from "@mui/icons-material";
+import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
+import CelebrationTwoToneIcon from '@mui/icons-material/CelebrationTwoTone';
+import WidgetsIcon from '@mui/icons-material/Widgets';
 import { SiFormspree } from "react-icons/si";
 import {
   Notifications as NotificationsIcon,
@@ -27,7 +29,7 @@ const menuItems = [
  
   {
     name: "Home",
-    icon: <HomeIcon className="text-teal-800" />,
+    icon: <HomeIcon className="text-teal-200" />,
     subMenu: [
       { name: "Add slider", path: "/admin-dashboard?type=add-slider" },
       { name: "Delete slider", path: "/admin-dashboard?type=delete-slider" },
@@ -37,7 +39,7 @@ const menuItems = [
   },
   {
     name: "Menu",
-    icon: <AppsIcon className="text-teal-800" />,
+    icon: <RestaurantMenuIcon className="text-teal-200" />,
     subMenu: [
       { name: "Add Menu", path: "/admin-dashboard?type=add-menu" },
       { name: "Delete Menu", path: "/admin-dashboard?type=delete-menu" },
@@ -48,7 +50,7 @@ const menuItems = [
  
   {
     name: "Category",
-    icon: <AppsIcon className="text-teal-800" />,
+    icon: <WidgetsIcon className="text-teal-200" />,
     subMenu: [
       { name: "Add Category", path: "/admin-dashboard?type=add-category" },
       { name: "Delete Category", path: "/admin-dashboard?type=delete-category" },
@@ -58,7 +60,7 @@ const menuItems = [
   },
   {
     name: "Offers",
-    icon: <AppsIcon className="text-teal-800" />,
+    icon: <CelebrationTwoToneIcon className="text-teal-200" />,
     subMenu: [
       { name: "Add Offer", path: "/admin-dashboard?type=add-offer" },
       { name: "Delete Offer", path: "/admin-dashboard?type=delete-offer" },
@@ -83,20 +85,29 @@ const Sidebar = ({ isExpanded, setIsExpanded }) => {
     <div
       className={`flex flex-col h-screen  transition-width font-sans text-[#a8b2d4] duration-300 z-50 ${
         isExpanded
-          ? "w-64 px-4 bg-[#111c43] backdrop-blur-md border border-white border-opacity-10 shadow-lg"
-          : "w-20 bg-[#111c43] backdrop-blur-md border border-white border-opacity-10 shadow-lg"
+          ? "w-64 px-4 bg-darkOlive backdrop-blur-md border border-white border-opacity-10 shadow-lg"
+          : "w-20 bg-darkOlive backdrop-blur-md border border-white border-opacity-10 shadow-lg"
       }`}
       onMouseEnter={() => setIsExpanded(true)}
       onMouseLeave={() => setIsExpanded(false)}
     >
       <div className="flex items-center justify-between p-4 border-b border-white border-opacity-10">
-        <div className="text-3xl text-white">
+       <Link  to="/admin-dashboard">
+
+       <div className="text-3xl text-white">
           <img
-            src={Logo}
-            className="w-12 h-12 rounded-full object-cover"
+            src='https://i.postimg.cc/5Nx5y7HG/Beige-green-modern-lime-fruit-logo-2.png'
+            className="w-12 h-12 rounded-full object-cover mx-auto"
             alt="Logo"
           />
+          <h1 className={` text-center text-28 font-merriweather ${
+                  isExpanded ?"block":"hidden"
+                } `}>Olive & Lime</h1>
+          <h1 className={` text-center text-18 font-merriweather ${
+                  isExpanded ?"block":"hidden"
+                } `}>Admin Panel</h1>
         </div>
+       </Link>
         <button
           onClick={() => setIsExpanded(!isExpanded)}
           className="focus:outline-none text-indigo-700 neumorphism-button"

@@ -47,13 +47,12 @@ const CusineCard = ({ menu, onWarningClick }) => {
   };
 
   return (
-    <div className="bg-white shadow-lg w-72 mx-auto rounded-lg overflow-hidden hover:shadow-limeGreen duration-300">
-      <img src={image} alt={name} className="w-full object-cover p-2" />
-      {offer && (
-        <div className="bg-red-700 border2 rotate-45 bottom-52 left-20 relative text-center text-white font-merriweather text-18">
-          offer
-        </div>
-      )}
+
+    <div className="bg-white shadow-lg max-w-72 mx-auto rounded-lg overflow-hidden hover:shadow-limeGreen duration-300">
+      <img src={image} alt={name} className="w-full  object-cover p-2" />
+     {offer&& <div className="bg-red-700 border2 rotate-45 bottom-52 left-20 relative text-center text-white  font-merriweather text-18">
+        offer
+      </div>}
       <div className="p-4">
         <h3 className="text-xl font-bold mb-2">{name}</h3>
         <p className="text-gray-700">{promotionalLine}</p>
@@ -82,7 +81,10 @@ const CusineCard = ({ menu, onWarningClick }) => {
             </div>
           </div>
           <button
-            className="btn btn-outline btn-warning"
+
+      
+            className="btn btn-outline hover:bg-olive hover:text-white  "
+
             onClick={onWarningClick}
           >
             See Details

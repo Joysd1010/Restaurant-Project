@@ -39,7 +39,7 @@ export default function RemoveSlider() {
               {slide.title}
             </p>
             <h1 className="text-[30px] font-bold text-black">
-              {slide.headline}
+              {slide.heading} 
             </h1>
             <p>{slide.description}</p>
             <Link to="/" className="rounded-md text-warm bg-limeGreen p-3 w-52 text-center">

@@ -184,7 +184,7 @@ const SpecialOffer = () => {
           id="offerName"
           value={selectedOffer}
           onChange={handleOfferSelect}
-          className="block w-full px-3 py-2 border border-gray-300 rounded-md"
+          className="block bg-white w-full px-3 py-2 border border-gray-300 rounded-md"
         />
       </div>
 
@@ -196,7 +196,7 @@ const SpecialOffer = () => {
           name="startTime"
           value={startTime}
           onChange={handleTimeChange}
-          className="block w-full px-3 py-2 border border-gray-300 rounded-md"
+          className="block bg-white w-full px-3 py-2 border border-gray-300 rounded-md"
         />
       </div>
 
@@ -208,7 +208,7 @@ const SpecialOffer = () => {
           name="endTime"
           value={endTime}
           onChange={handleTimeChange}
-          className="block w-full px-3 py-2 border border-gray-300 rounded-md"
+          className="block bg-white w-full px-3 py-2 border border-gray-300 rounded-md"
         />
       </div>
       
@@ -220,7 +220,7 @@ const SpecialOffer = () => {
           name="discount"
           value={discount}
           onChange={handleDiscount}
-          className="block w-full px-3 py-2 border border-gray-300 rounded-md"
+          className="block bg-white w-full px-3 py-2 border border-gray-300 rounded-md"
         />
       </div>
 
@@ -231,7 +231,7 @@ const SpecialOffer = () => {
           id="image"
           accept="image/*"
           onChange={handleFileChange}
-          className="block w-full px-3 py-2 border border-gray-300 rounded-md"
+          className="block bg-white w-full px-3 py-2 border border-gray-300 rounded-md"
         />
         {image && <img src={image} alt="Uploaded" className="mt-2 w-48 h-48 object-cover" />}
       </div>
@@ -244,7 +244,7 @@ const SpecialOffer = () => {
             placeholder="Filter by name"
             value={filters.name}
             onChange={handleFilterChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md"
+            className="bg-white w-full px-3 py-2 border border-gray-300 rounded-md"
           />
           {filters.name && (
             <div className="absolute top-full left-0 w-full bg-white border border-gray-300 mt-1 rounded-md shadow-lg z-10">
@@ -267,7 +267,7 @@ const SpecialOffer = () => {
             placeholder="Filter by category"
             value={filters.category}
             onChange={handleFilterChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md"
+            className="bg-white w-full px-3 py-2 border border-gray-300 rounded-md"
           />
           {filters.category && (
             <div className="absolute top-full left-0 w-full bg-white border border-gray-300 mt-1 rounded-md shadow-lg z-10">
@@ -290,7 +290,7 @@ const SpecialOffer = () => {
             placeholder="Filter by type"
             value={filters.type}
             onChange={handleFilterChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md"
+            className="bg-white w-full px-3 py-2 border border-gray-300 rounded-md"
           />
           {filters.type && (
             <div className="absolute top-full left-0 w-full bg-white border border-gray-300 mt-1 rounded-md shadow-lg z-10">
@@ -318,7 +318,7 @@ const SpecialOffer = () => {
               <p>Type: {item.type}</p>
               <button
                 onClick={() => handleAddToOffer(item._id)}
-                className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md"
+                className="mt-2 px-4 py-2 bg-olive text-white rounded-md"
               >
                 Add to Offer
               </button>

@@ -8,6 +8,7 @@ export default {
     extend: {
       colors: {
         olive: '#556B2F',
+        darkOlive:'#2A2F01',
         limeGreen: '#32CD32',
         Charcoal: '#333333', 
         lime: '#32CD32', 

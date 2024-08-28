@@ -1,18 +1,19 @@
-import { useState, useEffect } from 'react';
-import Sidebar from './components/Sidebar';
-import Loader from './components/Loader';
+import { useState, useEffect } from "react";
+import Sidebar from "./components/Sidebar";
+import Loader from "./components/Loader";
 import SliderUpload from "./components/Home_slider_upload";
-import RemoveSlider from './components/RemoveSlider';
-import UpdateSlider from './components/UpdateSlider';
-import CategoryUpload from './components/CategoryUpload';
-import DeleteCategory from './components/DeleteCategory';
-import UpdateCategory from './components/UpdateCategory';
-import MenuItemAdding from './components/menuItemAddd';
-import DeleteMenu from './components/DeleteMenu';
-import UpdateMenu from './components/UpdateMenu';
-import SpecialOffer from './components/SpecialOffer';
-import DeleteOffer from './components/DeleteOffer';
-import { useLocation } from 'react-router-dom';
+import RemoveSlider from "./components/RemoveSlider";
+import UpdateSlider from "./components/UpdateSlider";
+import CategoryUpload from "./components/CategoryUpload";
+import DeleteCategory from "./components/DeleteCategory";
+import UpdateCategory from "./components/UpdateCategory";
+import MenuItemAdding from "./components/menuItemAddd";
+import DeleteMenu from "./components/DeleteMenu";
+import UpdateMenu from "./components/UpdateMenu";
+import SpecialOffer from "./components/SpecialOffer";
+import DeleteOffer from "./components/DeleteOffer";
+import { useLocation } from "react-router-dom";
+import FirstPage from "./components/FirstPage";
 
 const DashBoard = () => {
   const [isExpanded, setIsExpanded] = useState(true);
@@ -20,7 +21,7 @@ const DashBoard = () => {
 
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const type = queryParams.get("type");
+  const type = queryParams.get("type") ;
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -32,7 +33,7 @@ const DashBoard = () => {
 
   // Conditional Rendering based on `type`
   const renderContent = () => {
-    switch (type) {
+    switch (type) { 
       case "add-menu":
         return <MenuItemAdding />;
       case "delete-menu":
@@ -56,7 +57,7 @@ const DashBoard = () => {
       case "delete-offer":
         return <DeleteOffer />;
       default:
-        return <p>Please select a valid type.</p>;
+        return <FirstPage/>;;
     }
   };
 
@@ -72,7 +73,11 @@ const DashBoard = () => {
           </div>
 
           {/* Main Content */}
-          <div className={`col-span-10 col-start-2 flex flex-col transition-all duration-300 ${isExpanded && "ml-28"}`}>
+          <div
+            className={`col-span-10 col-start-2 flex flex-col transition-all duration-300 ${
+              isExpanded && "ml-28"
+            }`}
+          >
             {/* Main Content Area */}
             <div className={`p-6 mt-16 bg-white ${isExpanded && "ml-28"}`}>
               {renderContent()}
@@ -83,5 +88,7 @@ const DashBoard = () => {
     </>
   );
 };
+
+
 
 export default DashBoard;
