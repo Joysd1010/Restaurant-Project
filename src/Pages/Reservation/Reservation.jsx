@@ -37,8 +37,9 @@ const Reservation = () => {
 
   const handleNextSlide = async () => {
     if (currentSlide === 0 && selected) {
-      // Make API call to fetch available time slots
+      
       try {
+        console.log(selected.toISOString())
         const dayName = selected.toLocaleDateString("en-US", {
           weekday: "long",
         });
@@ -47,6 +48,7 @@ const Reservation = () => {
             date: selected.toISOString(),
           },
         });
+        console.log(response)
 
         if (dayName.toLowerCase() == "sunday") {
           const offDay = response.data.filter((slot) => {
@@ -69,7 +71,7 @@ const Reservation = () => {
       setCurrentSlide(currentSlide + 1);
       setIsNextEnabled(false);
     }
-    console.log(selectedTimeSlot);
+    // console.log(selectedTimeSlot);
   };
 
   const handlePrevSlide = () => {
@@ -101,23 +103,27 @@ const Reservation = () => {
   const handleDaySelect = (day) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-
-    if (day < today) {
+  
+    // Normalize `day` to midnight UTC
+    const utcDay = new Date(Date.UTC(day.getFullYear(), day.getMonth(), day.getDate()));
+  
+    if (utcDay < today) {
       toast.warn("Please select a valid date.", {
         position: "top-center",
       });
       setSelected(null);
       setIsNextEnabled(false);
     } else {
-      if (selected && day && selected.getTime() === day.getTime()) {
+      if (selected && day && selected.getTime() === utcDay.getTime()) {
         setSelected(null);
         setIsNextEnabled(false);
       } else {
-        setSelected(day);
+        setSelected(utcDay);
         if (day) handleCompleteSlide();
       }
     }
   };
+  
 
   const onTimeClick = (time) => {
     setIsNextEnabled(true);
@@ -241,6 +247,10 @@ const Reservation = () => {
             </h1>
             <div className="flex justify-around pb-5">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-8 text-center">
+                {
+                  //console.log(filteredTimes)
+                }
+
                 {filteredTimes.map((time, index) => (
                   <div
                     onClick={() => {
