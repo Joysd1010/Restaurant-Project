@@ -13,6 +13,13 @@ const Offer = () => {
   const now = new Date();
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' 
+    });
+  }, []);
+
+  useEffect(() => {
     axiosInstance
       .get("/offer")
       .then((response) => {

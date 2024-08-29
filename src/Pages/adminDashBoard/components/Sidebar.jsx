@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 
 import {
   Home as HomeIcon,
@@ -9,11 +9,11 @@ import {
   MoreVert as MoreVertIcon,
   ExpandMore as ExpandMoreIcon,
 } from "@mui/icons-material";
-import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
-import CelebrationTwoToneIcon from '@mui/icons-material/CelebrationTwoTone';
-import DateRangeIcon from '@mui/icons-material/DateRange';
-import WidgetsIcon from '@mui/icons-material/Widgets';
-import { SiFormspree } from "react-icons/si";
+import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
+import CelebrationTwoToneIcon from "@mui/icons-material/CelebrationTwoTone";
+import DateRangeIcon from "@mui/icons-material/DateRange";
+import WidgetsIcon from "@mui/icons-material/Widgets";
+import AttachEmailIcon from '@mui/icons-material/AttachEmail';
 import {
   Notifications as NotificationsIcon,
   CalendarToday as CalendarIcon,
@@ -27,7 +27,6 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Link } from "react-router-dom";
 
 const menuItems = [
- 
   {
     name: "Home",
     icon: <HomeIcon className="text-teal-200" />,
@@ -48,14 +47,20 @@ const menuItems = [
     ],
     id: "apps",
   },
- 
+
   {
     name: "Category",
     icon: <WidgetsIcon className="text-teal-200" />,
     subMenu: [
       { name: "Add Category", path: "/admin-dashboard?type=add-category" },
-      { name: "Delete Category", path: "/admin-dashboard?type=delete-category" },
-      { name: "Update Category", path: "/admin-dashboard?type=update-category" },
+      {
+        name: "Delete Category",
+        path: "/admin-dashboard?type=delete-category",
+      },
+      {
+        name: "Update Category",
+        path: "/admin-dashboard?type=update-category",
+      },
     ],
     id: "apps",
   },
@@ -67,8 +72,7 @@ const menuItems = [
       { name: "Delete Offer", path: "/admin-dashboard?type=delete-offer" },
     ],
     id: "apps",
-  }
-  ,
+  },
   {
     name: "Reservation",
     icon: <DateRangeIcon className="text-teal-200" />,
@@ -77,8 +81,13 @@ const menuItems = [
       { name: "Control", path: "/admin-dashboard?type=controlReservation" },
     ],
     id: "apps",
-  }
- 
+  },
+  {
+    name: "Collected Emails",
+    icon: <AttachEmailIcon className="text-teal-200" />,
+    subMenu: [{ name: "View ", path: "/admin-dashboard?type=email" }],
+    id: "apps",
+  },
 ];
 
 const Sidebar = ({ isExpanded, setIsExpanded }) => {
@@ -103,22 +112,29 @@ const Sidebar = ({ isExpanded, setIsExpanded }) => {
       onMouseLeave={() => setIsExpanded(false)}
     >
       <div className="flex items-center justify-between p-4 border-b border-white border-opacity-10">
-       <Link  to="/admin-dashboard">
-
-       <div className="text-3xl text-white">
-          <img
-            src='https://i.postimg.cc/5Nx5y7HG/Beige-green-modern-lime-fruit-logo-2.png'
-            className="w-12 h-12 rounded-full object-cover mx-auto"
-            alt="Logo"
-          />
-          <h1 className={` text-center text-28 font-merriweather ${
-                  isExpanded ?"block":"hidden"
-                } `}>Olive & Lime</h1>
-          <h1 className={` text-center text-18 font-merriweather ${
-                  isExpanded ?"block":"hidden"
-                } `}>Admin Panel</h1>
-        </div>
-       </Link>
+        <Link to="/admin-dashboard">
+          <div className="text-3xl text-white">
+            <img
+              src="https://i.postimg.cc/5Nx5y7HG/Beige-green-modern-lime-fruit-logo-2.png"
+              className="w-12 h-12 rounded-full object-cover mx-auto"
+              alt="Logo"
+            />
+            <h1
+              className={` text-center text-28 font-merriweather ${
+                isExpanded ? "block" : "hidden"
+              } `}
+            >
+              Olive & Lime
+            </h1>
+            <h1
+              className={` text-center text-18 font-merriweather ${
+                isExpanded ? "block" : "hidden"
+              } `}
+            >
+              Admin Panel
+            </h1>
+          </div>
+        </Link>
         <button
           onClick={() => setIsExpanded(!isExpanded)}
           className="focus:outline-none text-indigo-700 neumorphism-button"
@@ -141,9 +157,7 @@ const Sidebar = ({ isExpanded, setIsExpanded }) => {
                 <div className="flex justify-between items-center w-full">
                   <div className="flex justify-center gap-x-4 items-center">
                     <div className="text-xl">{item.icon}</div>
-                    <span
-                      className={`ml-4 text-md ${!isExpanded && "hidden"}`}
-                    >
+                    <span className={`ml-4 text-md ${!isExpanded && "hidden"}`}>
                       {item.name}
                     </span>
                   </div>
