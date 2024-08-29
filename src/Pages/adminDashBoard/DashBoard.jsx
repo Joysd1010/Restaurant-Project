@@ -17,6 +17,8 @@ import FirstPage from "./components/FirstPage";
 import UploadAbout from "./components/UploadAbout";
 import DeleteAbout from "./components/DeleteAbout";
 import UpdateAbout from "./components/UpdateAbout";
+import ControlReservation from "./components/ControlReservation";
+import ViewReservation from "./components/ViewReservation";
 
 const DashBoard = () => {
   const [isExpanded, setIsExpanded] = useState(true);
@@ -65,6 +67,10 @@ const DashBoard = () => {
         return <SpecialOffer />;
       case "delete-offer":
         return <DeleteOffer />;
+      case "controlReservation":
+        return <ControlReservation />;
+      case "viewReservation":
+        return <ViewReservation />;
       default:
         return <FirstPage/>;
     }

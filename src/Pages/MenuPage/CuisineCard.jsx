@@ -98,13 +98,13 @@ const CusineCard = ({ menu, onWarningClick }) => {
             <h2 className="text-xl font-bold mb-4">Submit Your Review</h2>
             <input
               type="text"
-              className="w-full p-2 border rounded mb-4"
+              className="w-full bg-white p-2 border rounded mb-4"
               value={reviewerName}
               onChange={(e) => setReviewerName(e.target.value)}
               placeholder="Your name"
             />
             <textarea
-              className="w-full p-2 border rounded mb-4"
+              className="w-full bg-white p-2 border rounded mb-4"
               value={reviewText}
               onChange={(e) => setReviewText(e.target.value)}
               placeholder="Write your review here..."
@@ -128,7 +128,7 @@ const CusineCard = ({ menu, onWarningClick }) => {
               accept="image/*"
             />
             <div className="flex justify-end">
-              <button className="btn btn-primary" onClick={handleReviewSubmit}>
+              <button className="btn bg-olive text-white hover:bg-limeGreen" onClick={handleReviewSubmit}>
                 Submit Review
               </button>
               <button className="btn btn-secondary ml-2" onClick={toggleModal}>

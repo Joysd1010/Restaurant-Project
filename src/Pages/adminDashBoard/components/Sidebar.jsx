@@ -12,6 +12,7 @@ import {
 import PersonIcon from '@mui/icons-material/Person';
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
 import CelebrationTwoToneIcon from '@mui/icons-material/CelebrationTwoTone';
+import DateRangeIcon from '@mui/icons-material/DateRange';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import { SiFormspree } from "react-icons/si";
 import {
@@ -77,8 +78,22 @@ const menuItems = [
       { name: "Delete Offer", path: "/admin-dashboard?type=delete-offer" },
     ],
     id: "apps",
+
   },
  
+
+  }
+  ,
+  {
+    name: "Reservation",
+    icon: <DateRangeIcon className="text-teal-200" />,
+    subMenu: [
+      { name: "View ", path: "/admin-dashboard?type=viewReservation" },
+      { name: "Control", path: "/admin-dashboard?type=controlReservation" },
+    ],
+    id: "apps",
+  }
+
  
 ];
 

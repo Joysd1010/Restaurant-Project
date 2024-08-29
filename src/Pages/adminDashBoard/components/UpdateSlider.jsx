@@ -73,24 +73,24 @@ export default function UpdateSlider() {
                 name="title"
                 value={editableSlide.title}
                 onChange={handleInputChange}
-                className="text-oliveGreen text-[24px] font-merriweather font-bold p-2 border border-gray-300 rounded"
+                className="text-oliveGreen text-[24px] font-merriweather bg-white font-bold p-2 border border-gray-300 rounded"
               />
               <input
                 type="text"
                 name="heading"
                 value={editableSlide.heading}
                 onChange={handleInputChange}
-                className="text-[30px] font-bold text-black p-2 border border-gray-300 rounded"
+                className="text-[30px] font-bold text-black p-2 border bg-white border-gray-300 rounded"
               />
               <textarea
                 name="description"
                 value={editableSlide.description}
                 onChange={handleInputChange}
-                className="p-2 border border-gray-300 rounded"
+                className="p-2 border border-gray-300 bg-white rounded"
               />
               <button
                 onClick={() => handleUpdate(slide._id)}
-                className="rounded-md text-warm bg-green-600 p-3 w-32 text-center "
+                className="rounded-md text-warm  bg-green-600 p-3 w-32 text-center "
               >
                 Save
               </button>
