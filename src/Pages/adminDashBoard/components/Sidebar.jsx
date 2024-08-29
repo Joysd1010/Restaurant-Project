@@ -9,6 +9,7 @@ import {
   MoreVert as MoreVertIcon,
   ExpandMore as ExpandMoreIcon,
 } from "@mui/icons-material";
+import PersonIcon from '@mui/icons-material/Person';
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
 import CelebrationTwoToneIcon from '@mui/icons-material/CelebrationTwoTone';
 import DateRangeIcon from '@mui/icons-material/DateRange';
@@ -35,6 +36,16 @@ const menuItems = [
       { name: "Add slider", path: "/admin-dashboard?type=add-slider" },
       { name: "Delete slider", path: "/admin-dashboard?type=delete-slider" },
       { name: "Update slider", path: "/admin-dashboard?type=update-slider" },
+    ],
+    id: "apps",
+  },
+  {
+    name: "About",
+    icon: <PersonIcon className="text-teal-200" />,
+    subMenu: [
+      { name: "Add About", path: "/admin-dashboard?type=add-about" },
+      { name: "Delete About", path: "/admin-dashboard?type=delete-about" },
+      { name: "Update About", path: "/admin-dashboard?type=update-about" },
     ],
     id: "apps",
   },
@@ -67,6 +78,10 @@ const menuItems = [
       { name: "Delete Offer", path: "/admin-dashboard?type=delete-offer" },
     ],
     id: "apps",
+
+  },
+ 
+
   }
   ,
   {
@@ -78,6 +93,7 @@ const menuItems = [
     ],
     id: "apps",
   }
+
  
 ];
 
