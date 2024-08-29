@@ -12,6 +12,8 @@ const MenuItemAdding = () => {
   const [type, setType] = useState('');
   const [promotionalLine, setPromotionalLine] = useState('');
   const [available, setAvailable] = useState(true);
+  const [allergy, setAllergy] = useState(true);
+  const [callories, setCallories] = useState('');
   const [category, setCategory] = useState('');
   const [categories, setCategories] = useState([]);
   const [uploading, setUploading] = useState(false);
@@ -78,6 +80,8 @@ console.log(ingredients)
       formData.append('type', type);
       formData.append('promotionalLine', promotionalLine);
       formData.append('available', available);
+      formData.append('allergy', allergy);
+      formData.append('callories', callories);
       formData.append('category', category);
 
       const response = await axiosInstance.post('/menu', formData, {
@@ -260,6 +264,25 @@ console.log(ingredients)
               className="mt-1"
             />
           </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Allergy</label>
+            <input
+              type="checkbox"
+              checked={allergy}
+              onChange={(e) => setAllergy(e.target.checked)}
+              className="mt-1"
+            />
+          </div>
+          <div>
+              <label className="block text-sm font-medium text-gray-700">Callories</label>
+              <input
+                type="number"
+                value={callories}
+                onChange={(e) => setCallories(e.target.value)}
+                className="mt-1 block w-full px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                required
+              />
+            </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">Category</label>
             <select

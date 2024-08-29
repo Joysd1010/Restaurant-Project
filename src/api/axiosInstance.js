@@ -3,7 +3,7 @@ const SERVERURL="https://restraunt-api.onrender.com"
 // const SERVERURL="http://localhost:5000/"
 const axiosInstance = axios.create({
   baseURL: SERVERURL,  
-  timeout: 30000,  
+  timeout: 300000,  
   headers: {
     "Content-Type": "application/json",
   },

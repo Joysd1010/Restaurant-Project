@@ -82,6 +82,9 @@ const MenuByCategory = () => {
     price,
     offer,
     offerPrice,
+    available,
+    allergy,
+    callories
   } = selectedMenuItem;
 
   const lunchMenu=menu.filter(
@@ -307,6 +310,24 @@ const MenuByCategory = () => {
                   </p>
                 </div>
               )}
+               <p className="text-lime font-bold text-[17px]">
+                    Available ?{" "}
+                    <span className="text-Charcoal text-[17px] font-normal">
+                      {available? 'Yes':'No'}
+                    </span>
+                  </p>
+               <p className="text-lime font-bold text-[17px]">
+                    Allergetic ? {" "}
+                    <span className="text-Charcoal text-[17px] font-normal">
+                      {allergy?'Yes':'No'}
+                    </span>
+                  </p>
+               <p className="text-lime font-bold text-[17px]">
+                    Callories :{" "}
+                    <span className="text-Charcoal text-[17px] font-normal">
+                      {callories}cal
+                    </span>
+                  </p>
             </div>
           </div>
         </dialog>
