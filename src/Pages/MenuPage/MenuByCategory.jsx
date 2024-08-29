@@ -7,12 +7,19 @@ import { MdOutlineOutdoorGrill } from "react-icons/md";
 import { TfiGift } from "react-icons/tfi";
 
 const MenuByCategory = () => {
-  const { category } = useParams(); // Extract category from URL parameters
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' 
+    });
+  }, []);
+  const { category } = useParams(); 
   const [menu, setMenu] = useState([]);
-  const [activeCategory, setActiveCategory] = useState(category || "All"); // Set the active category from URL or default to "All"
+  const [activeCategory, setActiveCategory] = useState(category || "All"); 
   const [Category, setCategory] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
+
 
   useEffect(() => {
     const params =

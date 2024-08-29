@@ -7,6 +7,8 @@ import MenuByCategory from "../../Pages/MenuPage/MenuByCategory";
 import DashBoard from "../../Pages/adminDashBoard/DashBoard";
 import Error from "../../Pages/ErrorPage/Error";
 import Reservation from "../../Pages/Reservation/Reservation";
+import PrivateRoute from "../Private-Route/PrivateRoute";
+import Login from "../../Pages/Login/Login";
 
 const Router = createBrowserRouter([
   {
@@ -35,19 +37,24 @@ const Router = createBrowserRouter([
         element: <MenuByCategory />,
       },
       {
+        path: "login",
+        element: <Login />,
+      },
+      {
         path: "reserve",
         element: <Reservation />,
+      
       },
       {
         path: "*",
         element: <Error />,
-      },
+      }
     ],
   },
   
       {
         path: "/admin-dashboard",
-        element: <DashBoard />,
+        element: <PrivateRoute />,
       }
 ]);
 

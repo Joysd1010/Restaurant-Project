@@ -10,6 +10,12 @@ import ConfettiExplosion from "react-confetti-explosion";
 import { useNavigate } from "react-router-dom";
 
 const Reservation = () => {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' 
+    });
+  }, []);
   // console.log(new Date('08:00:00.000Z'))
   const [selected, setSelected] = useState(null);
   const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
