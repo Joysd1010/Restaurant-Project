@@ -13,7 +13,7 @@ export default function UpdateMenu() {
   const [suggestions, setSuggestions] = useState({
     name: [],
     category: [],
-    type: []
+    type: [],
   });
 
   useEffect(() => {
@@ -57,7 +57,19 @@ export default function UpdateMenu() {
 
   const handleUpdate = async () => {
     try {
-      const { _id, name, category, promotionalLine, price, offer, offerPrice, type } = editableMenu;
+      const {
+        _id,
+        name,
+        category,
+        promotionalLine,
+        price,
+        offer,
+        offerPrice,
+        type,
+        available,
+        allergy,
+        callories,
+      } = editableMenu;
       await axiosInstance.put(`/menu/${_id}`, {
         id: _id,
         name,
@@ -66,17 +78,34 @@ export default function UpdateMenu() {
         price,
         offer,
         offerPrice,
-        type
+        type,
+        available,
+        allergy,
+        callories,
       });
 
       setMenuItems((prevMenuItems) =>
         prevMenuItems.map((menu) =>
-          menu._id === _id ? { ...menu, name, category, promotionalLine, price, offer, offerPrice, type } : menu
+          menu._id === _id
+            ? {
+                ...menu,
+                name,
+                category,
+                promotionalLine,
+                price,
+                offer,
+                offerPrice,
+                type,
+                available,
+                allergy,
+                callories,
+              }
+            : menu
         )
       );
 
       toast.success("Menu item updated successfully!");
-      setEditableMenu(null); 
+      setEditableMenu(null);
     } catch (error) {
       toast.error("Failed to update menu item. Please try again.");
       console.error("Error updating menu item:", error);
@@ -96,17 +125,41 @@ export default function UpdateMenu() {
       const newSuggestions = {
         name: [],
         category: [],
-        type: []
+        type: [],
       };
 
       if (name === "name") {
-        newSuggestions.name = [...new Set(menuItems.map(item => item.name).filter(name => name.toLowerCase().startsWith(value.toLowerCase())))];
+        newSuggestions.name = [
+          ...new Set(
+            menuItems
+              .map((item) => item.name)
+              .filter((name) =>
+                name.toLowerCase().startsWith(value.toLowerCase())
+              )
+          ),
+        ];
       }
       if (name === "category") {
-        newSuggestions.category = [...new Set(menuItems.map(item => item.category).filter(category => category.toLowerCase().startsWith(value.toLowerCase())))];
+        newSuggestions.category = [
+          ...new Set(
+            menuItems
+              .map((item) => item.category)
+              .filter((category) =>
+                category.toLowerCase().startsWith(value.toLowerCase())
+              )
+          ),
+        ];
       }
       if (name === "type") {
-        newSuggestions.type = [...new Set(menuItems.map(item => item.type).filter(type => type.toLowerCase().startsWith(value.toLowerCase())))];
+        newSuggestions.type = [
+          ...new Set(
+            menuItems
+              .map((item) => item.type)
+              .filter((type) =>
+                type.toLowerCase().startsWith(value.toLowerCase())
+              )
+          ),
+        ];
       }
 
       setSuggestions(newSuggestions);
@@ -114,7 +167,7 @@ export default function UpdateMenu() {
       setSuggestions({
         name: [],
         category: [],
-        type: []
+        type: [],
       });
     }
   };
@@ -127,7 +180,7 @@ export default function UpdateMenu() {
     setSuggestions({
       name: [],
       category: [],
-      type: []
+      type: [],
     });
   };
 
@@ -203,11 +256,20 @@ export default function UpdateMenu() {
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {filteredMenuItems.map((menu) => (
-          <div key={menu._id} className="bg-white shadow-lg w-72 mx-auto rounded-lg overflow-hidden hover:shadow-limeGreen duration-300">
-            <img src={menu.image} alt={menu.name} className="w-full object-cover p-2" />
-            {menu.offer && <div className="bg-red-700 border-2 rotate-45 bottom-52 left-20 relative text-center text-white font-merriweather text-18">
-              Offer
-            </div>}
+          <div
+            key={menu._id}
+            className="bg-white shadow-lg w-72 mx-auto rounded-lg overflow-hidden hover:shadow-limeGreen duration-300"
+          >
+            <img
+              src={menu.image}
+              alt={menu.name}
+              className="w-full object-cover p-2"
+            />
+            {menu.offer && (
+              <div className="bg-red-700 border-2 rotate-45 bottom-52 left-20 relative text-center text-white font-merriweather text-18">
+                Offer
+              </div>
+            )}
             <div className="p-4">
               {editableMenu && editableMenu._id === menu._id ? (
                 // Edit Mode
@@ -260,11 +322,36 @@ export default function UpdateMenu() {
                     onChange={handleInputChange}
                     className="p-2 border border-gray-300 rounded w-full mb-2 bg-white"
                   />
+                  
                   <label className="block mb-1">Offer Price</label>
                   <input
                     type="number"
                     name="offerPrice"
                     value={editableMenu.offerPrice}
+                    onChange={handleInputChange}
+                    className="p-2 border border-gray-300 rounded w-full mb-2 bg-white"
+                  />
+                  <label className="block mb-1">Available</label>
+                  <input
+                    type="checked"
+                    name="available"
+                    value={editableMenu.available}
+                    onChange={handleInputChange}
+                    className="p-2 border border-gray-300 rounded w-full mb-2 bg-white"
+                  />
+                  <label className="block mb-1">Allergy</label>
+                  <input
+                    type="checked"
+                    name="allergy"
+                    value={editableMenu.allergy}
+                    onChange={handleInputChange}
+                    className="p-2 border border-gray-300 rounded w-full mb-2 bg-white"
+                  />
+                   <label className="block mb-1">Callories</label>
+                  <input
+                    type="number"
+                    name="callories"
+                    value={editableMenu.callories}
                     onChange={handleInputChange}
                     className="p-2 border border-gray-300 rounded w-full mb-2 bg-white"
                   />
@@ -287,12 +374,18 @@ export default function UpdateMenu() {
                 // View Mode
                 <div>
                   <h3 className="text-xl font-bold mb-2">{menu.name}</h3>
-                  <p className="text-gray-700 mb-2">Category: {menu.category}</p>
+                  <p className="text-gray-700 mb-2">
+                    Category: {menu.category}
+                  </p>
                   <p className="text-gray-700 mb-2">Type: {menu.type}</p>
-                  <p className="text-gray-700 mb-2">Promotional Line: {menu.promotionalLine}</p>
+                  <p className="text-gray-700 mb-2">
+                    Promotional Line: {menu.promotionalLine}
+                  </p>
                   <p className="text-gray-700 mb-2">Price: {menu.price}</p>
                   {menu.offer && (
-                    <p className="text-red-500 mb-2">Offer: {menu.offer} off! New Price: {menu.offerPrice}</p>
+                    <p className="text-red-500 mb-2">
+                      Offer: {menu.offer} off! New Price: {menu.offerPrice}
+                    </p>
                   )}
                   <button
                     onClick={() => handleEditClick(menu)}

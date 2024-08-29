@@ -14,6 +14,9 @@ import SpecialOffer from "./components/SpecialOffer";
 import DeleteOffer from "./components/DeleteOffer";
 import { useLocation } from "react-router-dom";
 import FirstPage from "./components/FirstPage";
+import UploadAbout from "./components/UploadAbout";
+import DeleteAbout from "./components/DeleteAbout";
+import UpdateAbout from "./components/UpdateAbout";
 import ControlReservation from "./components/ControlReservation";
 import ViewReservation from "./components/ViewReservation";
 import CollectedEmail from "./components/CollectedEmail";
@@ -43,6 +46,12 @@ const DashBoard = () => {
         return <DeleteMenu />;
       case "update-menu":
         return <UpdateMenu />;
+      case "add-about":
+        return <UploadAbout />;
+      case "delete-about":
+        return <DeleteAbout />;
+      case "update-about":
+        return <UpdateAbout />;
       case "add-slider":
         return <SliderUpload />;
       case "delete-slider":
@@ -66,7 +75,7 @@ const DashBoard = () => {
       case "email":
         return <CollectedEmail />;
       default:
-        return <FirstPage/>;;
+        return <FirstPage/>;
     }
   };
 

@@ -2,28 +2,17 @@ import { useState } from "react";
 
 import {
   Home as HomeIcon,
-  Apps as AppsIcon,
-  TableChart as TableChartIcon,
-  BarChart as BarChartIcon,
-  Lock as LockIcon,
-  MoreVert as MoreVertIcon,
   ExpandMore as ExpandMoreIcon,
 } from "@mui/icons-material";
+
 import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
 import CelebrationTwoToneIcon from "@mui/icons-material/CelebrationTwoTone";
 import DateRangeIcon from "@mui/icons-material/DateRange";
 import WidgetsIcon from "@mui/icons-material/Widgets";
-import AttachEmailIcon from '@mui/icons-material/AttachEmail';
-import {
-  Notifications as NotificationsIcon,
-  CalendarToday as CalendarIcon,
-  Assignment as TasksIcon,
-  Description as DocumentsIcon,
-  PhotoLibrary as PhotosIcon,
-  MusicNote as MusicIcon,
-} from "@mui/icons-material";
-import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import AttachEmailIcon from "@mui/icons-material/AttachEmail";
+
+import PersonIcon from "@mui/icons-material/Person";
+
 import { Link } from "react-router-dom";
 
 const menuItems = [
@@ -34,6 +23,16 @@ const menuItems = [
       { name: "Add slider", path: "/admin-dashboard?type=add-slider" },
       { name: "Delete slider", path: "/admin-dashboard?type=delete-slider" },
       { name: "Update slider", path: "/admin-dashboard?type=update-slider" },
+    ],
+    id: "apps",
+  },
+  {
+    name: "About",
+    icon: <PersonIcon className="text-teal-200" />,
+    subMenu: [
+      { name: "Add About", path: "/admin-dashboard?type=add-about" },
+      { name: "Delete About", path: "/admin-dashboard?type=delete-about" },
+      { name: "Update About", path: "/admin-dashboard?type=update-about" },
     ],
     id: "apps",
   },
@@ -73,6 +72,7 @@ const menuItems = [
     ],
     id: "apps",
   },
+
   {
     name: "Reservation",
     icon: <DateRangeIcon className="text-teal-200" />,
