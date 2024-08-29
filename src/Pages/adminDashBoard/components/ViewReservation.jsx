@@ -14,6 +14,10 @@ const ViewReservation = () => {
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
   const [reservationsPerPage] = useState(10);
+  const formatDateForInput = (isoDate) => {
+    const date = new Date(isoDate);
+    return date.toISOString().split("T")[0]; // Returns YYYY-MM-DD
+  };
 
   useEffect(() => {
     const fetchTimeSlots = async () => {
@@ -32,11 +36,18 @@ const ViewReservation = () => {
     const fetchReservation = async () => {
       try {
         const params = new URLSearchParams();
-        if (selected) params.append('date', selected);
-        if (time) params.append('time', time);
+        if (selected) params.append("date", selected);
+        if (time) params.append("time", time);
 
-        const response = await axiosInstance.get(`/reserve/all?${params.toString()}`);
-        setReservation(response.data);
+        const response = await axiosInstance.get(
+          `/reserve/all?${params.toString()}`
+        );
+
+        const sortedData = response.data.sort((a, b) => {
+          return new Date(a.startTime) - new Date(b.startTime);
+        });
+
+        setReservation(sortedData);
       } catch (error) {
         console.error("Error fetching reservations:", error);
       }
@@ -44,6 +55,29 @@ const ViewReservation = () => {
 
     fetchReservation();
   }, [selected, time]);
+  useEffect(() => {
+    const fetchReservation = async () => {
+      try {
+        const params = new URLSearchParams();
+        if (selected) params.append("date", selected);
+        if (time) params.append("time", time);
+
+        const response = await axiosInstance.get(
+          `/reserve/all?${params.toString()}`
+        );
+
+        const sortedData = response.data.sort((a, b) => {
+          return new Date(a.startTime) - new Date(b.startTime);
+        });
+
+        setReservation(sortedData);
+      } catch (error) {
+        console.error("Error fetching reservations:", error);
+      }
+    };
+
+    fetchReservation();
+  }, []);
 
   const handleDateChange = (event) => {
     const selectedDate = new Date(event.target.value);
@@ -86,8 +120,12 @@ const ViewReservation = () => {
       <div className="grid grid-cols-4 gap-2">
         <div className="col-span-3">
           <div className="grid grid-cols-8 bg-olive text-white py-3 px-4 text-center rounded-l-full rounded-r-full">
-            <div className="col-span-2 border-r-2 border-gray-200">Name</div>
-            <div className="col-span-2 border-r-2 border-gray-200">Email</div>
+            <div className="col-span-2 border-r-2 border-gray-200">
+              Full Name
+            </div>
+            <div className="col-span-2 border-r-2 border-gray-200">
+              Reservation time
+            </div>
             <div className="col-span-2 border-r-2 border-gray-200">Phone</div>
             <div className="border-r-2 border-gray-200">Person</div>
             <div>Note</div>
@@ -100,8 +138,17 @@ const ViewReservation = () => {
                   className="grid grid-cols-8 bg-white border-2 border-olive text-start text-Charcoal hover:scale-105 duration-300 px-4 my-2 py-1 rounded-r-full rounded-l-full"
                 >
                   <div className="px-1 col-span-2">{item.fullName}</div>
-                  <div className="px-1 col-span-2">{item.email}</div>
-                  <div className="px-1 col-span-2 text-center">{item.phoneNumber}</div>
+                  <div className="px-1 col-span-2 text-center">
+                    {new Date(item?.startTime).toLocaleTimeString("en-US", {
+                      hour: "numeric",
+                      minute: "numeric",
+                      hour12: true,
+                      timeZone: "utc",
+                    })}
+                  </div>
+                  <div className="px-1 col-span-2 text-center">
+                    {item.phoneNumber}
+                  </div>
                   <div className="px-1 text-center">{item.numberOfPeople}</div>
                   <div
                     className="text-center cursor-pointer bg-olive rounded-full text-white"
@@ -162,6 +209,7 @@ const ViewReservation = () => {
                     {slot.time}
                   </option>
                 ))}
+                <option value="">All Reservation</option>
               </select>
             </div>
           </div>
@@ -200,6 +248,7 @@ const ViewReservation = () => {
               `}
             </style>
             <input
+              value={formatDateForInput(selected)}
               type="date"
               onChange={handleDateChange}
               className="mt-1 block w-full px-4 py-2 bg-white text-black border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -208,7 +257,7 @@ const ViewReservation = () => {
         </div>
       </div>
 
-      {/* Modal */}
+   
       {isModalOpen && (
         <dialog open className="modal">
           <div className="modal-box bg-white">
@@ -223,24 +272,37 @@ const ViewReservation = () => {
             </form>
             {selectedItem && (
               <>
-               <div className=" bg-white">
-                    <h3 className="font-bold text-lg">Reservation Details</h3>
-                    <p className="py-4">
-                      <strong>Name:</strong> {selectedItem.fullName}
-                    </p>
-                    <p className="py-4">
-                      <strong>Email:</strong> {selectedItem.email}
-                    </p>
-                    <p className="py-4">
-                      <strong>Phone:</strong> {selectedItem.phoneNumber}
-                    </p>
-                    <p className="py-4">
-                      <strong>Number of People:</strong> {selectedItem.numberOfPeople}
-                    </p>
-                    <p className="py-4">
-                      <strong>Note:</strong> {selectedItem.note}
-                    </p>
-               </div>
+                <div className=" bg-white">
+                  <h3 className="font-bold text-lg">Reservation Details</h3>
+                  <p className="py-4">
+                    <strong>Name:</strong> {selectedItem.fullName}
+                  </p>
+                  <p className="py-4">
+                    <strong>Email:</strong> {selectedItem.email}
+                  </p>
+                  <p className="py-4">
+                    <strong>Phone:</strong> {selectedItem.phoneNumber}
+                  </p>
+                  <p className="py-4">
+                    <strong>Reservation Time:</strong>{" "}
+                    {new Date(selectedItem?.startTime).toLocaleTimeString(
+                      "en-US",
+                      {
+                        hour: "numeric",
+                        minute: "numeric",
+                        hour12: true,
+                        timeZone: "utc",
+                      }
+                    )}
+                  </p>
+                  <p className="py-4">
+                    <strong>Number of People:</strong>{" "}
+                    {selectedItem.numberOfPeople}
+                  </p>
+                  <p className="py-4">
+                    <strong>Note:</strong> {selectedItem.note}
+                  </p>
+                </div>
               </>
             )}
           </div>
