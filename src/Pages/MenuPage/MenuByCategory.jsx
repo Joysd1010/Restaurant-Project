@@ -44,9 +44,9 @@ const MenuByCategory = () => {
     axiosInstance
       .get("/menu/category")
       .then((response) => {
-        console.log(response)
+        //console.log(response)
         const Items = [...new Set(response.data.map((item) => item.category))];
-        console.log(Items)
+        //console.log(Items)
         setCategory(Items);
       })
       .catch((error) => {
@@ -337,7 +337,7 @@ const MenuByCategory = () => {
                <p className="text-lime font-bold text-[17px]">
                     Callories :{" "}
                     <span className="text-Charcoal text-[17px] font-normal">
-                      {callories}cal
+                      {callories?callories:0} cal
                     </span>
                   </p>
             </div>

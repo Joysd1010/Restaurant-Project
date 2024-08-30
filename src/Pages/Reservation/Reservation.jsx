@@ -17,7 +17,7 @@ const Reservation = () => {
       behavior: "smooth",
     });
   }, []);
-  // console.log(new Date('08:00:00.000Z'))
+  // //console.log(new Date('08:00:00.000Z'))
   const [selected, setSelected] = useState(null);
   const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
   const [reserVationData, setreserVationData] = useState(false);
@@ -45,7 +45,7 @@ const Reservation = () => {
   const handleNextSlide = async () => {
     if (currentSlide === 0 && selected) {
       try {
-        console.log(selected.toISOString());
+        //console.log(selected.toISOString());
         const dayName = selected.toLocaleDateString("en-US", {
           weekday: "long",
         });
@@ -54,14 +54,14 @@ const Reservation = () => {
             date: selected.toISOString(),
           },
         });
-        console.log(response);
+        //console.log(response);
 
         if (dayName.toLowerCase() == "sunday") {
           const offDay = response.data.filter((slot) => {
             const startHour = new Date(slot.startTime).getUTCHours();
             return startHour >= 9 && startHour < 22;
           });
-          console.log(offDay);
+          //console.log(offDay);
           setFilteredTimes(offDay);
         } else {
           setFilteredTimes(response.data);
@@ -77,7 +77,7 @@ const Reservation = () => {
       setCurrentSlide(currentSlide + 1);
       setIsNextEnabled(false);
     }
-    // console.log(selectedTimeSlot);
+    // //console.log(selectedTimeSlot);
   };
 
   const handlePrevSlide = () => {
@@ -103,7 +103,7 @@ const Reservation = () => {
     setSelectedTimeSlot(null);
     setFilteredTimes([]);
     setOtp("");
-    console.log("Cancel button clicked, slider reset to beginning");
+    //console.log("Cancel button clicked, slider reset to beginning");
   };
 
   const handleDaySelect = (day) => {
@@ -135,12 +135,12 @@ const Reservation = () => {
   const onTimeClick = (time) => {
     setIsNextEnabled(true);
     setSelectedTimeSlot(time);
-    console.log(time);
+    //console.log(time);
   };
 
   const onSubmit = async (data) => {
     setFormData(data);
-    console.log(data);
+    //console.log(data);
     const response = await axiosInstance.post(
       "/reserve/send-otp",
       {
@@ -163,10 +163,10 @@ const Reservation = () => {
     }
   };
   const OtpVerification = async () => {
-    console.log("selected:", selected.toISOString());
-    console.log("formData:", formData);
-    console.log("otp:", otp);
-    console.log("selectedTimeSlot:", selectedTimeSlot);
+    //console.log("selected:", selected.toISOString());
+    //console.log("formData:", formData);
+    //console.log("otp:", otp);
+    //console.log("selectedTimeSlot:", selectedTimeSlot);
     const response = await axiosInstance.post(
       "/reserve/verify-otp",
       {
@@ -264,7 +264,7 @@ const Reservation = () => {
             <div className="flex justify-around pb-5">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-8 text-center">
                 {
-                  //console.log(filteredTimes)
+                  ////console.log(filteredTimes)
                 }
 
                 {filteredTimes.map((time, index) => (

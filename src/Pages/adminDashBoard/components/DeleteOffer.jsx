@@ -59,6 +59,7 @@ const DeleteOffer = () => {
       toast.error("Failed to delete offer");
       console.error("Error deleting offer:", error);
     }
+    document.getElementById("delete_modal").close();
   };
 
   const handleDeleteClick = (offerId) => {
@@ -213,7 +214,7 @@ const DeleteOffer = () => {
 
       {/* Modal for deleting offer */}
       <dialog id="delete_modal" className="modal">
-        <form method="dialog" className="modal-box">
+        <form method="dialog" className="modal-box bg-white">
           <h3 className="text-lg font-bold">Confirm Delete</h3>
           <p className="py-4">Are you sure you want to delete this offer?</p>
           <div className="modal-action">
@@ -226,7 +227,7 @@ const DeleteOffer = () => {
             </button>
             <button
               type="button"
-              className="btn"
+              className="btn bg-green-700 text-white border-none"
               onClick={() => document.getElementById("delete_modal").close()}
             >
               Cancel

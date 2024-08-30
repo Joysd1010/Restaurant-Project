@@ -11,7 +11,7 @@ const Footer = () => {
 
   useEffect(() => {
     axiosInstance.get(`menu/footerimage`).then((response) => {
-      console.log(response);
+      //console.log(response);
       setMenu(response.data);
     });
   }, []);

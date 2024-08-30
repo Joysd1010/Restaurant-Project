@@ -14,6 +14,12 @@ import { CircularProgress } from "@mui/material";
 import { Helmet } from "react-helmet-async";
 
 const AboutUs = () => {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
   const [aboutData, setAboutData] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -51,7 +57,7 @@ const AboutUs = () => {
   // Extract the first 100 characters
   const truncatedStory = story.length > 100 ? `${story.substring(0, 100)}...` : story;
 
-  console.log(truncatedStory)
+  //console.log(truncatedStory)
 
   return (
     <div className="px-5 md:px-20 lg:px-28">
@@ -63,16 +69,16 @@ const AboutUs = () => {
         />
         <link rel="canonical" href="https://oliveandlime.co.uk/" />
       </Helmet>
-      <div className="flex flex-col md:flex-row gap-5 py-5 md:py-10 lg:py-20">
-        <div className="md:w-1/2 text-center md:text-start h-96 md:h-[650px] overflow-y-auto">
+      <div className="flex flex-col md:flex-row gap-5  ">
+        <div className="md:w-1/2 text-center md:text-start pt-5 md:pt-20 h-96 md:h-[650px] overflow-y-auto">
           <h1 className="text-2xl md:text-3xl font-semibold">About Us</h1>
-          <h1 className="text-xl md:text-2xl font-bold text-limeGreen py-4">
-            Our Service for You
+          <h1 className="text-xl font-merriweather md:text-2xl font-bold text-limeGreen py-4">
+            Our Service Dedicated to You
           </h1>
           <FaQuoteLeft className="text-2xl md:text-3xl" />
           <div className="flex items-center">
-            <p className="font-merriweather text-base md:text-lg text-Charcoal px-2">
-              {truncatedStory}
+            <p className="font-merriweather  text-base md:text-lg text-Charcoal px-2">
+              {story}
             </p>
           </div>
           <FaQuoteRight className="text-2xl md:text-3xl" />
@@ -188,16 +194,16 @@ const AboutUs = () => {
       </div>
 
       <div className="flex justify-center py-5">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d615.1204024009776!2d-0.05227432339664364!3d51.55155813652425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761f44d3475e03%3A0xe535c5be0b6835d!2s66%20Gloucester%20Ave%2C%20London%20NW1%204DB!5e0!3m2!1sen!2suk!4v1694532281694!5m2!1sen!2suk"
-          width="600"
-          height="450"
-          style={{ border: 0 }}
-          allowFullScreen=""
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          title="Olive and Lime Location"
-        ></iframe>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d615.1204024009776!2d-0.05227432339664364!3d51.55155813652425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761cfc1e5744ad%3A0x8a92ef921a957052!2s50%20Lower%20Clapton%20Rd%2C%20Lower%20Clapton%2C%20London%20E5%200RN%2C%20UK!5e1!3m2!1sen!2sbd!4v1723168779094!5m2!1sen!2sbd"
+        style={{ border: '0' }}
+        allowFullScreen=""
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        className="mx-auto py-5 md:w-[1100px] w-[300px] h-[400px]"
+         title="Olive and Lime Location"
+      />
+       
       </div>
     </div>
   );
