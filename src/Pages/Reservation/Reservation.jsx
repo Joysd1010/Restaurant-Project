@@ -8,12 +8,13 @@ import axiosInstance from "../../api/axiosInstance";
 import { InfinitySpin } from "react-loader-spinner";
 import ConfettiExplosion from "react-confetti-explosion";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Reservation = () => {
   useEffect(() => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth' 
+      behavior: "smooth",
     });
   }, []);
   // console.log(new Date('08:00:00.000Z'))
@@ -27,7 +28,7 @@ const Reservation = () => {
   const [filteredTimes, setFilteredTimes] = useState([]);
   const [otp, setOtp] = useState("");
   const [formData, setFormData] = useState(null);
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -43,9 +44,8 @@ const Reservation = () => {
 
   const handleNextSlide = async () => {
     if (currentSlide === 0 && selected) {
-      
       try {
-        console.log(selected.toISOString())
+        console.log(selected.toISOString());
         const dayName = selected.toLocaleDateString("en-US", {
           weekday: "long",
         });
@@ -54,7 +54,7 @@ const Reservation = () => {
             date: selected.toISOString(),
           },
         });
-        console.log(response)
+        console.log(response);
 
         if (dayName.toLowerCase() == "sunday") {
           const offDay = response.data.filter((slot) => {
@@ -109,10 +109,12 @@ const Reservation = () => {
   const handleDaySelect = (day) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-  
+
     // Normalize `day` to midnight UTC
-    const utcDay = new Date(Date.UTC(day.getFullYear(), day.getMonth(), day.getDate()));
-  
+    const utcDay = new Date(
+      Date.UTC(day.getFullYear(), day.getMonth(), day.getDate())
+    );
+
     if (utcDay < today) {
       toast.warn("Please select a valid date.", {
         position: "top-center",
@@ -129,7 +131,6 @@ const Reservation = () => {
       }
     }
   };
-  
 
   const onTimeClick = (time) => {
     setIsNextEnabled(true);
@@ -154,17 +155,18 @@ const Reservation = () => {
     );
     if (response.status == 200) {
       reset();
-      response.data.message=="OTP sent to email"&&toast.success("OTP sent to your Mail", {
-        position: "top-center",
-      });
+      response.data.message == "OTP sent to email" &&
+        toast.success("OTP sent to your Mail", {
+          position: "top-center",
+        });
       setCurrentSlide(currentSlide + 1);
     }
   };
   const OtpVerification = async () => {
-    console.log('selected:',selected.toISOString())
-    console.log('formData:',formData)
-    console.log('otp:',otp)
-    console.log('selectedTimeSlot:',selectedTimeSlot)
+    console.log("selected:", selected.toISOString());
+    console.log("formData:", formData);
+    console.log("otp:", otp);
+    console.log("selectedTimeSlot:", selectedTimeSlot);
     const response = await axiosInstance.post(
       "/reserve/verify-otp",
       {
@@ -186,8 +188,7 @@ const Reservation = () => {
         },
       }
     );
-    
-    
+
     if (response.status == 200) {
       reset();
       toast.success("OTP sent to your Mail", {
@@ -200,7 +201,7 @@ const Reservation = () => {
         position: "top-center",
       });
       setTimeout(() => {
-        navigate('/')
+        navigate("/");
       }, 5000);
     } else {
       toast.error(`Sorry ${response.message}`, {
@@ -211,6 +212,15 @@ const Reservation = () => {
   };
   return (
     <div className="md:mx-28">
+      <Helmet>
+        <title>Reservation - Olive&lime</title>
+        <meta
+          name="description"
+          content="Reserve your table at Olive&Lime and experience the perfect blend of Mediterranean flavors and handcrafted cocktails. Book your dining experience today!"
+        />
+
+        <link rel="canonical" href="https://oliveandlime.co.uk/reserve" />
+      </Helmet>
       <h1 className="font-merriweather text-28 text-center pt-5">
         Reserve your Table
       </h1>

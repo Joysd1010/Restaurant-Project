@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { MdOutlineOutdoorGrill } from "react-icons/md";
 
 import { TfiGift } from "react-icons/tfi";
+import { Helmet } from "react-helmet-async";
 
 const MenuByCategory = () => {
   useEffect(() => {
@@ -43,7 +44,9 @@ const MenuByCategory = () => {
     axiosInstance
       .get("/menu/category")
       .then((response) => {
+        console.log(response)
         const Items = [...new Set(response.data.map((item) => item.category))];
+        console.log(Items)
         setCategory(Items);
       })
       .catch((error) => {
@@ -105,6 +108,13 @@ const MenuByCategory = () => {
   )
   return (
     <div className="md:mx-28">
+       <Helmet>
+        <title>Menu - Olive&lime</title>
+        <meta name="description" content="Indulge in our latest offers at Olive&Lime. Enjoy delicious Mediterranean cuisine and handcrafted cocktails at unbeatable prices. Book your table now!" />
+
+        <link rel="canonical" href="https://oliveandlime.co.uk/menu" />
+
+      </Helmet>
       <h1 className="text-center font-bold text-28 py-5 font-merriweather">
         Find your desired dish
       </h1>
@@ -317,16 +327,11 @@ const MenuByCategory = () => {
                   </p>
                 </div>
               )}
+              
                <p className="text-lime font-bold text-[17px]">
-                    Available ?{" "}
+                    Allergetic : {" "}
                     <span className="text-Charcoal text-[17px] font-normal">
-                      {available? 'Yes':'No'}
-                    </span>
-                  </p>
-               <p className="text-lime font-bold text-[17px]">
-                    Allergetic ? {" "}
-                    <span className="text-Charcoal text-[17px] font-normal">
-                      {allergy?'Yes':'No'}
+                      {allergy}
                     </span>
                   </p>
                <p className="text-lime font-bold text-[17px]">

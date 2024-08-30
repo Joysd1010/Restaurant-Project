@@ -29,12 +29,12 @@ const Testimonial = () => {
   return (
     <>
       <div className="group">
-        <h1 className="text-18 text-olive font-merriweather font-bold text-center py-5">
+        <p className="text-18 text-olive font-merriweather font-bold text-center py-5">
           Testimonials
-        </h1>
-        <h1 className="text-[30px] font-bold text-Charcoal text-center">
+        </p>
+        <p className="text-[30px] font-bold text-Charcoal text-center">
           Our Clients Choose Us
-        </h1>
+        </p>
         <hr className="border-2 w-3/4 mx-auto border-Charcoal group-hover:border-limeGreen group-hover:shadow-2xl shadow-yellow-400" />
       </div>
       <div className="py-5">
@@ -61,13 +61,14 @@ const Testimonial = () => {
                 <img
                   src={testimonial.image || Avatar}
                   alt={testimonial.name}
+
                   className="rounded-full"
                 />
               </div>
               <div className="flex flex-col gap-5">
-                <h1 className="text-22 font-bold text-Charcoal">
+                <p className="text-22 font-bold text-Charcoal">
                   {testimonial.name}
-                </h1>
+                </p>
                 <p>{testimonial.role}</p>
                 <div className="mx-auto">
                   <ReactStars

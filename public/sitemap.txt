@@ -1,0 +1,8 @@
+https://oliveandlime.co.uk/
+https://oliveandlime.co.uk/offer
+https://oliveandlime.co.uk/menu
+https://oliveandlime.co.uk/menu/:category
+https://oliveandlime.co.uk/about
+https://oliveandlime.co.uk/reserve
+https://oliveandlime.co.uk/login
+https://oliveandlime.co.uk/admin-dashboard
