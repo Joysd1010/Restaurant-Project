@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import axiosInstance from "../../../api/axiosInstance";
 import { DownloadTableExcel } from "react-export-table-to-excel";
+import { toast, ToastContainer } from "react-toastify";
 
 const CollectedEmail = () => {
   const tableRef = useRef(null);
@@ -22,6 +23,27 @@ const CollectedEmail = () => {
     getMail();
   }, []);
 
+  const handleDelete = async (id) => {
+    const confirmed = window.confirm("Are you sure you want to delete this email?");
+    if (confirmed) {
+      try {
+        const response =await axiosInstance.delete(`/email/${id}`);
+        if(response.status==200){
+          console.log(response)
+          toast.success(`${response.data.email?.email} is deleted successfully!`);
+          getMail();
+        }
+        else{
+          toast.error("Failed to delete email");
+        }
+        
+        
+      } catch (error) {
+        toast.error("Failed to delete the email. Please try again.");
+        console.error("Error deleting email:", error);
+      }
+    }
+  };
   // Calculate the index of the first and last item on the current page
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -76,7 +98,7 @@ const CollectedEmail = () => {
           </table>
 
         <div className="overflow-x-auto mt-4">
-          <table
+         {Mail.length>0? <table
             ref={tableRef}
             className="min-w-full bg-white border border-gray-300 rounded-lg shadow-md w-[500px]"
           >
@@ -84,6 +106,7 @@ const CollectedEmail = () => {
               <tr className="bg-gray-100 border-b border-gray-300">
                 <th className="py-2 px-4 text-left text-gray-600">No.</th>
                 <th className="py-2 px-4 text-left text-gray-600">Email</th>
+                <th className="py-2 px-4 text-left text-gray-600"></th>
               </tr>
             </thead>
             <tbody>
@@ -91,10 +114,13 @@ const CollectedEmail = () => {
                 <tr key={index} className="border-b border-gray-200">
                   <td className="py-2 px-4 text-gray-700">{indexOfFirstItem + index + 1}</td>
                   <td className="py-2 px-4 text-gray-700">{item.email}</td>
+                  <td><button className=" py-1 px-2 rounded-md bg-red-500 text-white" onClick={()=>handleDelete(item._id)}>delete</button></td>
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table>:<div className=" text-24">
+            Sorry, no mail collected yet
+            </div>}
         </div>
 
         {/* Pagination Controls */}
@@ -128,6 +154,8 @@ const CollectedEmail = () => {
           )}
         </div>
       </div>
+
+      <ToastContainer/>
     </div>
   );
 };

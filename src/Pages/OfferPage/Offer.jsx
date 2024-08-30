@@ -3,6 +3,7 @@ import axiosInstance from "../../api/axiosInstance";
 import CountdownTimer from "./CountdownTime";
 import CusineCard from "../MenuPage/CuisineCard";
 import { TfiGift } from "react-icons/tfi";
+import { Helmet } from "react-helmet-async";
 
 const Offer = () => {
   const [offerData, setOfferData] = useState([]);
@@ -79,6 +80,13 @@ const Offer = () => {
 
   return (
     <div className="md:mx-28">
+       <Helmet>
+        <title>Offers - Olive&lime</title>
+        <meta name="description" content="Unlock exclusive offers and deals at Olive&Lime. Enjoy delicious Mediterranean cuisine and handcrafted cocktails at unbeatable prices. Reserve your table today!" />
+
+        <link rel="canonical" href="https://oliveandlime.co.uk/offer" />
+
+      </Helmet>
       <h1 className="text-center py-3 font-merriweather font-bold text-28">
         Happy Hours Deals
       </h1>

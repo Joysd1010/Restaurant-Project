@@ -111,8 +111,12 @@ const Footer = () => {
           </div>
           <div className=" grid grid-cols-3 md:gap-2 gap-5 py-5">
             {Menu?.map((item, index) => (
-              <Link to={'/menu'} key={index}>
-                <img src={item} alt="" className="w-32 md:w-36 h-32 md:h-24 hover:scale-105 duration-300 rounded-xl" />
+              <Link to={"/menu"} key={index}>
+                <img
+                  src={item}
+                  alt=""
+                  className="w-32 md:w-36 h-32 md:h-24 hover:scale-105 duration-300 rounded-xl"
+                />
               </Link>
             ))}
           </div>
@@ -127,10 +131,25 @@ const Footer = () => {
           <p className=" text-warm text-center py-5 ">
             Let Olive & Lime whisk you away to the Mediterranean.
           </p>
-          <div className=" grid grid-cols-3 gap-5 py-5">
-            <FaFacebook size={40} />
-            <FaXTwitter size={40} />
-            <FaInstagram size={40} />
+          <div className=" grid grid-cols-2 gap-5 py-5 ">
+            <a
+              href="https://www.facebook.com/people/OliveLime/61565142630094/"
+              target="blank"
+              className=" mx-auto"
+            >
+              {" "}
+              <FaFacebook size={40} />
+            </a>
+            <a
+              href="https://x.com/olive_and_lime"
+              target="blank"
+              className=" mx-auto"
+            >
+              {" "}
+              <FaXTwitter size={40} />{" "}
+            </a>
+
+            {/* <FaInstagram size={40} /> */}
           </div>
         </div>
       </div>

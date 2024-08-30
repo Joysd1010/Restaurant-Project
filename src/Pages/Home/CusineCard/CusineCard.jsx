@@ -33,14 +33,14 @@ const CusineCard = () => {
             style={{ backgroundImage: `url(${curElem.image})` }}
           >
             <div className="absolute inset-0 bg-black opacity-30 group-hover:bg-limeGreen group-hover:opacity-70 group-hover:transition-opacity group-hover:duration-1000"></div>
-            <h1 className="relative text-[20px] font-bold text-warm z-10 pt-10 group-hover:text-Charcoal pb-5">
+            <p className="relative text-[20px] font-bold text-warm z-10 pt-10 group-hover:text-Charcoal pb-5">
               {curElem.name}
-            </h1>
+            </p>
             <p className="opacity-0 group-hover:opacity-100 transition-opacity font-merriweather duration-500 text-warm text-[16px] relative z-10">
               {curElem.promoLine}
             </p>
             <div
-              className="absolute z-10 top-52 group-hover:shadow-2xl shadow-black bg-warm p-3 rounded-md font-bold right-36"
+              className="absolute z-10 top-52 group-hover:shadow-2xl shadow-black bg-warm p-3 rounded-md font-bold right-36 cursor-pointer"
               onClick={() => {
                 handleSeeMenuClick(curElem.category);
               }}

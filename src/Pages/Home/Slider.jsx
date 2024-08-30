@@ -48,15 +48,15 @@ export default function Slider() {
               <p className="text-oliveGreen text-[24px] font-merriweather font-bold">
                 {slide.title}
               </p>
-              <h1 className="text-[30px] font-bold text-black">
+              <p className="text-[30px] font-bold text-black">
                 {slide.heading}
-              </h1>
+              </p>
               <p>{slide.description}</p>
               <Link className="rounded-md text-warm bg-limeGreen p-3 w-52 text-center">
                 view more
               </Link>
             </div>
-            <img src={slide.imageUrl} alt={slide.headline} />
+            <img src={slide.imageUrl} alt={slide.heading} />
           </div>
         </SwiperSlide>
       ))}

@@ -12,7 +12,7 @@ const MenuItemAdding = () => {
   const [type, setType] = useState('');
   const [promotionalLine, setPromotionalLine] = useState('');
   const [available, setAvailable] = useState(true);
-  const [allergy, setAllergy] = useState(true);
+  const [allergy, setAllergy] = useState('');
   const [callories, setCallories] = useState('');
   const [category, setCategory] = useState('');
   const [categories, setCategories] = useState([]);
@@ -92,6 +92,7 @@ console.log(ingredients)
 
       if (response.status === 200) {
         setSuccess(true);
+        setAllergy('')
         setName('');
         setImage(null);
         setDetails('');
@@ -115,6 +116,9 @@ console.log(ingredients)
   };
 
   return (
+   <>
+
+   
     <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
       <div className="w-full max-w-xl bg-white rounded-lg shadow-md p-8">
         <h2 className="text-3xl font-bold text-center mb-6">Add New Menu Item</h2>
@@ -267,10 +271,10 @@ console.log(ingredients)
           <div>
             <label className="block text-sm font-medium text-gray-700">Allergy</label>
             <input
-              type="checkbox"
+              type="text"
               checked={allergy}
-              onChange={(e) => setAllergy(e.target.checked)}
-              className="mt-1"
+              onChange={(e) => setAllergy(e.target.value)}
+              className="mt-1 block w-full px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
           </div>
           <div>
@@ -293,8 +297,8 @@ console.log(ingredients)
             >
               <option value="">Select Category</option>
               {categories.map((category) => (
-                <option key={category._id} value={category._id}>
-                  {category.name}
+                <option key={category._id} value={category.category}>
+                  {category.category}
                 </option>
               ))}
             </select>
@@ -313,6 +317,7 @@ console.log(ingredients)
         </form>
       </div>
     </div>
+   </>
   );
 };
 

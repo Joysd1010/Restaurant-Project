@@ -96,12 +96,12 @@ const UpdateCategory = () => {
                   type="text"
                   value={tempName}
                   onChange={(e) => setTempName(e.target.value)}
-                  className="relative text-[20px] font-bold text-warm z-10 pt-10 group-hover:text-Charcoal pb-5 bg-white border border-gray-300 rounded-md p-2"
+                  className="relative text-[20px] font-bold text-olive z-10 pt-10 group-hover:text-Charcoal pb-5 bg-white border border-gray-300 rounded-md p-2"
                 />
                 <textarea
                   value={tempPromoLine}
                   onChange={(e) => setTempPromoLine(e.target.value)}
-                  className="opacity-0 group-hover:opacity-100 transition-opacity font-merriweather duration-500 text-warm text-[16px] relative z-10 bg-white border border-gray-300 rounded-md p-2"
+                  className="opacity-0 group-hover:opacity-100 transition-opacity font-merriweather duration-500 text-olive text-[16px] relative z-10 bg-white border border-gray-300 rounded-md p-2"
                 />
                 <div className="absolute z-10 top-52 right-36 flex space-x-2">
                   <button
