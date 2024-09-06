@@ -85,16 +85,16 @@ const Footer = () => {
               Offer
             </Link>
             <Link
-              to={"/about"}
-              className=" hover:bg-[#F5F5DC] hover:text-olive hover:scale-105 px-5 duration-500"
-            >
-              About Us
-            </Link>
-            <Link
               to={"/reserve"}
               className=" hover:bg-[#F5F5DC] hover:text-olive hover:scale-105 px-5 duration-500"
             >
               Book a table
+            </Link>
+            <Link
+              to={"/about"}
+              className=" hover:bg-[#F5F5DC] hover:text-olive hover:scale-105 px-5 duration-500"
+            >
+              About Us
             </Link>
             
           </div>
