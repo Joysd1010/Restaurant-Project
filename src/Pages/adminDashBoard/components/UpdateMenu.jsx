@@ -349,7 +349,7 @@ export default function UpdateMenu() {
                   />
                    <label className="block mb-1">Callories</label>
                   <input
-                    type="number"
+                    type="text"
                     name="callories"
                     value={editableMenu.callories}
                     onChange={handleInputChange}

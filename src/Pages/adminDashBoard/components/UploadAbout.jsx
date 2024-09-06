@@ -74,7 +74,7 @@ const UploadAbout = () => {
         {error && <div className="bg-red-100 text-red-700 p-2 rounded mb-4">{error}</div>}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700">Story</label>
+            <label className="block text-sm font-medium text-gray-700">Story of Employees</label>
             <textarea
               value={story}
               onChange={(e) => setStory(e.target.value)}
@@ -86,7 +86,7 @@ const UploadAbout = () => {
           {chefProfiles.map((chef, index) => (
             <div key={index} className="space-y-2">
               <div>
-                <label className="block text-sm font-medium text-gray-700">Chef Name</label>
+                <label className="block text-sm font-medium text-gray-700">Employee Name</label>
                 <input
                   type="text"
                   value={chef.name}
@@ -96,7 +96,7 @@ const UploadAbout = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">Specialty</label>
+                <label className="block text-sm font-medium text-gray-700">Post</label>
                 <input
                   type="text"
                   value={chef.specialty}
@@ -122,7 +122,7 @@ const UploadAbout = () => {
               onClick={addChefProfile}
               className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             >
-              Add Another Chef
+              Add Another Employee
             </button>
           </div>
           <div>

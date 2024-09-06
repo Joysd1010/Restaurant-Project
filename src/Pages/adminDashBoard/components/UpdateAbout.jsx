@@ -74,7 +74,7 @@ const UpdateAbout = () => {
                     value={editingItem?._id === item._id ? editingItem.story : item.story}
                     onChange={(e) => handleInputChange(e)}
                     rows="3"
-                    className="w-full p-2 border border-gray-300 rounded-lg"
+                    className="w-full p-2 border border-gray-300 rounded-lg bg-white"
                     placeholder="Update story..."
                     disabled={editingItem?._id !== item._id}
                   />
@@ -100,7 +100,7 @@ const UpdateAbout = () => {
                           name="name"
                           value={editingItem?._id === item._id ? editingItem.chefProfiles[index].name : chef.name}
                           onChange={(e) => handleInputChange(e, index)}
-                          className="w-full p-2 border border-gray-300 rounded-lg"
+                          className="w-full p-2 border border-gray-300 rounded-lg bg-white"
                           placeholder="Chef's name"
                           disabled={editingItem?._id !== item._id}
                         />
@@ -109,7 +109,7 @@ const UpdateAbout = () => {
                           value={editingItem?._id === item._id ? editingItem.chefProfiles[index].specialty : chef.specialty}
                           onChange={(e) => handleInputChange(e, index)}
                           rows="2"
-                          className="w-full p-2 border border-gray-300 rounded-lg mt-2"
+                          className="w-full p-2 border border-gray-300 rounded-lg mt-2 bg-white"
                           placeholder="Chef's specialty"
                           disabled={editingItem?._id !== item._id}
                         />
@@ -128,7 +128,7 @@ const UpdateAbout = () => {
                 ) : (
                   <div
                     onClick={() => handleEditClick(item)}
-                    className="mt-6 py-2 px-4 bg-blue-500 flex justify-center items-center text-white font-bold rounded-lg hover:bg-blue-600 transition-colors duration-300 w-full"
+                    className="mt-6 py-2 px-4 bg-oliveGreen flex justify-center items-center text-white font-bold rounded-lg hover:bg-lime transition-colors duration-300 w-full"
                   >
                     Edit
                   </div>

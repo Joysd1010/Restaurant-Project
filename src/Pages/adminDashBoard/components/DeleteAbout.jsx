@@ -42,11 +42,11 @@ const DeleteAbout = () => {
         {Array.isArray(aboutData) && aboutData.length > 0 ? (
           aboutData.map((item) => (
             <div key={item._id} className="border border-gray-300 shadow-lg p-6 rounded-lg bg-white">
-              <div className="flex justify-center items-center mb-4">
-                <FaQuoteLeft className="text-limeGreen text-3xl mr-2" />
+                <FaQuoteLeft size={15} className="text-limeGreen text-3xl mr-2" />
+              <div className=" mb-4 overflow-y-auto py-5 h-36">
                 <p className="font-serif text-lg text-gray-700">{item.story}</p>
-                <FaQuoteRight className="text-limeGreen text-3xl ml-2" />
               </div>
+                <FaQuoteRight size={15} className="text-limeGreen text-3xl ml-2" />
 
               <div className="grid grid-cols-1 gap-5 md:grid-cols-2 mt-6">
                 {item.chefProfiles.map((chef) => (

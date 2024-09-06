@@ -41,12 +41,12 @@ const CountdownTimer = ({ startTime, endTime }) => {
   return (
     <div>
       {timerState === "upcoming" && (
-        <div className=' text-center py-2 border-2 hover:bg-lime border-limeGreen px-3 rounded text-Charcoal duration-300 hover:text-warm font-merriweather text-18'>
+        <div className=' text-center py-2 border-2 hover:bg-olive border-olive px-3 rounded text-Charcoal duration-300 hover:text-warm font-merriweather text-18'>
           Offer starts in: {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s
         </div>
       )}
       {timerState === "running" && (
-        <div className=' text-center py-2 border-2 hover:bg-lime border-limeGreen px-3 rounded text-Charcoal duration-300 hover:text-warm font-merriweather text-18'>
+        <div className=' text-center py-2 border-2 hover:bg-olive border-olive px-3 rounded text-Charcoal duration-300 hover:text-white font-merriweather text-18'>
           Offer ends in: {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s
         </div>
       )}

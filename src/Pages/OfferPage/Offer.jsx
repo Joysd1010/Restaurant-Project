@@ -25,8 +25,7 @@ const Offer = () => {
       .get("/offer")
       .then((response) => {
         const now = new Date();
-        console.log(response.data,"off")
-
+        
         const filteredOffers = response.data.filter((offer) => {
           const endTime = new Date(offer.endTime);
           return endTime >= now;
@@ -58,7 +57,7 @@ const Offer = () => {
     document.getElementById("my_modal_3").showModal();
   };
 
-  const { name, image, details, ingredients, price, offer, offerPrice } =
+  const { name, image, details,callories, ingredients, price, offer, offerPrice,type,allergy } =
     selectedMenuItem;
 
   // Pagination logic based on menuItems
@@ -112,7 +111,7 @@ const Offer = () => {
   
               return (
                 <div className="mx-10" key={item._id}>
-                  <h1 className="rounded py-2 text-center hover border-2 hover:text-lime hover:bg-warm border-lime duration-300 my-2 text-warm font-bold font-merriweather text-28 bg-lime">
+                  <h1 className="rounded py-2 text-center hover border-2 hover:text-olive hover:bg-white border-olive duration-300 my-2 text-white font-bold font-merriweather text-28 bg-olive">
                     {item.name}
                   </h1>
                   <div className="mx-auto my-5 w-2/3">
@@ -152,7 +151,7 @@ const Offer = () => {
                           onClick={() => setCurrentPage(index + 1)}
                           className={`px-4 py-2 mx-1 border rounded ${
                             currentPage === index + 1
-                              ? "bg-lime text-warm"
+                              ? "bg-lime text-white"
                               : "bg-warm text-lime"
                           }`}
                         >
@@ -177,10 +176,10 @@ const Offer = () => {
               );
             })}
           </>
-           {UpComingOfferData && (
+           {UpComingOfferData.length>0 && (
             <div className=" py-5 mx-10">
               <h1 className=" py-2 text-center font-bold font-merriweather text-28 ">Upcoming offers for you</h1>
-              <hr className="border-2 mx-32 border-lime "/>
+              <hr className="border-2 mx-32 border-olive "/>
               {UpComingOfferData.map((item) => (
                 <div key={item._id} className=" py-5">
                   <div className="py-5 md:mx-32 mx-10">
@@ -201,7 +200,7 @@ const Offer = () => {
 
       {selectedMenuItem && (
         <dialog id="my_modal_3" className="modal">
-          <div className="modal-box bg-warm">
+          <div className="modal-box rounded-none bg-white">
             <form method="dialog">
               <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
                 ✕
@@ -222,7 +221,7 @@ const Offer = () => {
                     </p>
                   </div>
 
-                  <div className="flex gap-2 items-center font-bold text-18 px-2 py-1 rounded bg-olive text-warm">
+                  <div className="flex gap-2 items-center font-bold text-18 px-2 py-1 rounded bg-olive text-white">
                     <TfiGift size={20} /> Offer
                   </div>
                 </div>
@@ -236,6 +235,24 @@ const Offer = () => {
                     Ingredients :{" "}
                     <span className="text-Charcoal text-[17px] font-normal">
                       {ingredients.join(", ")}
+                    </span>
+                  </p>
+                  <p className="text-lime font-bold text-[17px]">
+                    Ingredients :{" "}
+                    <span className="text-Charcoal text-[17px] font-normal">
+                      {allergy}
+                    </span>
+                  </p>
+                  <p className="text-lime font-bold text-[17px]">
+                    Serving Menu :{" "}
+                    <span className="text-Charcoal text-[17px] font-normal">
+                      {type.toUpperCase()} menu
+                    </span>
+                  </p>
+                  <p className="text-lime font-bold text-[17px]">
+                    Callories :{" "}
+                    <span className="text-Charcoal text-[17px] font-normal">
+                      {callories} Kcal
                     </span>
                   </p>
                 </div>

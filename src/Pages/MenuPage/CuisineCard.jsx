@@ -50,10 +50,10 @@ const CusineCard = ({ menu, onWarningClick }) => {
   };
 
   return (
-    <div className="bg-white shadow-lg max-w-72 mx-auto rounded-lg overflow-hidden hover:shadow-limeGreen duration-300">
-      <img src={image} alt={name} className="w-full object-cover p-2" />
+    <div className="bg-white shadow-lg max-w-72 mx-auto overflow-hidden hover:shadow-limeGreen duration-300">
+      <img src={image} alt={name} className=" max-h-60 object-cover p-2" />
       {offer && (
-        <div className="bg-red-700 border2 rotate-45 bottom-52 left-20 relative text-center text-white font-merriweather text-18">
+        <div className="bg-red-700 border2 rotate-45 bottom-44 left-24 relative text-center text-white font-merriweather text-18">
           Offer
         </div>
       )}

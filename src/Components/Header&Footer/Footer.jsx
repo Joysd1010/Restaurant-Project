@@ -5,6 +5,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import { ImLocation2 } from "react-icons/im";
 import { Link } from "react-router-dom";
 import axiosInstance from "../../api/axiosInstance";
+import { CircularProgress } from "@mui/material";
 
 const Footer = () => {
   const [Menu, setMenu] = useState([]);
@@ -17,7 +18,7 @@ const Footer = () => {
   }, []);
 
   return (
-    <div className="bg-[url('https://cafeu-react.netlify.app/img/footer-bg.png')]">
+    <div className="bg-[url('https://i.postimg.cc/Hn36ZnxY/Untitled-design.png')]">
       <div className=" grid gap-4 grid-cols-1 md:grid-cols-4 px-5 md:px-28 items-start">
         <div className=" flex flex-col gap-2 py-2">
           <img
@@ -63,6 +64,7 @@ const Footer = () => {
             </p>
             <hr className=" border-2" />
           </div>
+
           <div className=" flex p-3 text-[#FFF8E1] flex-col gap-3">
             <Link
               to={"/"}
@@ -94,12 +96,7 @@ const Footer = () => {
             >
               Book a table
             </Link>
-            <Link
-              to={"/admin-dashboard"}
-              className=" hover:bg-[#F5F5DC] hover:text-olive hover:scale-105 px-5 duration-500"
-            >
-              login
-            </Link>
+            
           </div>
         </div>
         <div>
@@ -109,17 +106,21 @@ const Footer = () => {
             </p>
             <hr className=" border-2" />
           </div>
-          <div className=" grid grid-cols-3 md:gap-2 gap-5 py-5">
-            {Menu?.map((item, index) => (
+          {
+            Menu.length<1?<div className="flex justify-center py-10 ">
+            <CircularProgress />
+          </div>:<div className=" grid grid-cols-3 md:gap-2 gap-5 py-5">
+          {Menu?.map((item, index) => (
               <Link to={"/menu"} key={index}>
                 <img
                   src={item}
                   alt=""
-                  className="w-32 md:w-36 h-32 md:h-24 hover:scale-105 duration-300 rounded-xl"
+                  className="w-32 md:w-36 h-28 md:h-20 hover:scale-105 duration-300 "
                 />
               </Link>
             ))}
           </div>
+          }
         </div>
         <div className=" md:px-5">
           <div>
@@ -128,10 +129,10 @@ const Footer = () => {
             </p>
             <hr className=" border-2" />
           </div>
-          <p className=" text-warm text-center py-5 ">
+          <p className=" text-textWhite text-center py-5 ">
             Let Olive & Lime whisk you away to the Mediterranean.
           </p>
-          <div className=" grid grid-cols-2 gap-5 py-5 ">
+          <div className=" grid grid-cols-2 gap-5 py-5 text-lime ">
             <a
               href="https://www.facebook.com/people/OliveLime/61565142630094/"
               target="blank"
