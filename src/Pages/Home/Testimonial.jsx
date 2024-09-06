@@ -8,6 +8,7 @@ import { Autoplay, Navigation } from "swiper/modules";
 import { useEffect, useState } from "react";
 import axiosInstance from "../../api/axiosInstance";
 import Avatar from "../../assets/profile.png"
+import { CircularProgress } from "@mui/material";
 
 
 const Testimonial = () => {
@@ -38,7 +39,10 @@ const Testimonial = () => {
         <hr className="border-2 w-3/4 mx-auto border-Charcoal group-hover:border-limeGreen group-hover:shadow-2xl shadow-yellow-400" />
       </div>
       <div className="py-5">
-        <Swiper
+        {
+          testimonials.length<0?<div className="flex justify-center py-10">
+          <CircularProgress />
+        </div>: <Swiper
           spaceBetween={30}
           centeredSlides={true}
           autoplay={{
@@ -88,6 +92,8 @@ const Testimonial = () => {
             </SwiperSlide>
           ))}
         </Swiper>
+        }
+       
       </div>
     </>
   );

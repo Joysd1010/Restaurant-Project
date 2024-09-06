@@ -90,7 +90,7 @@ export default function UpdateSlider() {
               />
               <button
                 onClick={() => handleUpdate(slide._id)}
-                className="rounded-md text-warm  bg-green-600 p-3 w-32 text-center "
+                className="rounded-md text-textWhite  bg-green-600 p-3 w-32 text-center "
               >
                 Save
               </button>
@@ -105,7 +105,7 @@ export default function UpdateSlider() {
                 {slide.heading}
               </h1>
               <p>{slide.description}</p>
-              <Link to="/" className="rounded-md text-warm bg-limeGreen p-3 w-52 text-center">
+              <Link to="/" className="rounded-md text-textWhite bg-limeGreen p-3 w-52 text-center">
                 view more
               </Link>
             </div>

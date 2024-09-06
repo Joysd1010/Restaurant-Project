@@ -110,29 +110,31 @@ const AboutUs = () => {
       <div className="text-center py-5">
         <h1 className="text-2xl md:text-3xl font-bold">Meet with Our Team</h1>
         <hr className="border-2 my-3 border-limeGreen" />
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-3 ">
-          {chefProfiles?.map((chef) => (
-            <div
-              key={chef._id}
-              className="border-2 hover:border-limeGreen duration-300 p-4"
-            >
-              <div className="overflow-hidden">
-                <img
-                  src={chef.image}
-                  className="h-44 mx-auto hover:scale-110 transition-transform duration-500"
-                  alt={chef.specialty}
-                />
+      <div className=" flex justify-around">
+          <div className={`${chefProfiles.length<3?"flex flex-col md:flex-row gap-5 justify-around":"grid grid-cols-1 gap-5 md:gap-10 md:grid-cols-3"}`}>
+            {chefProfiles?.map((chef) => (
+              <div
+                key={chef._id}
+                className="border-2 hover:border-limeGreen duration-300 w-60 p-4"
+              >
+                <div className="overflow-hidden ">
+                  <img
+                    src={chef.image}
+                    className="h-44 hover:scale-110 mx-auto transition-transform duration-500"
+                    alt={chef.specialty}
+                  />
+                </div>
+                <h1 className="text-xl md:text-2xl text-limeGreen font-bold">
+                  {chef.name}
+                </h1>
+                <p className="font-merriweather text-base md:text-lg">
+                  {chef.specialty}
+                </p>
+                <hr className="mt-5 border-lime border-4" />
               </div>
-              <h1 className="text-xl md:text-2xl text-limeGreen font-bold">
-                {chef.name}
-              </h1>
-              <p className="font-merriweather text-base md:text-lg">
-                {chef.specialty}
-              </p>
-              <hr className="mt-5 border-lime border-4" />
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+      </div>
       </div>
 
       <h1 className="text-2xl md:text-3xl font-bold text-center text-Charcoal py-5 md:py-10">

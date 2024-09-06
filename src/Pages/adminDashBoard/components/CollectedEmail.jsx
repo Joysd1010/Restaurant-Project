@@ -84,6 +84,7 @@ const CollectedEmail = () => {
             <thead>
               <tr className="bg-gray-100 border-b border-gray-300">
                 <th className="py-2 px-4 text-left text-gray-600">No.</th>
+                <th className="py-2 px-4 text-left text-gray-600">Name</th>
                 <th className="py-2 px-4 text-left text-gray-600">Email</th>
               </tr>
             </thead>
@@ -91,6 +92,7 @@ const CollectedEmail = () => {
               {Mail.map((item, index) => (
                 <tr key={index} className="border-b border-gray-200">
                   <td className="py-2 px-4 text-gray-700">{indexOfFirstItem + index + 1}</td>
+                  <td className="py-2 px-4 text-gray-700">{item.name}</td>
                   <td className="py-2 px-4 text-gray-700">{item.email}</td>
                 </tr>
               ))}
@@ -105,6 +107,7 @@ const CollectedEmail = () => {
             <thead>
               <tr className="bg-gray-100 border-b border-gray-300">
                 <th className="py-2 px-4 text-left text-gray-600">No.</th>
+                <th className="py-2 px-4 text-left text-gray-600">Name</th>
                 <th className="py-2 px-4 text-left text-gray-600">Email</th>
                 <th className="py-2 px-4 text-left text-gray-600"></th>
               </tr>
@@ -113,7 +116,8 @@ const CollectedEmail = () => {
               {currentItems.map((item, index) => (
                 <tr key={index} className="border-b border-gray-200">
                   <td className="py-2 px-4 text-gray-700">{indexOfFirstItem + index + 1}</td>
-                  <td className="py-2 px-4 text-gray-700">{item.email}</td>
+                  <td className="py-2 px-4 text-gray-700">{item.name}</td>
+                  <td className="py-2 px-2 text-gray-700">{item.email}</td>
                   <td><button className=" py-1 px-2 rounded-md bg-red-500 text-white" onClick={()=>handleDelete(item._id)}>delete</button></td>
                 </tr>
               ))}

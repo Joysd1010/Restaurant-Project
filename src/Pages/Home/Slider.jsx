@@ -16,7 +16,7 @@ export default function Slider() {
     const fetchSlides = async () => {
       try {
         const response = await axiosInstance.get("/home-slider-upload");
-        console.log(response.data);
+        
         setSlides(response.data);
       } catch (error) {
         console.error("Error fetching sliders:", error);
@@ -43,7 +43,7 @@ export default function Slider() {
     >
       {slides?.map((slide) => (
         <SwiperSlide key={slide.id}>
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 items-center">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 items-center py-5">
             <div className="text-start px-10 flex flex-col gap-7">
               <p className="text-oliveGreen text-[24px] font-merriweather font-bold">
                 {slide.title}
@@ -52,7 +52,7 @@ export default function Slider() {
                 {slide.heading}
               </p>
               <p>{slide.description}</p>
-              <Link className="rounded-md text-warm bg-limeGreen p-3 w-52 text-center">
+              <Link to={'/menu'} className="rounded-md text-textWhite bg-limeGreen p-3 w-52 text-center">
                 view more
               </Link>
             </div>
