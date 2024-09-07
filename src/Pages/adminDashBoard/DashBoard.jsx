@@ -19,6 +19,7 @@ import DeleteAbout from "./components/DeleteAbout";
 import UpdateAbout from "./components/UpdateAbout";
 import ControlReservation from "./components/ControlReservation";
 import ViewReservation from "./components/ViewReservation";
+import CollectedEmail from "./components/CollectedEmail";
 
 const DashBoard = () => {
   const [isExpanded, setIsExpanded] = useState(true);
@@ -71,6 +72,8 @@ const DashBoard = () => {
         return <ControlReservation />;
       case "viewReservation":
         return <ViewReservation />;
+      case "email":
+        return <CollectedEmail />;
       default:
         return <FirstPage/>;
     }

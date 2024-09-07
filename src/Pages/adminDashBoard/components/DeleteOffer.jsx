@@ -12,34 +12,37 @@ const DeleteOffer = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(3);
   const [selectedOfferId, setSelectedOfferId] = useState(null);
-
-  useEffect(() => {
-    axiosInstance
-      .get("/offer")
-      .then((response) => {
-        const now = new Date();
-        const filteredOffers = response.data.filter((offer) => {
-          const endTime = new Date(offer.endTime);
-          return endTime >= now;
-        });
-
-        const runningOffers = filteredOffers.filter((offer) => {
-          const startTime = new Date(offer.startTime);
-          return startTime <= now;
-        });
-
-        const upcomingOffers = filteredOffers.filter((offer) => {
-          const startTime = new Date(offer.startTime);
-          return startTime > now;
-        });
-
-        setOfferData(filteredOffers);
-        setRunning(runningOffers);
-        setUpcoming(upcomingOffers);
-      })
-      .catch((error) => {
-        console.error("Error fetching offer data:", error);
+  const getOffer = async () => {
+    try {
+      const response = await axiosInstance.get("/offer");
+  
+      const now = new Date();
+      const filteredOffers = response.data.filter((offer) => {
+        const endTime = new Date(offer.endTime);
+        return endTime >= now;
       });
+  
+      const runningOffers = filteredOffers.filter((offer) => {
+        const startTime = new Date(offer.startTime);
+        return startTime <= now;
+      });
+  
+      const upcomingOffers = filteredOffers.filter((offer) => {
+        const startTime = new Date(offer.startTime);
+        return startTime > now;
+      });
+  
+      setOfferData(filteredOffers);
+      setRunning(runningOffers);
+      setUpcoming(upcomingOffers);
+    } catch (error) {
+      console.error("Error fetching offer data:", error);
+    }
+  };
+  
+  useEffect(() => {
+    
+    getOffer()
   }, []);
 
   const handleDelete = async () => {
@@ -53,12 +56,14 @@ const DeleteOffer = () => {
           prevOffers.filter((offer) => offer._id !== selectedOfferId)
         );
         // Close the modal after deletion
+        getOffer()
         document.getElementById("delete_modal").close();
       }
     } catch (error) {
       toast.error("Failed to delete offer");
       console.error("Error deleting offer:", error);
     }
+    document.getElementById("delete_modal").close();
   };
 
   const handleDeleteClick = (offerId) => {
@@ -109,7 +114,7 @@ const DeleteOffer = () => {
             return (
               <div className="mx-10" key={item._id}>
                 <div className="grid grid-cols-4 gap-6 items-center">
-                  <h1 className="rounded col-span-3 py-2 text-center hover border-2 hover:text-lime hover:bg-warm border-lime duration-300 my-2 text-warm font-bold font-merriweather text-28 bg-lime">
+                  <h1 className="rounded col-span-3 py-2 text-center hover border-2 hover:text-lime hover:bg-warm border-lime duration-300 my-2 text-white font-bold font-merriweather text-28 bg-lime">
                     {item.name}
                   </h1>
                   <button
@@ -156,7 +161,7 @@ const DeleteOffer = () => {
                         onClick={() => setCurrentPage(index + 1)}
                         className={`px-4 py-2 mx-1 border rounded ${
                           currentPage === index + 1
-                            ? "bg-lime text-warm"
+                            ? "bg-lime text-white"
                             : "bg-warm text-lime"
                         }`}
                       >
@@ -213,7 +218,7 @@ const DeleteOffer = () => {
 
       {/* Modal for deleting offer */}
       <dialog id="delete_modal" className="modal">
-        <form method="dialog" className="modal-box">
+        <form method="dialog" className="modal-box bg-white">
           <h3 className="text-lg font-bold">Confirm Delete</h3>
           <p className="py-4">Are you sure you want to delete this offer?</p>
           <div className="modal-action">
@@ -226,7 +231,7 @@ const DeleteOffer = () => {
             </button>
             <button
               type="button"
-              className="btn"
+              className="btn bg-green-700 text-white border-none"
               onClick={() => document.getElementById("delete_modal").close()}
             >
               Cancel

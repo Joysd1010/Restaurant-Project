@@ -13,7 +13,9 @@ export default {
         Charcoal: '#333333', 
         lime: '#32CD32', 
         oliveGreen: '#6B8E23',
-        warm: '#FFF8E1'
+        warm: '#ACB992',
+        textWhite:'#ffffe4',
+        textBright:'#FDFEFF'
       },
       fontFamily: {
         'merriweather': ['Merriweather', 'serif'],

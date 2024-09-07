@@ -5,14 +5,23 @@ import { useParams } from "react-router-dom";
 import { MdOutlineOutdoorGrill } from "react-icons/md";
 
 import { TfiGift } from "react-icons/tfi";
+import { Helmet } from "react-helmet-async";
+import { CircularProgress } from "@mui/material";
 
 const MenuByCategory = () => {
-  const { category } = useParams(); // Extract category from URL parameters
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' 
+    });
+  }, []);
+  const { category } = useParams(); 
   const [menu, setMenu] = useState([]);
-  const [activeCategory, setActiveCategory] = useState(category || "All"); // Set the active category from URL or default to "All"
+  const [activeCategory, setActiveCategory] = useState(category || "All"); 
   const [Category, setCategory] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
+
 
   useEffect(() => {
     const params =
@@ -36,7 +45,9 @@ const MenuByCategory = () => {
     axiosInstance
       .get("/menu/category")
       .then((response) => {
+        //console.log(response)
         const Items = [...new Set(response.data.map((item) => item.category))];
+        //console.log(Items)
         setCategory(Items);
       })
       .catch((error) => {
@@ -96,8 +107,24 @@ const MenuByCategory = () => {
   const breakFastMenu=menu.filter(
     (item) => item.type && item.type.toLowerCase() === 'breakfast'
   )
+
+
+  if (currentMenuItems.length === 0) {
+    return (
+      <div className="flex justify-center py-32">
+        <CircularProgress />
+      </div>
+    );
+  }
   return (
     <div className="md:mx-28">
+       <Helmet>
+        <title>Menu - Olive&lime</title>
+        <meta name="description" content="Indulge in our latest offers at Olive&Lime. Enjoy delicious Mediterranean cuisine and handcrafted cocktails at unbeatable prices. Book your table now!" />
+
+        <link rel="canonical" href="https://oliveandlime.co.uk/menu" />
+
+      </Helmet>
       <h1 className="text-center font-bold text-28 py-5 font-merriweather">
         Find your desired dish
       </h1>
@@ -231,7 +258,7 @@ const MenuByCategory = () => {
           <div className="flex justify-around">
             <div className="flex gap-5 items-center mt-5">
               <button
-                className="px-4 py-2 text-white bg-lime rounded hover:bg-yellow-300 hover:text-Charcoal"
+                className="px-4 py-2 text-white bg-darkOlive rounded hover:bg-lime hover:text-white"
                 onClick={handlePreviousPage}
                 disabled={currentPage === 1}
               >
@@ -258,7 +285,7 @@ const MenuByCategory = () => {
               </div>
 
               <button
-                className="px-4 py-2 text-white bg-lime rounded hover:bg-yellow-300 hover:text-Charcoal"
+                className="px-4 py-2 text-white bg-darkOlive rounded hover:bg-lime hover:text-white"
                 onClick={handleNextPage}
                 disabled={currentPage === totalPages}
               >
@@ -271,7 +298,7 @@ const MenuByCategory = () => {
 
 {selectedMenuItem && (
         <dialog id="my_modal_3" className="modal">
-          <div className="modal-box bg-warm">
+          <div className="modal-box bg-white rounded-none">
             <form method="dialog">
               <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
                 ✕
@@ -287,12 +314,12 @@ const MenuByCategory = () => {
                     <p className="text-Charcoal line-through font-bold text-[16px]">
                       {price} $
                     </p>
-                    <p className="text-lime font-bold text-[16px]">
+                    <p className="text-darkOlive font-bold text-[16px]">
                       {offerPrice} $
                     </p>
                   </div>
 
-                  <div className="flex gap-2 items-center font-bold text-18 px-2 py-1 rounded bg-olive text-warm">
+                  <div className="flex gap-2 items-center font-bold text-18 px-2 py-1  bg-olive text-white">
                     <TfiGift size={20} /> Offer
                   </div>
                 </div>
@@ -302,7 +329,7 @@ const MenuByCategory = () => {
               <p className="text-18 font-merriweather">{details}</p>
               {ingredients && (
                 <div>
-                  <p className="text-lime font-bold text-[17px]">
+                  <p className="text-darkOlive font-bold text-[17px]">
                     Ingredients :{" "}
                     <span className="text-Charcoal text-[17px] font-normal">
                       {ingredients.join(", ")}
@@ -310,24 +337,19 @@ const MenuByCategory = () => {
                   </p>
                 </div>
               )}
-               <p className="text-lime font-bold text-[17px]">
-                    Available ?{" "}
+              
+               <p className="text-darkOlive font-bold text-[17px]">
+                    Allergetic : {" "}
                     <span className="text-Charcoal text-[17px] font-normal">
-                      {available? 'Yes':'No'}
+                      {allergy}
                     </span>
                   </p>
-               <p className="text-lime font-bold text-[17px]">
-                    Allergetic ? {" "}
-                    <span className="text-Charcoal text-[17px] font-normal">
-                      {allergy?'Yes':'No'}
-                    </span>
-                  </p>
-               <p className="text-lime font-bold text-[17px]">
+              {callories&& <p className="text-darkOlive font-bold text-[17px]">
                     Callories :{" "}
                     <span className="text-Charcoal text-[17px] font-normal">
-                      {callories}cal
+                      {callories} Kcal
                     </span>
-                  </p>
+                  </p>}
             </div>
           </div>
         </dialog>
