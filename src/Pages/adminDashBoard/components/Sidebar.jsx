@@ -82,8 +82,7 @@ const menuItems = [
   },
  
 
-  }
-  ,
+ 
   {
     name: "Reservation",
     icon: <DateRangeIcon className="text-teal-200" />,
