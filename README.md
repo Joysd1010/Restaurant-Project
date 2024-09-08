@@ -46,11 +46,25 @@ Live site: [Olive&Lime Website](http://oliveandlime.co.uk/)
 - [Express.js](https://expressjs.com/) - Web framework for Node.js
 - [MongoDB](https://www.mongodb.com/) - NoSQL database
 
-## Installation
+## Installation and Run 
 
 To run the project locally, clone the repository and install the necessary dependencies:
 
+**Clone Repository**
 ```bash
 git clone https://github.com/your-username/olive-lime.git
 cd olive-lime-frontend
+
+```
+**Redirect to folder**
+```bash
+cd olive-lime-frontend
+```
+**Install dependencies**
+```bash
 npm install
+```
+**Run project**
+```bash
+npm run dev
+```
