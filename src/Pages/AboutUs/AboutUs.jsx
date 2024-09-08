@@ -148,11 +148,11 @@ const AboutUs = () => {
             <h1 className="text-olive font-bold text-24">WhatsApp</h1>{" "}
             <hr className="border-2 mx-5 md:mx-10 border-limeGreen" />
             <a
-              href="https://wa.me/+447448946630"
+              href="https://wa.me/+447473198598"
               target="blank"
               className="cursor-pointer text-18 font-merriweather hover:scale-105 duration-300"
             >
-              +447448946630
+              +447473198598
             </a>
           </div>
           <div className="rounded-full border-2 hover:border-limeGreen py-10 w-60 text-center">

@@ -50,10 +50,10 @@ const Footer = () => {
           <div className=" flex items-center gap-2">
             <BiSolidPhone color="#32CD32" size={27} />
             <a
-              href="tel:+447448946630"
+              href="tel:+447473198598"
               className=" cursor-pointer hover:scale-105 duration-300 text-[#FFF8E1]"
             >
-              +447448946630
+              +447473198598
             </a>
           </div>
         </div>

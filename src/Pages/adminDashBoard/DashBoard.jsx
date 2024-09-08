@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Sidebar from "./components/Sidebar";
 import Loader from "./components/Loader";
 import SliderUpload from "./components/Home_slider_upload";
@@ -20,14 +20,21 @@ import UpdateAbout from "./components/UpdateAbout";
 import ControlReservation from "./components/ControlReservation";
 import ViewReservation from "./components/ViewReservation";
 import CollectedEmail from "./components/CollectedEmail";
+import { Helmet } from "react-helmet-async";
+import { AuthContext } from "../../Components/Provider/AuthProvider";
+import { Logout } from "@mui/icons-material";
 
 const DashBoard = () => {
+  const {logOut}=useContext(AuthContext)
   const [isExpanded, setIsExpanded] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
 
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const type = queryParams.get("type") ;
+  const type = queryParams.get("type");
+
+  let activityTimeout5Sec;
+  let retrieveTimeout10Sec;
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -37,9 +44,48 @@ const DashBoard = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  // Function to log inactivity after 5 seconds
+  const setInactivityTimeout = () => {
+    if (activityTimeout5Sec) clearTimeout(activityTimeout5Sec);
+    
+    activityTimeout5Sec = setTimeout(() => {
+      console.log('activity less')
+      logOut()
+    }, 2700000); // 5 seconds
+  };
+
+  // Function to log "default retrieve" after 10 seconds (no reset needed)
+  const setRetrieveTimeout = () => {
+    retrieveTimeout10Sec = setTimeout(() => {
+      console.log('retrieve less')
+      logOut()
+    }, 9000000); // 10 seconds
+  };
+
+  useEffect(() => {
+    // Set both timeouts when the component mounts
+    setInactivityTimeout();
+    setRetrieveTimeout();
+
+    // Add event listeners to reset 5-second timeout on user activity
+    const events = ["mousemove", "keydown", "click"];
+    events.forEach(event =>
+      window.addEventListener(event, setInactivityTimeout)
+    );
+
+    // Cleanup event listeners and clear timeouts on unmount
+    return () => {
+      events.forEach(event =>
+        window.removeEventListener(event, setInactivityTimeout)
+      );
+      if (activityTimeout5Sec) clearTimeout(activityTimeout5Sec);
+      if (retrieveTimeout10Sec) clearTimeout(retrieveTimeout10Sec);
+    };
+  }, []);
+
   // Conditional Rendering based on `type`
   const renderContent = () => {
-    switch (type) { 
+    switch (type) {
       case "add-menu":
         return <MenuItemAdding />;
       case "delete-menu":
@@ -75,12 +121,20 @@ const DashBoard = () => {
       case "email":
         return <CollectedEmail />;
       default:
-        return <FirstPage/>;
+        return <FirstPage />;
     }
   };
 
   return (
     <>
+      <Helmet>
+        <title>Admin Panel - Olive&lime</title>
+        <meta
+          name="description"
+          content="Welcome to the Olive&Lime admin panel. Streamline your restaurant's operations, manage reservations, update menus, and analyze customer data."
+        />
+        <link rel="canonical" href="https://oliveandlime.co.uk/admin-dashboard" />
+      </Helmet>
       {isLoading ? (
         <Loader />
       ) : (
@@ -106,7 +160,5 @@ const DashBoard = () => {
     </>
   );
 };
-
-
 
 export default DashBoard;

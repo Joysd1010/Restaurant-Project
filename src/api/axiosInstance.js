@@ -1,10 +1,9 @@
 import axios from "axios";
-// const SERVERURL="https://restraunt-api.onrender.com"
-const SERVERURL="https://restraunt-api-1.onrender.com"
-// const SERVERURL="http://localhost:5000/"
+const SERVERURL = "https://olive-server.oliveandlime.co.uk/"
+
 const axiosInstance = axios.create({
-  baseURL: SERVERURL,  
-  timeout: 300000,  
+  baseURL: SERVERURL,
+  timeout: 300000,
   headers: {
     "Content-Type": "application/json",
   },
