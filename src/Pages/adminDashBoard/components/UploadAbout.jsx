@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axiosInstance from '../../../api/axiosInstance'; // Ensure this is correctly configured
+import axiosInstance from '../../../api/axiosInstance'; 
 
 const UploadAbout = () => {
   const [story, setStory] = useState('');
@@ -40,7 +40,7 @@ const UploadAbout = () => {
       formData.append('story', story);
 
       chefProfiles.forEach((chef, index) => {
-        formData.append(`chefProfiles`, chef.image); // Use 'chefProfiles' as the field name for the file uploads
+        formData.append(`chefProfiles`, chef.image); 
         formData.append(`chefProfiles[${index}][name]`, chef.name);
         formData.append(`chefProfiles[${index}][specialty]`, chef.specialty);
       });

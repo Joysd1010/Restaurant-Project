@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const DeleteAbout = () => {
   const [aboutData, setAboutData] = useState([]);
 
-  // Fetch data from the /about endpoint
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -21,7 +21,7 @@ const DeleteAbout = () => {
     fetchData();
   }, []);
 
-  // Handle delete
+
   const handleDelete = async (id) => {
     try {
       await axiosInstance.delete(`/about/${id}`);

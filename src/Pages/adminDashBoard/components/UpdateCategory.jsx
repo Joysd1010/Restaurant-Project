@@ -14,7 +14,7 @@ const UpdateCategory = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch categories on component mount
+    
     axiosInstance
       .get("/menu/category")
       .then((response) => {
@@ -67,12 +67,12 @@ const UpdateCategory = () => {
     setCurrentPage(pageNumber);
   };
 
-  // Get the current categories to display
+
   const indexOfLastCategory = currentPage * categoriesPerPage;
   const indexOfFirstCategory = indexOfLastCategory - categoriesPerPage;
   const currentCategories = categories.slice(indexOfFirstCategory, indexOfLastCategory);
 
-  // Generate page numbers
+ 
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(categories.length / categoriesPerPage); i++) {
     pageNumbers.push(i);

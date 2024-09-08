@@ -1,97 +1,32 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import {
   Home as HomeIcon,
   ExpandMore as ExpandMoreIcon,
 } from "@mui/icons-material";
-
+import LogoutIcon from "@mui/icons-material/Logout";
 import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
 import CelebrationTwoToneIcon from "@mui/icons-material/CelebrationTwoTone";
 import DateRangeIcon from "@mui/icons-material/DateRange";
 import WidgetsIcon from "@mui/icons-material/Widgets";
 import AttachEmailIcon from "@mui/icons-material/AttachEmail";
-
 import PersonIcon from "@mui/icons-material/Person";
-
 import { Link } from "react-router-dom";
-
-const menuItems = [
-  {
-    name: "Home",
-    icon: <HomeIcon className="text-teal-200" />,
-    subMenu: [
-      { name: "Add slider", path: "/admin-dashboard?type=add-slider" },
-      { name: "Delete slider", path: "/admin-dashboard?type=delete-slider" },
-      { name: "Update slider", path: "/admin-dashboard?type=update-slider" },
-    ],
-    id: "apps",
-  },
-  {
-    name: "About",
-    icon: <PersonIcon className="text-teal-200" />,
-    subMenu: [
-      { name: "Add About", path: "/admin-dashboard?type=add-about" },
-      { name: "Delete About", path: "/admin-dashboard?type=delete-about" },
-      { name: "Update About", path: "/admin-dashboard?type=update-about" },
-    ],
-    id: "apps",
-  },
-  {
-    name: "Menu",
-    icon: <RestaurantMenuIcon className="text-teal-200" />,
-    subMenu: [
-      { name: "Add Menu", path: "/admin-dashboard?type=add-menu" },
-      { name: "Delete Menu", path: "/admin-dashboard?type=delete-menu" },
-      { name: "Update Menu", path: "/admin-dashboard?type=update-menu" },
-    ],
-    id: "apps",
-  },
-
-  {
-    name: "Category",
-    icon: <WidgetsIcon className="text-teal-200" />,
-    subMenu: [
-      { name: "Add Category", path: "/admin-dashboard?type=add-category" },
-      {
-        name: "Delete Category",
-        path: "/admin-dashboard?type=delete-category",
-      },
-      {
-        name: "Update Category",
-        path: "/admin-dashboard?type=update-category",
-      },
-    ],
-    id: "apps",
-  },
-  {
-    name: "Offers",
-    icon: <CelebrationTwoToneIcon className="text-teal-200" />,
-    subMenu: [
-      { name: "Add Offer", path: "/admin-dashboard?type=add-offer" },
-      { name: "Delete Offer", path: "/admin-dashboard?type=delete-offer" },
-    ],
-    id: "apps",
-  },
+import { AuthContext } from "../../../Components/Provider/AuthProvider";
 
 
-  {
-    name: "Reservation",
-    icon: <DateRangeIcon className="text-teal-200" />,
-    subMenu: [
-      { name: "View ", path: "/admin-dashboard?type=viewReservation" },
-      { name: "Control", path: "/admin-dashboard?type=controlReservation" },
-    ],
-    id: "apps",
-  },
-  {
-    name: "Collected Emails",
-    icon: <AttachEmailIcon className="text-teal-200" />,
-    subMenu: [{ name: "View ", path: "/admin-dashboard?type=email" }],
-    id: "apps",
-  },
-];
+
+
+
 
 const Sidebar = ({ isExpanded, setIsExpanded }) => {
+  const {logOut}=useContext(AuthContext)
+
+  const handleSignOut=()=>{
+    
+    logOut()
+  }
+
   const [expandedMenuIndex, setExpandedMenuIndex] = useState(null);
 
   const toggleSubMenu = (index) => {
@@ -102,6 +37,85 @@ const Sidebar = ({ isExpanded, setIsExpanded }) => {
     return expandedMenuIndex === id;
   };
 
+
+  const menuItems = [
+    {
+      name: "Home",
+      icon: <HomeIcon className="text-teal-200" />,
+      subMenu: [
+        { name: "Add slider", path: "/admin-dashboard?type=add-slider" },
+        { name: "Delete slider", path: "/admin-dashboard?type=delete-slider" },
+        { name: "Update slider", path: "/admin-dashboard?type=update-slider" },
+      ],
+      id: "apps",
+    },
+    {
+      name: "About",
+      icon: <PersonIcon className="text-teal-200" />,
+      subMenu: [
+        { name: "Add About", path: "/admin-dashboard?type=add-about" },
+        { name: "Delete About", path: "/admin-dashboard?type=delete-about" },
+        { name: "Update About", path: "/admin-dashboard?type=update-about" },
+      ],
+      id: "apps",
+    },
+    {
+      name: "Menu",
+      icon: <RestaurantMenuIcon className="text-teal-200" />,
+      subMenu: [
+        { name: "Add Menu", path: "/admin-dashboard?type=add-menu" },
+        { name: "Delete Menu", path: "/admin-dashboard?type=delete-menu" },
+        { name: "Update Menu", path: "/admin-dashboard?type=update-menu" },
+      ],
+      id: "apps",
+    },
+    {
+      name: "Category",
+      icon: <WidgetsIcon className="text-teal-200" />,
+      subMenu: [
+        { name: "Add Category", path: "/admin-dashboard?type=add-category" },
+        {
+          name: "Delete Category",
+          path: "/admin-dashboard?type=delete-category",
+        },
+        {
+          name: "Update Category",
+          path: "/admin-dashboard?type=update-category",
+        },
+      ],
+      id: "apps",
+    },
+    {
+      name: "Offers",
+      icon: <CelebrationTwoToneIcon className="text-teal-200" />,
+      subMenu: [
+        { name: "Add Offer", path: "/admin-dashboard?type=add-offer" },
+        { name: "Delete Offer", path: "/admin-dashboard?type=delete-offer" },
+      ],
+      id: "apps",
+    },
+    {
+      name: "Reservation",
+      icon: <DateRangeIcon className="text-teal-200" />,
+      subMenu: [
+        { name: "View ", path: "/admin-dashboard?type=viewReservation" },
+        { name: "Control", path: "/admin-dashboard?type=controlReservation" },
+      ],
+      id: "apps",
+    },
+    {
+      name: "Collected Emails",
+      icon: <AttachEmailIcon className="text-teal-200" />,
+      subMenu: [{ name: "View ", path: "/admin-dashboard?type=email" }],
+      id: "apps",
+    },
+    {
+      name: "Log Out",
+      icon: <LogoutIcon className="text-teal-200" />,
+      action : handleSignOut,
+      id: "apps",
+    },
+  ];
   return (
     <div
       className={`flex flex-col h-screen  transition-width font-sans text-[#a8b2d4] duration-300 z-50 ${
@@ -171,19 +185,27 @@ const Sidebar = ({ isExpanded, setIsExpanded }) => {
                   )}
                 </div>
               </div>
-            ) : (
-              <Link
-                to={item.path}
-                className="group flex items-center p-2 hover:bg-[#16265f] rounded-md w-full transition-all duration-300 cursor-pointer transform hover:translate-x-2 neumorphism"
-              >
-                <div className="flex justify-center gap-x-4 items-center">
-                  <div className="text-xl">{item.icon}</div>
-                  <span className={`ml-4 text-md ${!isExpanded && "hidden"}`}>
-                    {item.name}
-                  </span>
-                </div>
-              </Link>
-            )}
+            ) :<div> {item.action? <div
+              onClick={item.action}
+              className="group flex items-center p-2 hover:bg-[#16265f] rounded-md w-full transition-all duration-300 cursor-pointer transform hover:translate-x-2 neumorphism"
+            >
+              <div className="flex justify-center gap-x-4 items-center">
+                <div className="text-xl">{item.icon}</div>
+                <span className={`ml-4 text-md ${!isExpanded && "hidden"}`}>
+                  {item.name}
+                </span>
+              </div>
+            </div>: <Link
+            to={item.path}
+            className="group flex items-center p-2 hover:bg-[#16265f] rounded-md w-full transition-all duration-300 cursor-pointer transform hover:translate-x-2 neumorphism"
+          >
+            <div className="flex justify-center gap-x-4 items-center">
+              <div className="text-xl">{item.icon}</div>
+              <span className={`ml-4 text-md ${!isExpanded && "hidden"}`}>
+                {item.name}
+              </span>
+            </div>
+          </Link>}</div>}
             {isExpanded && expandedMenuIndex === index && item.subMenu && (
               <ul className="ml-8 transition-height duration-500 list-disc list-inside">
                 {item.subMenu.map((subItem, subIndex) => (
@@ -198,6 +220,10 @@ const Sidebar = ({ isExpanded, setIsExpanded }) => {
             )}
           </div>
         ))}
+        {/* <div className=" ml-4 hover:bg-[#16265f] rounded-md  py-2 w-full transition-all duration-300 cursor-pointer transform hover:translate-x-2 neumorphism">
+
+        <LogoutIcon /> Log Out
+        </div> */}
       </nav>
     </div>
   );

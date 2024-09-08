@@ -8,7 +8,16 @@ import axiosInstance from "../../api/axiosInstance";
 
 // CusineCard Component
 const CusineCard = ({ menu, onWarningClick }) => {
-  const { _id, image, name, promotionalLine, offer, price, offerPrice, reviews } = menu;
+  const {
+    _id,
+    image,
+    name,
+    promotionalLine,
+    offer,
+    price,
+    offerPrice,
+    reviews,
+  } = menu;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [reviewText, setReviewText] = useState("");
@@ -17,9 +26,10 @@ const CusineCard = ({ menu, onWarningClick }) => {
   const [reviewImage, setReviewImage] = useState(null); // State for review image
 
   const totalReviews = reviews ? reviews.length : 0;
-  const averageRating = totalReviews > 0
-    ? reviews.reduce((sum, review) => sum + review.rating, 0) / totalReviews
-    : 0;
+  const averageRating =
+    totalReviews > 0
+      ? reviews.reduce((sum, review) => sum + review.rating, 0) / totalReviews
+      : 0;
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -33,7 +43,7 @@ const CusineCard = ({ menu, onWarningClick }) => {
       formData.append("rating", rating);
       formData.append("comment", reviewText);
       if (reviewImage) formData.append("file", reviewImage); // Append image if exists
-      console.log(formData,"form")
+      console.log(formData, "form");
 
       await axiosInstance.post(`/reviews/${_id}`, formData, {
         headers: {
@@ -50,94 +60,112 @@ const CusineCard = ({ menu, onWarningClick }) => {
   };
 
   return (
-    <div className="bg-white shadow-lg max-w-72 mx-auto overflow-hidden hover:shadow-limeGreen duration-300">
-      <img src={image} alt={name} className=" max-h-60 object-cover p-2" />
-      {offer && (
-        <div className="bg-red-700 border2 rotate-45 bottom-44 left-24 relative text-center text-white font-merriweather text-18">
-          Offer
-        </div>
-      )}
-      <div className="p-4">
-        <h3 className="text-xl font-bold mb-2">{name}</h3>
-        <p className="text-gray-700">{promotionalLine}</p>
-        <div className="flex justify-between items-center py-3">
-          <div className="flex flex-col gap-y-4">
-            <p className="text-gray-900 font-semibold mt-2">
-              ${offer ? offerPrice : price}
-            </p>
-            {offer && <p className="text-red-500 line-through">${price}</p>}
-            <div className="flex flex-col gap-y-4 items-center">
-              <div className="flex">
-                {Array.from({ length: 5 }, (_, index) => (
-                  <span key={index}>
-                    {index < averageRating ? (
-                      <FaStar className="text-yellow-500" />
-                    ) : (
-                      <FaRegStar className="text-yellow-500" />
-                    )}
+    <div className="bg-[#757D36] p-1 rounded-md">
+      <div className="bg-[#BEC968] p-1 rounded-md">
+        <div className="bg-white shadow-lg  md:h-[550px] rounded-md mx-auto overflow-hidden hover:shadow-limeGreen duration-300">
+          <div className="  flex justify-around">
+            {" "}
+            <img src={image} alt={name} className=" h-60  object-cover p-2 " />
+          </div>
+          {offer && (
+            <div className="bg-red-700 border2  rotate-45 bottom-52 left-24 relative text-center text-white font-merriweather text-18">
+              Offer
+            </div>
+          )}
+          <div className="p-4">
+            <h3 className="text-xl font-bold mb-2">{name}</h3>
+            <p className="text-gray-700">{promotionalLine}</p>
+            <div className="flex justify-between items-center py-3">
+              <div className="flex flex-col gap-y-4">
+                <p className="text-gray-900 font-semibold mt-2">
+                  ${offer ? offerPrice : price}
+                </p>
+                {offer && <p className="text-red-500 line-through">${price}</p>}
+                <div className="flex flex-col gap-y-4 items-center">
+                  <div className="flex">
+                    {Array.from({ length: 5 }, (_, index) => (
+                      <span key={index}>
+                        {index < averageRating ? (
+                          <FaStar className="text-yellow-500" />
+                        ) : (
+                          <FaRegStar className="text-yellow-500" />
+                        )}
+                      </span>
+                    ))}
+                  </div>
+                  <span className="ml-2 text-gray-600">
+                    ({totalReviews} reviews)
                   </span>
-                ))}
+                </div>
               </div>
-              <span className="ml-2 text-gray-600">({totalReviews} reviews)</span>
+              <button
+                className="btn btn-outline hover:bg-olive text-olive hover:text-white"
+                onClick={onWarningClick}
+              >
+                See Details
+              </button>
+            </div>
+            <div className="flex justify-end">
+              <button onClick={toggleModal}>
+                <MdReviews className="text-blue-500" size={24} />
+              </button>
             </div>
           </div>
-          <button className="btn btn-outline hover:bg-olive hover:text-white" onClick={onWarningClick}>
-            See Details
-          </button>
-        </div>
-        <div className="flex justify-end">
-          <button onClick={toggleModal}>
-            <MdReviews className="text-blue-500" size={24} />
-          </button>
+
+          {isModalOpen && (
+            <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center">
+              <div className="w-96 h-auto bg-white rounded-md shadow-md p-4">
+                <h2 className="text-xl font-bold mb-4">Submit Your Review</h2>
+                <input
+                  type="text"
+                  className="w-full bg-white p-2 border rounded mb-4"
+                  value={reviewerName}
+                  onChange={(e) => setReviewerName(e.target.value)}
+                  placeholder="Your name"
+                />
+                <textarea
+                  className="w-full bg-white p-2 border rounded mb-4"
+                  value={reviewText}
+                  onChange={(e) => setReviewText(e.target.value)}
+                  placeholder="Write your review here..."
+                ></textarea>
+                <div className="flex items-center mb-4">
+                  <span className="mr-2">Rating:</span>
+                  {Array.from({ length: 5 }, (_, index) => (
+                    <span key={index} onClick={() => setRating(index + 1)}>
+                      {index < rating ? (
+                        <FaStar className="text-yellow-500 cursor-pointer" />
+                      ) : (
+                        <FaRegStar className="text-gray-300 cursor-pointer" />
+                      )}
+                    </span>
+                  ))}
+                </div>
+                <input
+                  type="file"
+                  className="w-full p-2 border rounded mb-4"
+                  onChange={(e) => setReviewImage(e.target.files[0])}
+                  accept="image/*"
+                />
+                <div className="flex justify-end">
+                  <button
+                    className="btn bg-olive text-white hover:bg-limeGreen"
+                    onClick={handleReviewSubmit}
+                  >
+                    Submit Review
+                  </button>
+                  <button
+                    className="btn btn-secondary ml-2"
+                    onClick={toggleModal}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
-
-      {isModalOpen && (
-        <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center">
-          <div className="w-96 h-auto bg-white rounded-md shadow-md p-4">
-            <h2 className="text-xl font-bold mb-4">Submit Your Review</h2>
-            <input
-              type="text"
-              className="w-full bg-white p-2 border rounded mb-4"
-              value={reviewerName}
-              onChange={(e) => setReviewerName(e.target.value)}
-              placeholder="Your name"
-            />
-            <textarea
-              className="w-full bg-white p-2 border rounded mb-4"
-              value={reviewText}
-              onChange={(e) => setReviewText(e.target.value)}
-              placeholder="Write your review here..."
-            ></textarea>
-            <div className="flex items-center mb-4">
-              <span className="mr-2">Rating:</span>
-              {Array.from({ length: 5 }, (_, index) => (
-                <span key={index} onClick={() => setRating(index + 1)}>
-                  {index < rating ? (
-                    <FaStar className="text-yellow-500 cursor-pointer" />
-                  ) : (
-                    <FaRegStar className="text-gray-300 cursor-pointer" />
-                  )}
-                </span>
-              ))}
-            </div>
-            <input
-              type="file"
-              className="w-full p-2 border rounded mb-4"
-              onChange={(e) => setReviewImage(e.target.files[0])}
-              accept="image/*"
-            />
-            <div className="flex justify-end">
-              <button className="btn bg-olive text-white hover:bg-limeGreen" onClick={handleReviewSubmit}>
-                Submit Review
-              </button>
-              <button className="btn btn-secondary ml-2" onClick={toggleModal}>
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
@@ -157,7 +185,6 @@ CusineCard.propTypes = {
         comment: PropTypes.string,
         name: PropTypes.string,
         image: PropTypes.string,
-
       })
     ).isRequired,
   }).isRequired,

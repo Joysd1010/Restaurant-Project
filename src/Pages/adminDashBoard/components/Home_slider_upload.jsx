@@ -12,7 +12,7 @@ const SliderUpload = () => {
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
-    console.log('Selected file:', e.target.files[0]); // Verify file selection
+    console.log('Selected file:', e.target.files[0]); 
   };
 
   const handleSubmit = async (e) => {
@@ -28,14 +28,14 @@ const SliderUpload = () => {
 
     try {
       const formData = new FormData();
-      formData.append('file', file); // Ensure file is appended
+      formData.append('file', file); 
       formData.append('title', title);
       formData.append('heading', heading);
       formData.append('description', description);
 
-      // Debugging: Log FormData entries
+      
       for (let pair of formData.entries()) {
-        console.log(`${pair[0]}: ${pair[1]}`); // Verify FormData entries
+        console.log(`${pair[0]}: ${pair[1]}`); 
       }
 
       const response = await axiosInstance.post('/home-slider-upload', formData, {
@@ -54,7 +54,7 @@ const SliderUpload = () => {
         setError('Failed to upload slider. Please try again.');
       }
     } catch (error) {
-      console.error('Upload error:', error); // Log the error for debugging
+      console.error('Upload error:', error); 
       setError('An error occurred while uploading the slider.');
     } finally {
       setUploading(false);

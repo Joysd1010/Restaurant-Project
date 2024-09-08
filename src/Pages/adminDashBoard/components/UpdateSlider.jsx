@@ -52,7 +52,7 @@ export default function UpdateSlider() {
       );
 
       toast.success("Slide updated successfully!");
-      setEditableSlide(null); // Exit edit mode
+      setEditableSlide(null); 
     } catch (error) {
       toast.error("Failed to update slide. Please try again.");
       console.error("Error updating slide:", error);
@@ -66,7 +66,7 @@ export default function UpdateSlider() {
       {slides.map((slide) => (
         <div key={slide._id} className="grid grid-cols-1 gap-4 md:grid-cols-2 items-center mb-10 relative">
           {editableSlide && editableSlide._id === slide._id ? (
-            // Edit Mode: Editable Fields
+           
             <div className="text-start px-10 flex flex-col gap-7">
               <input
                 type="text"
@@ -96,7 +96,7 @@ export default function UpdateSlider() {
               </button>
             </div>
           ) : (
-            // View Mode
+          
             <div className="text-start px-10 flex flex-col gap-7">
               <p className="text-oliveGreen text-[24px] font-merriweather font-bold">
                 {slide.title}

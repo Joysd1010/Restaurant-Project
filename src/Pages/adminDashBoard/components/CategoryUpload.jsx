@@ -33,7 +33,7 @@ const CategoryUpload = () => {
       formData.append('category', category);
       formData.append('promoLine', promoLine);
 
-      // Debugging: Log FormData entries
+      
       for (let pair of formData.entries()) {
         console.log(`${pair[0]}: ${pair[1]}`); // Verify FormData entries
       }

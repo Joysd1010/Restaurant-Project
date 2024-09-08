@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axiosInstance from "../../../api/axiosInstance";
-import { ToastContainer, toast } from "react-toastify"; // Import ToastContainer correctly
+import { ToastContainer, toast } from "react-toastify";  
 
 const ControlReservation = () => {
   const [timeSlot, setSlot] = useState([]);
   const [selected, setSelected] = useState(new Date().toISOString());
 
-  // Modal state
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState(null);
 
@@ -24,7 +24,7 @@ const ControlReservation = () => {
       const response = await axiosInstance.get(
         `/reserve/timeStatus?${params.toString()}`
       );
-      // console.log(response);
+    
       setSlot(response.data);
     } catch (error) {
       console.error("Error fetching time slots:", error);
@@ -80,9 +80,9 @@ const ControlReservation = () => {
       if (response.status === 200) {
         toast.success("Time slot marked as unavailable successfully");
   
-        // Trigger useEffect after 300ms
+       
         setTimeout(() => {
-          fetchTimeSlots(); // Call the fetch function manually
+          fetchTimeSlots(); 
         }, 300);
       } else {
         toast.error("Failed to mark time slot as unavailable");
@@ -95,7 +95,7 @@ const ControlReservation = () => {
   
   const deleteUnavailable = async (id) => {
     try {
-      const date = new Date(selected).toISOString(); // Extracting the date in ISO format
+      const date = new Date(selected).toISOString();
   
       const response = await axiosInstance.delete("/reserve/manipulate", {
         data: {
@@ -109,9 +109,9 @@ const ControlReservation = () => {
       if (response.status === 200) {
         toast.success("Time has been activated successfully");
   
-        // Trigger useEffect after 300ms
+     
         setTimeout(() => {
-          fetchTimeSlots(); // Call the fetch function manually
+          fetchTimeSlots(); 
         }, 300);
       } else {
         toast.error("Failed to activate this time slot");
