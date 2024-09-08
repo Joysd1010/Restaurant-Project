@@ -8,7 +8,7 @@ export default function DeleteMenu() {
   const [filteredMenuItems, setFilteredMenuItems] = useState([]);
   const [filter, setFilter] = useState({ name: "", category: "", type: "" });
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6; // Number of items to display per page
+  const itemsPerPage = 6; 
 
   useEffect(() => {
     const fetchMenuItems = async () => {
@@ -25,14 +25,14 @@ export default function DeleteMenu() {
   }, []);
 
   useEffect(() => {
-    // Filter menu items based on the filter state
+   
     const filteredItems = menuItems.filter(item =>
       (filter.name ? item.name.toLowerCase().includes(filter.name.toLowerCase()) : true) &&
       (filter.category ? item.category.toLowerCase().includes(filter.category.toLowerCase()) : true) &&
       (filter.type ? item.type.toLowerCase().includes(filter.type.toLowerCase()) : true)
     );
     setFilteredMenuItems(filteredItems);
-    setCurrentPage(1); // Reset to the first page on filter change
+    setCurrentPage(1); 
   }, [filter, menuItems]);
 
   const handleFilterChange = (e) => {
@@ -51,7 +51,7 @@ export default function DeleteMenu() {
     }
   };
 
-  // Pagination logic
+
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentMenuItems = filteredMenuItems.slice(indexOfFirstItem, indexOfLastItem);

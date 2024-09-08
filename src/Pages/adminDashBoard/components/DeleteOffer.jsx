@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import CountdownTimer from "../../OfferPage/CountdownTime"; // Ensure this is correctly exported and imported
-import CusineCard from "../../MenuPage/CuisineCard"; // Ensure this is correctly exported and imported
-import { TfiGift } from "react-icons/tfi";
-import { ToastContainer, toast } from "react-toastify"; // Import ToastContainer correctly
+import CountdownTimer from "../../OfferPage/CountdownTime"; 
+import CusineCard from "../../MenuPage/CuisineCard";
+
+import { ToastContainer, toast } from "react-toastify";
 import axiosInstance from "../../../api/axiosInstance";
 
 const DeleteOffer = () => {
@@ -55,7 +55,7 @@ const DeleteOffer = () => {
         setOfferData((prevOffers) =>
           prevOffers.filter((offer) => offer._id !== selectedOfferId)
         );
-        // Close the modal after deletion
+       
         getOffer()
         document.getElementById("delete_modal").close();
       }

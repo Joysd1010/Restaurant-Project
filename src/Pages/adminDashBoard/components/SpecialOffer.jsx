@@ -5,11 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { CircularProgress } from "@mui/material";
 
 const SpecialOffer = () => {
-  // const [offers] = useState([
-  //   'Autumn Delight Offer Pack',
-  //   'Winter Delight Offer Pack',
-  //   // Add more offer names as needed
-  // ]);
+ 
   const [loading, setLoading] = useState(false);
   const [selectedOffer, setSelectedOffer] = useState("");
   const [menuItems, setMenuItems] = useState([]);
@@ -29,7 +25,7 @@ const SpecialOffer = () => {
     type: [],
   });
 
-  // New states for time and image
+ 
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [image, setImage] = useState("");
@@ -126,7 +122,7 @@ const SpecialOffer = () => {
       .then(response => {
         if (response.status === 200) {
           toast.success('Offer created successfully!');
-          // Optionally clear the form
+          
           setSelectedOffer('');
           setStartTime('');
           setEndTime('');

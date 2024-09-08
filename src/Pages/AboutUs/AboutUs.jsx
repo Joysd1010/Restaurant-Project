@@ -54,10 +54,8 @@ const AboutUs = () => {
 
   const { story, chefProfiles } = aboutData[currentIndex];
 
-  // Extract the first 100 characters
+  
   const truncatedStory = story.length > 100 ? `${story.substring(0, 100)}...` : story;
-
-  //console.log(truncatedStory)
 
   return (
     <div className="px-5 md:px-20 lg:px-28">

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axiosInstance from "../../../api/axiosInstance"; // Adjust path as necessary
+import axiosInstance from "../../../api/axiosInstance"; 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -31,7 +31,7 @@ export default function UpdateMenu() {
   }, []);
 
   useEffect(() => {
-    // Filter menu items whenever filters change
+   
     const filteredItems = menuItems.filter((menu) => {
       return (
         menu.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
@@ -115,12 +115,12 @@ export default function UpdateMenu() {
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
 
-    // Update the filter state
+   
     if (name === "name") setNameFilter(value);
     if (name === "category") setCategoryFilter(value);
     if (name === "type") setTypeFilter(value);
 
-    // Generate suggestions based on input
+
     if (value.length >= 2) {
       const newSuggestions = {
         name: [],
@@ -272,7 +272,7 @@ export default function UpdateMenu() {
             )}
             <div className="p-4">
               {editableMenu && editableMenu._id === menu._id ? (
-                // Edit Mode
+               
                 <div>
                   <label className="block mb-1">Name</label>
                   <input
@@ -371,7 +371,7 @@ export default function UpdateMenu() {
                   </div>
                 </div>
               ) : (
-                // View Mode
+               
                 <div>
                   <h3 className="text-xl font-bold mb-2">{menu.name}</h3>
                   <p className="text-gray-700 mb-2">

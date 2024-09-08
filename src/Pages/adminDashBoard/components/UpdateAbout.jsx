@@ -8,7 +8,7 @@ const UpdateAbout = () => {
   const [aboutData, setAboutData] = useState([]);
   const [editingItem, setEditingItem] = useState(null);
 
-  // Fetch data from the /about endpoint
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -22,7 +22,7 @@ const UpdateAbout = () => {
     fetchData();
   }, []);
 
-  // Handle update
+  
   const handleUpdate = async (e) => {
     e.preventDefault();
 
@@ -39,7 +39,7 @@ const UpdateAbout = () => {
     }
   };
 
-  // Handle input change
+ 
   const handleInputChange = (e, chefIndex) => {
     const { name, value } = e.target;
 
@@ -52,7 +52,7 @@ const UpdateAbout = () => {
     }
   };
 
-  // Handle edit button click
+  
   const handleEditClick = (item) => {
     setEditingItem({ ...item });
   };

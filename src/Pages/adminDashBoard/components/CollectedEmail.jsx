@@ -6,9 +6,9 @@ import { toast, ToastContainer } from "react-toastify";
 const CollectedEmail = () => {
   const tableRef = useRef(null);
   const tabletwoRef = useRef(null);
-  const [Mail, setMail] = useState([]); // Full dataset
+  const [Mail, setMail] = useState([]); 
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(10); // Adjust the number of items per page as needed
+  const [itemsPerPage] = useState(10); 
 
   const getMail = async () => {
     try {
@@ -44,15 +44,15 @@ const CollectedEmail = () => {
       }
     }
   };
-  // Calculate the index of the first and last item on the current page
+  
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = Mail.slice(indexOfFirstItem, indexOfLastItem);
 
-  // Calculate the total number of pages
+ 
   const totalPages = Math.ceil(Mail.length / itemsPerPage);
 
-  // Handle page change
+ 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };

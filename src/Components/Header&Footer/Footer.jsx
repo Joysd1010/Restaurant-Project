@@ -12,7 +12,6 @@ const Footer = () => {
 
   useEffect(() => {
     axiosInstance.get(`menu/footerimage`).then((response) => {
-      //console.log(response);
       setMenu(response.data);
     });
   }, []);
@@ -149,8 +148,6 @@ const Footer = () => {
               {" "}
               <FaXTwitter size={40} />{" "}
             </a>
-
-            {/* <FaInstagram size={40} /> */}
           </div>
         </div>
       </div>

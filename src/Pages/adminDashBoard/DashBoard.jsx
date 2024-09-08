@@ -44,36 +44,36 @@ const DashBoard = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Function to log inactivity after 5 seconds
+ 
   const setInactivityTimeout = () => {
     if (activityTimeout5Sec) clearTimeout(activityTimeout5Sec);
     
     activityTimeout5Sec = setTimeout(() => {
       console.log('activity less')
       logOut()
-    }, 2700000); // 5 seconds
+    }, 2700000); 
   };
 
-  // Function to log "default retrieve" after 10 seconds (no reset needed)
+  
   const setRetrieveTimeout = () => {
     retrieveTimeout10Sec = setTimeout(() => {
       console.log('retrieve less')
       logOut()
-    }, 9000000); // 10 seconds
+    }, 9000000); 
   };
 
   useEffect(() => {
-    // Set both timeouts when the component mounts
+   
     setInactivityTimeout();
     setRetrieveTimeout();
 
-    // Add event listeners to reset 5-second timeout on user activity
+   
     const events = ["mousemove", "keydown", "click"];
     events.forEach(event =>
       window.addEventListener(event, setInactivityTimeout)
     );
 
-    // Cleanup event listeners and clear timeouts on unmount
+    
     return () => {
       events.forEach(event =>
         window.removeEventListener(event, setInactivityTimeout)
@@ -83,7 +83,7 @@ const DashBoard = () => {
     };
   }, []);
 
-  // Conditional Rendering based on `type`
+ 
   const renderContent = () => {
     switch (type) {
       case "add-menu":

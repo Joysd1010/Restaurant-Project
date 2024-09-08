@@ -7,16 +7,16 @@ const ViewReservation = () => {
   const [reservation, setReservation] = useState([]);
   const [time, setTime] = useState(null);
 
-  // Modal state
+  
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
 
-  // Pagination state
+
   const [currentPage, setCurrentPage] = useState(1);
   const [reservationsPerPage] = useState(10);
   const formatDateForInput = (isoDate) => {
     const date = new Date(isoDate);
-    return date.toISOString().split("T")[0]; // Returns YYYY-MM-DD
+    return date.toISOString().split("T")[0]; 
   };
 
   useEffect(() => {
