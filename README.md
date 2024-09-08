@@ -53,7 +53,7 @@ To run the project locally, clone the repository and install the necessary depen
 **Clone Repository**
 ```bash
 git clone https://github.com/your-username/olive-lime.git
-cd olive-lime-frontend
+
 
 ```
 **Redirect to folder**
